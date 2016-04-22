@@ -58,9 +58,7 @@ CREATE TABLE book (
   description VARCHAR(1000),
   photo_id INT,
   verified BOOLEAN,
-  creator_id INT,
 
-  FOREIGN KEY (creator_id) REFERENCES bookshelf_user(id),
   FOREIGN KEY (author_book_name_id) REFERENCES author_book_name(id),
   FOREIGN KEY (photo_id) REFERENCES photo(id)
 );
