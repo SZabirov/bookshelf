@@ -58,7 +58,9 @@ CREATE TABLE book (
   description VARCHAR(1000),
   photo_id INT,
   verified BOOLEAN,
+  creator_id INT,
 
+  FOREIGN KEY (creator_id) REFERENCES users(id),
   FOREIGN KEY (author_true_book_id) REFERENCES author_true_book(id),
   FOREIGN KEY (photo_id) REFERENCES photo(id)
 );
@@ -66,10 +68,10 @@ CREATE TABLE book (
 CREATE TABLE users_wish_books(
   id SERIAL PRIMARY KEY,
   users_id INT,
-  book_id INT,
+  author_true_book_id INT,
 
-  FOREIGN KEY (users_id) REFERENCES users(id),
-  FOREIGN KEY (book_id) REFERENCES book(id)
+  FOREIGN KEY (author_true_book_id) REFERENCES author_true_book(id),
+  FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
 CREATE TABLE users_has_books(
