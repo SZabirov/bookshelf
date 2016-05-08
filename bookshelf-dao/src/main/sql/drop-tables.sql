@@ -1,11 +1,8 @@
-DROP TABLE bookshelf_user_having;
-DROP TABLE bookshelf_user_wish;
+DROP TABLE users_having;
+DROP TABLE users_wish;
 DROP TABLE book;
-DROP TABLE photo;
-DROP TABLE author_book_name;
-DROP TABLE book_name;
+DROP TABLE author_bookname;
 DROP TABLE author;
 DROP TABLE token;
-DROP TABLE bookshelf_user;
-DROP TABLE avatar;
+DROP TABLE users;
 

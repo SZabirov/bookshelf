@@ -1,82 +1,64 @@
-CREATE TABLE avatar (
-  id SERIAL PRIMARY KEY,
-  avatar_url VARCHAR(255)
-);
-
-CREATE TABLE bookshelf_user (
+CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   nickname VARCHAR(255) CONSTRAINT uk_nickname UNIQUE,
+  email VARCHAR(255) NOT NULL,
   firstname VARCHAR(255),
   surname VARCHAR(255),
   city VARCHAR(255),
   hashpassword VARCHAR(255),
-  avatar_id INT,
-
-  FOREIGN KEY (avatar_id) REFERENCES avatar(id)
+  avatar VARCHAR(255)
 );
 
 CREATE TABLE token (
   id SERIAL PRIMARY KEY,
-  bookshelf_user_id INT,
+  users_id INT,
   token VARCHAR(255)CONSTRAINT uk_token UNIQUE,
 
-  FOREIGN KEY (bookshelf_user_id) REFERENCES bookshelf_user(id)
+  FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
 CREATE TABLE author (
   id SERIAL PRIMARY KEY,
-  author_firstname VARCHAR(255),
-  author_surname VARCHAR(255),
-  author_middlename VARCHAR(255)
+  firstname VARCHAR(255),
+  surname VARCHAR(255),
+  middlename VARCHAR(255)
 );
 
-CREATE TABLE book_name (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255)
-);
-
-CREATE TABLE author_book_name (
+CREATE TABLE author_bookname (
   id SERIAL PRIMARY KEY,
   author_id INT,
-  book_name_id INT,
+  bookname VARCHAR(255),
   verified BOOLEAN,
 
-  FOREIGN KEY (author_id) REFERENCES author(id),
-  FOREIGN KEY (book_name_id) REFERENCES book_name(id)
-);
-
-CREATE TABLE photo (
-  id SERIAL PRIMARY KEY,
-  photo_url VARCHAR(255)
+  FOREIGN KEY (author_id) REFERENCES author(id)
 );
 
 CREATE TABLE book (
   id SERIAL PRIMARY KEY,
-  author_book_name_id INT,
+  author_bookname_id INT,
   pubhouse  VARCHAR(255),
   pub_year VARCHAR(4),
   description VARCHAR(1000),
-  photo_id INT,
+  photo VARCHAR(255),
   verified BOOLEAN,
 
-  FOREIGN KEY (author_book_name_id) REFERENCES author_book_name(id),
-  FOREIGN KEY (photo_id) REFERENCES photo(id)
+  FOREIGN KEY (author_bookname_id) REFERENCES author_bookname(id)
 );
 
-CREATE TABLE bookshelf_user_wish(
+CREATE TABLE users_wish(
   id SERIAL PRIMARY KEY,
-  bookshelf_user_id INT,
-  author_book_name_id INT,
+  users_id INT,
+  author_bookname_id INT,
 
-  FOREIGN KEY (author_book_name_id) REFERENCES author_book_name(id),
-  FOREIGN KEY (bookshelf_user_id) REFERENCES bookshelf_user(id)
+  FOREIGN KEY (author_bookname_id) REFERENCES author_bookname(id),
+  FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
-CREATE TABLE bookshelf_user_having(
+CREATE TABLE users_having(
   id SERIAL PRIMARY KEY,
-  bookshelf_user_id INT,
+  users_id INT,
   book_id INT,
 
-  FOREIGN KEY (bookshelf_user_id) REFERENCES bookshelf_user(id),
+  FOREIGN KEY (users_id) REFERENCES users(id),
   FOREIGN KEY (book_id) REFERENCES book(id)
 );

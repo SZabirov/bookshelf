@@ -1,0 +1,31 @@
+package repository;
+
+import model.Author;
+import model.AuthorBookname;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * Created by aygulmardanova on 08.05.16.
+ */
+@Repository
+public interface AuthorBooknameRepository extends JpaRepository<AuthorBookname, Integer> {
+
+    List<AuthorBookname> findAll();
+
+    AuthorBookname findOneById(int id);
+
+    List<AuthorBookname> findAllByAuthor(Author author);
+
+    List<AuthorBookname> findAllByBookname(String bookname);
+
+    List<AuthorBookname> findAllWhereVerifiedIsTrue();
+
+    List<AuthorBookname> findAllWhereVerifiedIsFalse();
+
+    //???
+    List<AuthorBookname> findAllWhereVerifiedIsTrueByAuthor(Author author);
+
+}
