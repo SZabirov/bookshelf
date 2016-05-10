@@ -1,6 +1,5 @@
 package service;
 
-import model.Author;
 import model.AuthorBookname;
 import model.Users;
 import model.UsersWish;
@@ -17,8 +16,7 @@ import java.util.List;
  */
 @Service
 public class UsersWishServiceImpl implements UsersWishService {
-
-    @Autowired
+@Autowired
     UsersWishRepository usersWishRepository;
 
     @Override
