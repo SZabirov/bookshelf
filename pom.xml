@@ -23,14 +23,30 @@
         <spring.data>1.10.1.RELEASE</spring.data>
     </properties>
 
-    <!--<hibernate.version>4.3.0.Final</hibernate.version>-->
+	<modules>
+        <module>bookshelf-dao</module>
+        <module>bookshelf-service</module>
+        <module>bookshelf-models</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
-
+            <!--Modules-->
             <dependency>
                 <groupId>com.fujitsu.fs.javalab.bookshelf.dao</groupId>
                 <artifactId>bookshelf-dao</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fujitsu.fs.javalab.bookshelf.models</groupId>
+                <artifactId>bookshelf-models</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fujitsu.fs.javalab.bookshelf.service</groupId>
+                <artifactId>bookshelf-service</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 
@@ -123,9 +139,7 @@
 
         </dependencies>
     </dependencyManagement>
-    <modules>
-        <module>bookshelf-dao</module>
-    </modules>
+
 
 
     <build>
