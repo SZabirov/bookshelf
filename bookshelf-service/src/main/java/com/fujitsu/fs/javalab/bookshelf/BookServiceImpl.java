@@ -1,11 +1,12 @@
-package service;
+package com.fujitsu.fs.javalab.bookshelf;
 
-import model.AuthorBookname;
-import model.Book;
+
+import com.fujitsu.fs.javalab.bookshelf.interfaces.BookService;
+import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.BookRepository;
-import service.interfaces.BookService;
 
 import java.util.List;
 

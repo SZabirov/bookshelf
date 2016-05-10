@@ -1,7 +1,7 @@
-package service;
+package com.fujitsu.fs.javalab.bookshelf;
 
 import org.springframework.stereotype.Service;
-import service.interfaces.AuthorService;
+import com.fujitsu.fs.javalab.bookshelf.interfaces.AuthorService;
 
 /**
  * Created by aygulmardanova on 08.05.16.

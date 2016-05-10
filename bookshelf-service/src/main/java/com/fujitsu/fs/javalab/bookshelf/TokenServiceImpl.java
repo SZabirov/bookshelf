@@ -1,11 +1,12 @@
-package service;
+package com.fujitsu.fs.javalab.bookshelf;
 
-import model.Token;
-import model.Users;
+
+import com.fujitsu.fs.javalab.bookshelf.interfaces.TokenService;
+import com.fujitsu.fs.javalab.bookshelf.models.Token;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.TokenRepository;
-import service.interfaces.TokenService;
 
 import java.util.List;
 

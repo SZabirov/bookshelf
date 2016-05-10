@@ -1,7 +1,8 @@
 package repository;
 
-import model.AuthorBookname;
-import model.Book;
+
+import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

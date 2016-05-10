@@ -1,10 +1,10 @@
 package repository;
 
-import model.Book;
-import model.Users;
-import model.UsersHaving;
+
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

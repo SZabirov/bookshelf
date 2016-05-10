@@ -1,7 +1,8 @@
 package repository;
 
-import model.Token;
-import model.Users;
+
+import com.fujitsu.fs.javalab.bookshelf.models.Token;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

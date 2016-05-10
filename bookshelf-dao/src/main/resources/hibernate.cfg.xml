@@ -7,12 +7,12 @@
     <property name="connection.url">jdbc:postgresql://localhost:5432/Bookshelf</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
 
-    <mapping class="model.Author"/>
-      <mapping class="model.AuthorBookname"/>
-      <mapping class="model.Book"/>
-    <mapping class="model.Token"/>
-    <mapping class="model.Users"/>
-    <mapping class="model.UsersHaving"/>
-    <mapping class="model.UsersWish"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Author"/>
+      <mapping class="com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname"/>
+      <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Book"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Token"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Users"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.UsersHaving"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.UsersWish"/>
   </session-factory>
 </hibernate-configuration>

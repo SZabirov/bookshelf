@@ -1,10 +1,11 @@
-package service;
+package com.fujitsu.fs.javalab.bookshelf;
 
-import model.Users;
+
+import com.fujitsu.fs.javalab.bookshelf.interfaces.UsersService;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.UsersRepository;
-import service.interfaces.UsersService;
 
 import java.util.List;
 
