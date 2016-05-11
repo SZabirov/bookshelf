@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.fujitsu.fs.javalab.bookshelf.service.dao.repository.BookRepository;
 
 import static org.mockito.Mockito.verify;
+import static org.junit.Assert.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,14 +24,23 @@ public class BookServiceImplTest {
     @Autowired
     BookRepository bookRepository;
 
+    BookServiceTestData bookServiceTestData;
+
     @Before
     public void setUp() {
-        Mockito.doReturn(null).when(bookRepository).findAll();
+        bookServiceTestData = new BookServiceTestData();
+        Mockito.doReturn(bookServiceTestData.getBooksList()).when(bookRepository).findAll();
     }
 
     @Test
     public void testGetAll() {
         bookService.getAll();
         verify(bookRepository).findAll();
+    }
+
+    @Test
+    public void testGetAllOnCorrectData() {
+        bookService.getAll();
+        assertEquals(bookServiceTestData.getBooksList(), bookRepository.findAll());
     }
 }
