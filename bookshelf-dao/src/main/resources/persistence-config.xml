@@ -24,7 +24,7 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
-        <property name="packagesToScan" value="model"/>
+        <property name="packagesToScan" value="com.fujitsu.fs.javalab.bookshelf.models"/>
     </bean>
 
 
@@ -34,6 +34,6 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <jpa:repositories base-package="repository"/>
+    <jpa:repositories base-package="com.fujitsu.fs.javalab.bookshelf.dao.repository"/>
 
 </beans>
