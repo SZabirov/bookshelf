@@ -29,6 +29,7 @@ public class BookServiceImplTest {
     @Before
     public void setUp() {
         bookServiceTestData = new BookServiceTestData();
+        Mockito.reset(bookRepository);
         Mockito.doReturn(bookServiceTestData.getBooksList()).when(bookRepository).findAll();
     }
 

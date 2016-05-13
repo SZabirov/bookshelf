@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages ={"com.fujitsu.fs.javalab.bookshelf", "com.fujitsu.fs.javalab.bookshelf.dao.repository"})
+@ComponentScan(basePackages ={"com.fujitsu.fs.javalab.bookshelf.service", "com.fujitsu.fs.javalab.bookshelf.dao.repository"})
 public class TestServiceContext {
 
     @Bean
