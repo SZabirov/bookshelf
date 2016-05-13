@@ -2,6 +2,7 @@ package com.fujitsu.fs.javalab.bookshelf.service;
 
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -26,18 +27,21 @@ public class BookServiceImplTest {
 
     BookServiceTestData bookServiceTestData;
 
+    @Ignore
     @Before
     public void setUp() {
         bookServiceTestData = new BookServiceTestData();
         Mockito.doReturn(bookServiceTestData.getBooksList()).when(bookRepository).findAll();
     }
 
+    @Ignore
     @Test
     public void testGetAll() {
         bookService.getAll();
         verify(bookRepository).findAll();
     }
 
+    @Ignore
     @Test
     public void testGetAllOnCorrectData() {
         bookService.getAll();
