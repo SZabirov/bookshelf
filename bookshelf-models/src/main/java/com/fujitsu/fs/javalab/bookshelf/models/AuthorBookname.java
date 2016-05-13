@@ -1,4 +1,4 @@
-package com.fujitsu.fs.javalab.bookshelf.service.models;
+package com.fujitsu.fs.javalab.bookshelf.models;
 
 import javax.persistence.*;
 import java.util.Collection;

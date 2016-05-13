@@ -2,12 +2,12 @@ package com.fujitsu.fs.javalab.bookshelf.service;
 
 
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersWishService;
-import com.fujitsu.fs.javalab.bookshelf.service.models.AuthorBookname;
-import com.fujitsu.fs.javalab.bookshelf.service.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.models.UsersWish;
+import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersWish;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.fujitsu.fs.javalab.bookshelf.service.dao.repository.UsersWishRepository;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.UsersWishRepository;
 
 import java.util.ArrayList;
 import java.util.List;

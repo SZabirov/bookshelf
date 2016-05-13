@@ -1,10 +1,10 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.TokenRepository;
+import com.fujitsu.fs.javalab.bookshelf.models.Token;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.TokenService;
-import com.fujitsu.fs.javalab.bookshelf.service.models.Token;
-import com.fujitsu.fs.javalab.bookshelf.service.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.dao.repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

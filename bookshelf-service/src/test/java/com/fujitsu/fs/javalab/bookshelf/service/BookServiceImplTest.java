@@ -1,5 +1,6 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.BookRepository;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +9,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.fujitsu.fs.javalab.bookshelf.service.dao.repository.BookRepository;
 
 import static org.mockito.Mockito.verify;
 import static org.junit.Assert.*;

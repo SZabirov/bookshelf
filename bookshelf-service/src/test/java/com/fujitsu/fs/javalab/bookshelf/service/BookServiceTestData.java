@@ -1,6 +1,6 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
-import com.fujitsu.fs.javalab.bookshelf.service.models.Book;
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
 
 import java.util.ArrayList;
 import java.util.List;

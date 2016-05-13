@@ -1,9 +1,9 @@
-package com.fujitsu.fs.javalab.bookshelf.service.dao.repository;
+package com.fujitsu.fs.javalab.bookshelf.dao.repository;
 
 
-import com.fujitsu.fs.javalab.bookshelf.service.models.Book;
-import com.fujitsu.fs.javalab.bookshelf.service.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.models.UsersHaving;
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
-import com.fujitsu.fs.javalab.bookshelf.service.dao.repository.*;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.*;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

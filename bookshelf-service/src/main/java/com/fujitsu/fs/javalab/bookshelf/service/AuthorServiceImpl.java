@@ -1,7 +1,7 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorService;
-import com.fujitsu.fs.javalab.bookshelf.service.models.Author;
+import com.fujitsu.fs.javalab.bookshelf.models.Author;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

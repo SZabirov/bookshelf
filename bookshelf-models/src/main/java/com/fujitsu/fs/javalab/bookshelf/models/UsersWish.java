@@ -1,4 +1,4 @@
-package com.fujitsu.fs.javalab.bookshelf.service.models;
+package com.fujitsu.fs.javalab.bookshelf.models;
 
 import javax.persistence.*;
 
@@ -6,18 +6,18 @@ import javax.persistence.*;
  * Created by Айгуль on 04.05.2016.
  */
 @Entity
-@Table(name = "users_having")
-public class UsersHaving {
+@Table(name = "users_wish")
+public class UsersWish {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_having_id_seq")
-    @SequenceGenerator(name = "users_having_id_seq", sequenceName = "users_having_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_wish_id_seq")
+    @SequenceGenerator(name = "users_wish_id_seq", sequenceName = "users_wish_id_seq", allocationSize = 1)
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(targetEntity = Book.class)
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book book;
+    @ManyToOne(targetEntity = AuthorBookname.class)
+    @JoinColumn(name = "author_bookname_id", referencedColumnName = "id")
+    private AuthorBookname authorBookname;
 
     @ManyToOne(targetEntity = Users.class)
     @JoinColumn(name = "users_id", referencedColumnName = "id")
@@ -31,12 +31,12 @@ public class UsersHaving {
         this.id = id;
     }
 
-    public Book getBook() {
-        return book;
+    public AuthorBookname getAuthorBookname() {
+        return authorBookname;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setAuthorBookname(AuthorBookname authorBookname) {
+        this.authorBookname = authorBookname;
     }
 
     public Users getUsers() {
@@ -52,9 +52,9 @@ public class UsersHaving {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UsersHaving that = (UsersHaving) o;
+        UsersWish usersWish = (UsersWish) o;
 
-        if (id != that.id) return false;
+        if (id != usersWish.id) return false;
 
         return true;
     }

@@ -1,11 +1,11 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.UsersHavingRepository;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersHavingService;
-import com.fujitsu.fs.javalab.bookshelf.service.models.Book;
-import com.fujitsu.fs.javalab.bookshelf.service.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.models.UsersHaving;
-import com.fujitsu.fs.javalab.bookshelf.service.dao.repository.UsersHavingRepository;
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

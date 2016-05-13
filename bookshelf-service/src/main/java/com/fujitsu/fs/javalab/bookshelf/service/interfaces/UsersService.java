@@ -1,6 +1,6 @@
 package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 
-import com.fujitsu.fs.javalab.bookshelf.service.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
