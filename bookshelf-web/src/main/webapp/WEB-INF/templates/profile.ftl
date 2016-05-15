@@ -1,11 +1,16 @@
 <!DOCTYPE HTML>
+<!--
+	Horizons by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html>
 <head>
     <title>Bookshelf</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <script src="/resources/css/ie/html5shiv.js"></script>
+    <!--[if lte IE 8]><script src="/resources/css/ie/html5shiv.js"></script><![endif]-->
     <script src="/resources/js/jquery.min.js"></script>
     <script src="/resources/js/jquery.dropotron.min.js"></script>
     <script src="/resources/js/skel.min.js"></script>
@@ -15,7 +20,7 @@
         <link rel="stylesheet" href="/resources/css/skel.css" />
         <link rel="stylesheet" href="/resources/css/style.css" />
     </noscript>
-    <link rel="stylesheet" href="/resources/css/ie/v8.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="/resources/css/ie/v8.css" /><![endif]-->
 </head>
 <body class="no-sidebar">
 
@@ -29,10 +34,11 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/login">Вход</a></li>
-                <li><a href="/registration">Регистрация</a></li>
-                <li><a href="/search">Поиск</a></li>
+                <li><a href="#">Главная</a></li>
+                <li><a href="/profile">Мой профиль</a></li>
+                <li><a href="mybookshelf.html">Моя книжная полка</a></li>
+                <li><a href="settings.html">Настройки</a></li>
+                <li><a href="search.html">Поиск</a></li>
             </ul>
         </nav>
 
@@ -40,17 +46,33 @@
 </div>
 
 <!-- Main -->
-<div id="main" class="wrapper style1">
-    <form action='/login' method='POST' class='form1'>
-        <#if error??>
-            <span class="error_text">Неверный логин или пароль</span>
-        </#if>
-        <input type='text' name='j_username' class='loginform' placeholder='Логин'><br />
-        <input type='password' name='j_password' class='loginform'  placeholder='Пароль'><br />
-        <div class='chb'><input type='checkbox' name='chb1'/><label for='chb1'><span></span>
-            <small class='small-text'>Запомнить меня</small></label></div>
-        <input type='submit' value='Войти' class='submit-button'>
-    </form>
+<div id="main2" class="wrapper style1">
+    <div class="profilepage">
+        <img src="/resources/images/no_user_photo.png" class="profile_photo" />
+        <div class="profile_information">
+            <b>Имя:</b> Алексей <br/>
+            <b>Фамилия:</b> Бархатов <br/>
+            <b>Логин:</b> ${nickname}
+        </div>
+    </div>
+    <div class="profilebooks">
+        <div class="offerings">
+            <h3>Могу предложить: </h3>
+            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
+            <div class="book_name">Л.Н. Толстой "Война и мир"</div>
+            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
+            <div class="book_name">Харпер Ли "Убить пересмешника"</div>
+            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
+            <div class="book_name">А.С. Пушкин "Евгений Онегин"</div>
+        </div>
+        <div class="wishes">
+            <h3>Хочу почитать: </h3>
+            <img src="/resources/images/book.jpg"/>
+            <div class="book_name">Гюстав Флобер "Госпожа Бовари"</div>
+            <img src="/resources/images/book.jpg"/>
+            <div class="book_name">Фрэнсис Скотт Фицджеральд "Великий Гэтсби"</div>
+        </div>
+    </div>
 </div>
 
 <!-- Footer -->
@@ -63,6 +85,7 @@
                 <section>
                     <header class="major">
                         <h2>Партнеры</h2>
+                        <!-- <span class="byline">Quisque semper augue mattis wisi maecenas ligula</span> -->
                     </header>
                     <div class="row">
                         <section class="6u">
@@ -70,6 +93,7 @@
                                 <li><a href="http://kpfu.ru">Казанский (Приволжский) федеральный университет</a></li>
                                 <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и информационных систем</a></li>
                                 <li><a href="http://www.fujitsu.com/global">Лаборатория Fujitsu Java</a></li>
+                                <!-- <li><a href="#">Cras vitae metus aliquam  pharetra.</a></li> -->
                             </ul>
                         </section>
                     </div>
@@ -79,6 +103,7 @@
                 <section>
                     <header class="major">
                         <h2>Контакты</h2>
+                        <!-- <span class="byline">Mattis wisi maecenas ligula</span> -->
                     </header>
                     <ul class="contact">
                         <li>
@@ -101,6 +126,7 @@
         <!-- Copyright -->
         <div class="copyright">
             Казань, 2016
+            <!-- Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>) -->
         </div>
 
     </div>

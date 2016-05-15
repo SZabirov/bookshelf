@@ -172,6 +172,10 @@
 		color: rgba(85, 85, 85, 0.5) !important;
 	}
 
+	.error_text {
+		color: red;
+	}
+
 /* Image */
 
 	.image {

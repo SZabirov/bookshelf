@@ -23,6 +23,24 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.fujitsu.fs.javalab.bookshelf.dao</groupId>
+            <artifactId>bookshelf-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fujitsu.fs.javalab.bookshelf.models</groupId>
+            <artifactId>bookshelf-models</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fujitsu.fs.javalab.bookshelf.service</groupId>
+            <artifactId>bookshelf-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!--Spring-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -52,6 +70,22 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
+        </dependency>
+
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
         </dependency>
 
         <!--Freemarker-->
