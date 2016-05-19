@@ -1,9 +1,8 @@
 package com.fujitsu.fs.javalab.bookshelf.web.security;
+
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.service.UsersServiceImpl;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,6 +38,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userDetails;
 
     }
-
 
 }
