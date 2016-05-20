@@ -6,6 +6,7 @@
 
     <groupId>com.fujitsu.fs.javalab.bookshelf.dao</groupId>
     <artifactId>bookshelf-dao</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>com.fujitsu.fs.javalab.bookshelf</groupId>
