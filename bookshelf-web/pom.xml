@@ -142,7 +142,7 @@
                             <artifactId>bookshelf-web</artifactId>
                             <type>war</type>
                             <properties>
-                                <context>bookshelf</context>
+                                <context>/</context>
                             </properties>
                         </deployable>
                     </deployables>
