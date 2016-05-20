@@ -1,7 +1,7 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 
-import com.fujitsu.fs.javalab.bookshelf.dao.repository.UsersRepository;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.JpaRepositoryUsers;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public class UsersServiceImpl implements UsersService {
 
     @Autowired
-    UsersRepository usersRepository;
+    JpaRepositoryUsers jpaRepositoryUsers;
 
 
     @Override
@@ -30,14 +30,14 @@ public class UsersServiceImpl implements UsersService {
         users.setCity(city);
         users.setHashpassword(hashpassword);
         users.setAvatar(avatar);
-        usersRepository.save(users);
+        jpaRepositoryUsers.save(users);
     }
 
     @Override
     public void updateUser(int id, String new_nickname, String new_email, String new_firstname,
                            String new_surname, String new_city, String old_hashpassword, String new_hashpassword,
                            String new_avatar) {
-        Users users = usersRepository.findOneById(id);
+        Users users = jpaRepositoryUsers.findOneById(id);
         if (new_nickname != null && !new_nickname.equals("")) {
             users.setNickname(new_nickname);
         }
@@ -70,44 +70,46 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public boolean ifCorrectUser(int id, String hashpassword) {
-        Users users = usersRepository.findOneById(id);
+        Users users = jpaRepositoryUsers.findOneById(id);
         return users.getHashpassword().equals(hashpassword);
     }
 
     @Override
     public boolean ifCorrectUser(String nickname, String hashpassword) {
-        Users users = usersRepository.findOneByNickname(nickname);
+        Users users = jpaRepositoryUsers.findOneByNickname(nickname);
         return users.getHashpassword().equals(hashpassword);
     }
 
     @Override
     public List<Users> getAllUsersByCity(String city) {
-        return usersRepository.findAllByCity(city);
+        return jpaRepositoryUsers.findAllByCity(city);
     }
 
     @Override
     public Users getUserById(int id) {
-        return usersRepository.findOneById(id);
+        return jpaRepositoryUsers.findOneById(id);
     }
 
     @Override
     public List<Users> getAll() {
-        return usersRepository.findAll();
+        return jpaRepositoryUsers.findAll();
     }
 
+    // FIXME: 20.05.2016 
     @Override
     public List<Users> getAllUsersOrderBySurnameAndFirstname() {
-        return usersRepository.findAllOrderbySurnameAndFirstname();
+        return null;
+//        return usersRepository.findAllOrderbySurnameAndFirstname();
     }
 
     @Override
     public Users getUsersByNickname(String nickname) {
-        return usersRepository.findOneByNickname(nickname);
+        return jpaRepositoryUsers.findOneByNickname(nickname);
     }
 
     @Override
     public boolean ifNicknameExists(String nickname) {
-        Users users = usersRepository.findOneByNickname(nickname);
+        Users users = jpaRepositoryUsers.findOneByNickname(nickname);
         return users != null;
     }
 }

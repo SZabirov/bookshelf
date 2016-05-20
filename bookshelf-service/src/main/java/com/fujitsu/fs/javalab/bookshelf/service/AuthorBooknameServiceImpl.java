@@ -1,10 +1,10 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 
-import com.fujitsu.fs.javalab.bookshelf.dao.repository.AuthorBooknameRepository;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorBooknameService;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.JpaRepositoryAuthorBookname;
 import com.fujitsu.fs.javalab.bookshelf.models.Author;
 import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorBooknameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,26 +17,28 @@ import java.util.List;
 public class AuthorBooknameServiceImpl implements AuthorBooknameService {
 
     @Autowired
-    AuthorBooknameRepository authorBooknameRepository;
+    JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname;
 
 
     @Override
     public List<AuthorBookname> getAll() {
-        return authorBooknameRepository.findAll();
+        return jpaRepositoryAuthorBookname.findAll();
     }
 
     @Override
     public List<AuthorBookname> getAllByAuthor(Author author) {
-        return authorBooknameRepository.findAllByAuthor(author);
+        return jpaRepositoryAuthorBookname.findAllByAuthor(author);
     }
 
     @Override
     public List<AuthorBookname> getAllByBookname(String bookname) {
-        return authorBooknameRepository.findAllByBookname(bookname);
+        return jpaRepositoryAuthorBookname.findAllByBookname(bookname);
     }
 
+    // FIXME: 20.05.2016
     @Override
     public List<AuthorBookname> getAllVerifiedBooksForAuthor(Author author) {
-        return authorBooknameRepository.findAllWhereVerifiedIsTrueByAuthor(author);
+        //        return authorBooknameRepository.findAllWhereVerifiedIsTrueByAuthor(author);
+        return null;
     }
 }

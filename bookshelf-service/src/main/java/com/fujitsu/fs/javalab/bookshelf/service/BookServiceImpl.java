@@ -44,8 +44,10 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAllByAuthorBookname(authorBookname);
     }
 
+    // FIXME: 20.05.2016 
     @Override
     public List<Book> getAllVerifiedBooks() {
-        return bookRepository.findAllWhereVerifiedIsTrue();
+//        return bookRepository.findAllWhereVerifiedIsTrue();
+        return null;
     }
 }

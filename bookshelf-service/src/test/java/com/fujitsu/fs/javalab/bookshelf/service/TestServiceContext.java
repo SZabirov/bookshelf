@@ -16,8 +16,8 @@ public class TestServiceContext {
     }
 
     @Bean
-    public AuthorBooknameRepository authorBooknameRepository(){
-        return Mockito.mock(AuthorBooknameRepository.class);
+    public JpaRepositoryAuthorBookname authorBooknameRepository(){
+        return Mockito.mock(JpaRepositoryAuthorBookname.class);
     }
 
     @Bean
@@ -31,8 +31,8 @@ public class TestServiceContext {
     }
 
     @Bean
-    public UsersRepository usersRepository(){
-        return Mockito.mock(UsersRepository.class);
+    public JpaRepositoryUsers usersRepository(){
+        return Mockito.mock(JpaRepositoryUsers.class);
     }
 
     @Bean

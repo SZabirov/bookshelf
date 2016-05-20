@@ -12,7 +12,7 @@ import java.util.List;
  * Created by aygulmardanova on 08.05.16.
  */
 @Repository
-public interface AuthorBooknameRepository extends JpaRepository<AuthorBookname, Integer> {
+public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBookname, Integer> {
 
     List<AuthorBookname> findAll();
 
@@ -21,12 +21,12 @@ public interface AuthorBooknameRepository extends JpaRepository<AuthorBookname, 
     List<AuthorBookname> findAllByAuthor(Author author);
 
     List<AuthorBookname> findAllByBookname(String bookname);
-
-    List<AuthorBookname> findAllWhereVerifiedIsTrue();
-
-    List<AuthorBookname> findAllWhereVerifiedIsFalse();
+// FIXME: 20.05.2016 
+//    List<AuthorBookname> findAllWhereVerifiedIsTrue();
+//
+//    List<AuthorBookname> findAllWhereVerifiedIsFalse();
 
     //???
-    List<AuthorBookname> findAllWhereVerifiedIsTrueByAuthor(Author author);
+//    List<AuthorBookname> findAllWhereVerifiedIsTrueByAuthor(Author author);
 
 }
