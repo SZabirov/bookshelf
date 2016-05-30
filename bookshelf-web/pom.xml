@@ -97,6 +97,12 @@
             <artifactId>freemarker</artifactId>
         </dependency>
 
+        <!--MD5 Hashing-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+
     </dependencies>
 
 

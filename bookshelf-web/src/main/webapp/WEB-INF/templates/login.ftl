@@ -41,7 +41,7 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form action='/login' method='POST' class='form1'>
+    <form action='/j_spring_security_check' method='POST' class='form1'>
         <#if error??>
             <span class="error_text">Неверный логин или пароль</span>
         </#if>

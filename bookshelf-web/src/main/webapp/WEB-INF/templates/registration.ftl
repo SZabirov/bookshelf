@@ -42,11 +42,17 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form action='/login' method='POST' class='form1'>
+    <form action='/registration' method='POST' class='form1'>
+        <#if error??>
+            <span class="error_text">Пользователь с таким логином уже существует</span>
+        </#if>
         <input type='text' name='user' class='loginform' placeholder='Придумайте логин' required><br />
-        <input type='text' name='e-mail' class='loginform'  placeholder='Ваш e-mail' required><br />
-        <input type='password' name='password' class='loginform'  placeholder='Придумайте пароль' required><br />
-        <input type='password' name='password' class='loginform'  placeholder='Повторите пароль' required><br />
+        <input type='text' name='email' class='loginform'  placeholder='Ваш e-mail' required><br />
+        <input type='text' name='name' class='loginform'  placeholder='Имя' required><br />
+        <input type='text' name='surname' class='loginform'  placeholder='Фамилия' required><br />
+        <input type='text' name='city' class='loginform'  placeholder='Город' required><br />
+        <input type='password' name='password1' class='loginform'  placeholder='Придумайте пароль' required><br />
+        <input type='password' name='password2' class='loginform'  placeholder='Повторите пароль' required><br />
         <input type='submit' value='Регистрация' class='submit-button'>
     </form>
 </div>

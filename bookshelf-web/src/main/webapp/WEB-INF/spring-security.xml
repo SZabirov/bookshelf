@@ -28,21 +28,20 @@
 
     </security:http>
 
-    <security:authentication-manager>
-      <security:authentication-provider>
-              <security:user-service>
-                  <security:user name="elvira" password="admin" authorities="CLIENT"/>
-              </security:user-service>
-        </security:authentication-provider>
-    </security:authentication-manager>
-
-    <!--<security:authentication-manager-->
-            <!--alias="authenticationManager">-->
-        <!--<security:authentication-provider user-service-ref="userDetailsServiceImpl">-->
-            <!--<security:password-encoder hash="md5"/>-->
-            <!--&lt;!&ndash;<password-encoder hash="md5" />&ndash;&gt;-->
+    <!--<security:authentication-manager>-->
+      <!--<security:authentication-provider>-->
+              <!--<security:user-service>-->
+                  <!--<security:user name="elvira" password="admin" authorities="CLIENT"/>-->
+              <!--</security:user-service>-->
         <!--</security:authentication-provider>-->
     <!--</security:authentication-manager>-->
+
+    <security:authentication-manager
+            alias="authenticationManager">
+        <security:authentication-provider user-service-ref="userDetailsServiceImpl">
+            <security:password-encoder hash="md5"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
 
 
 </beans:beans>
