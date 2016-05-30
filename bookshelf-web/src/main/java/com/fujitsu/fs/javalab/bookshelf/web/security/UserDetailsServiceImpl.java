@@ -3,6 +3,7 @@ package com.fujitsu.fs.javalab.bookshelf.web.security;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.service.UsersServiceImpl;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,9 +24,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throws UsernameNotFoundException, DataAccessException {
         usersService = new UsersServiceImpl();
         Users user = usersService.getUsersByNickname(login);
-        if (user == null) {
-            throw new UsernameNotFoundException("Email is not found in the database");
-        }
+        System.out.println("User***** " + user.getNickname());
+        System.out.println(user.getHashpassword());
+//        if (user == null) {
+//            throw new UsernameNotFoundException("Email is not found in the database");
+//        }
 
         Set<GrantedAuthority> roles = new HashSet();
         roles.add(new SimpleGrantedAuthority("CLIENT"));

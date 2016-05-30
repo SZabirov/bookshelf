@@ -1,6 +1,5 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
-import com.fujitsu.fs.javalab.bookshelf.service.UsersServiceImpl;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
 import com.fujitsu.fs.javalab.bookshelf.web.utils.HashUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,9 +76,6 @@ public class MainController {
                                    @RequestParam(value = "password1", required = false) String password1,
                                    @RequestParam(value = "password2", required = false) String password2) {
 
-//        model.addAttribute("username", username);
-//        model.addAttribute("client", "CLIENT");
-
         if (usersService.ifNicknameExists(username)) {
             return "redirect:/registration?error=loginIsBusy";
         }
@@ -97,9 +92,13 @@ public class MainController {
 
                 SecurityContextHolder.getContext().setAuthentication(token);
             }
+
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String login = auth.getName();
+            model.addAttribute("nickname", login);
+            return "profile";
         }
 
-        return "profile";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)

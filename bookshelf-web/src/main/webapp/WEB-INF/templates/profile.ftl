@@ -39,6 +39,7 @@
                 <li><a href="mybookshelf.html">Моя книжная полка</a></li>
                 <li><a href="settings.html">Настройки</a></li>
                 <li><a href="search.html">Поиск</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
 

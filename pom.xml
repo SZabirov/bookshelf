@@ -199,7 +199,7 @@
                 <version>2.3.20</version>
             </dependency>
 
-            MD5 Hashing
+            <!--MD5 Hashing-->
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
