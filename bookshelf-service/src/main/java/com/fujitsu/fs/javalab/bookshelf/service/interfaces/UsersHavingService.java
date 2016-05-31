@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by aygulmardanova on 08.05.16.
  */
-@Service
+//@Service
 public interface UsersHavingService {
 
     List<UsersHaving> getAllByUser(Users users);

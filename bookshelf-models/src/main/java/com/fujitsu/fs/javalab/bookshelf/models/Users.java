@@ -174,4 +174,12 @@ public class Users {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "nickname='" + nickname + '\'' +
+                ", city='" + city + '\'' +
+                ", hashpassword='" + hashpassword + '\'' +
+                '}';
+    }
 }

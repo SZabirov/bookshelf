@@ -64,4 +64,11 @@ public class UsersHaving {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "UsersHaving{" +
+                "users=" + users +
+                ", book=" + book +
+                '}';
+    }
 }

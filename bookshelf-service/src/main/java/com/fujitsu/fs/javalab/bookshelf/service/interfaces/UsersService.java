@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by aygulmardanova on 08.05.16.
  */
-@Service
+//@Service
 public interface UsersService {
 
     void addNewUsers(String nickname, String email, String firstname, String surname,

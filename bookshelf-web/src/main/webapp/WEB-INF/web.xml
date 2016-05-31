@@ -7,9 +7,10 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            /WEB-INF/applicationContext.xml
-            /WEB-INF/spring-security.xml
+            <!--instead of application-context.xml-->
+            /WEB-INF/dispatcher-servlet.xml
         </param-value>
+
     </context-param>
 
     <listener>
@@ -57,7 +58,5 @@
         <filter-name>charsetFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
 
 </web-app>

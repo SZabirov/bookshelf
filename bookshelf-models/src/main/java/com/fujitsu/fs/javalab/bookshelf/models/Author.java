@@ -95,4 +95,13 @@ public class Author {
     public void setAuthorBooknames(Collection<AuthorBookname> authorBooknames) {
         this.authorBooknames = authorBooknames;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "firstname='" + firstname + '\'' +
+                ", surname='" + surname + '\'' +
+                ", middlename='" + middlename + '\'' +
+                '}';
+    }
 }

@@ -125,6 +125,15 @@ public class Book {
     }
 
     @Override
+    public String toString() {
+        return "Book{" +
+                "pubhouse='" + pubhouse + '\'' +
+                ", pubYear='" + pubYear + '\'' +
+                ", authorBookname=" + authorBookname +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (pubhouse != null ? pubhouse.hashCode() : 0);

@@ -3,29 +3,24 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:security="http://www.springframework.org/schema/security"
-             xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation="http://www.springframework.org/schema/security
              http://www.springframework.org/schema/security/spring-security-4.0.xsd
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.fujitsu.fs.javalab.bookshelf.web.security"/>
-
     <security:http auto-config="true" use-expressions="true">
-
         <csrf disabled="true"/>
-
+        <security:intercept-url pattern="/search/**" access="permitAll()"/>
+        <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/registration" access="isAnonymous()"/>
         <security:form-login login-page="/login"
-                             login-processing-url="/j_spring_security_check" username-parameter="j_username"
+                             login-processing-url="/j_spring_security_check"
+                             username-parameter="j_username"
                              password-parameter="j_password"
                              default-target-url="/profile"
                              authentication-failure-url="/login?error=InvalidLoginPassword" />
-
-
         <security:logout logout-url="/logout" />
-
     </security:http>
 
     <!--<security:authentication-manager>-->
@@ -38,10 +33,12 @@
 
     <security:authentication-manager
             alias="authenticationManager">
-        <security:authentication-provider user-service-ref="userDetailsServiceImpl">
+        <security:authentication-provider user-service-ref="authProvider">
             <security:password-encoder hash="md5"/>
         </security:authentication-provider>
     </security:authentication-manager>
 
+    <beans:bean id="authProvider"
+                class="com.fujitsu.fs.javalab.bookshelf.web.security.UserDetailsServiceImpl"/>
 
 </beans:beans>

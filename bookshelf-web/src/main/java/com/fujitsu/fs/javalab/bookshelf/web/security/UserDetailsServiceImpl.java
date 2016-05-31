@@ -15,16 +15,17 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
-@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    @Autowired
     private UsersService usersService;
 
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException, DataAccessException {
-        usersService = new UsersServiceImpl();
+        System.out.println("Hello from UserDetailsService! Login " + login);
+
         Users user = usersService.getUsersByNickname(login);
-        System.out.println("User***** " + user.getNickname());
+        System.out.println("User   -  " + user.getNickname());
         System.out.println(user.getHashpassword());
 //        if (user == null) {
 //            throw new UsernameNotFoundException("Email is not found in the database");

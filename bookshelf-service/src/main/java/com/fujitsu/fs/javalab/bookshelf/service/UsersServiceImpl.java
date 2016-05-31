@@ -18,7 +18,6 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     JpaRepositoryUsers jpaRepositoryUsers;
 
-
     @Override
     public void addNewUsers(String nickname, String email, String firstname, String surname,
                             String city, String hashpassword, String avatar) {
@@ -104,7 +103,10 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users getUsersByNickname(String nickname) {
-        return jpaRepositoryUsers.findOneByNickname(nickname);
+        System.out.println("Getting user by name " + nickname);
+        Users user = jpaRepositoryUsers.findOneByNickname(nickname);
+        System.out.println("In service got user " + user );
+        return user;
     }
 
     @Override
