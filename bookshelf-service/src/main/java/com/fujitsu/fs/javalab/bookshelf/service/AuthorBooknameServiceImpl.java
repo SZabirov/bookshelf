@@ -41,4 +41,9 @@ public class AuthorBooknameServiceImpl implements AuthorBooknameService {
         //        return authorBooknameRepository.findAllWhereVerifiedIsTrueByAuthor(author);
         return null;
     }
+
+    @Override
+    public List<AuthorBookname> getAllByAuthorAndBookname(Author author, String bookname) {
+        return jpaRepositoryAuthorBookname.findAllByAuthorAndBookname(author, bookname);
+    }
 }

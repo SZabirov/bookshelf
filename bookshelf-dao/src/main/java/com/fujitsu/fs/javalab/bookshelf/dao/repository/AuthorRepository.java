@@ -17,8 +17,7 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     Author findOneById(int id);
 
-    Author findOneByFirstnameAndSurnameAndMiddlename(String firstname,
-                                                     String surname, String middlename);
+    Author findByFirstnameAndSurname(String firstname, String surname);
 
     @Query("select a from Author a order by a.surname, a.firstname asc")
     List<Author> findAllOrderbySurnameAndFirstname();

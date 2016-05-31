@@ -7,9 +7,9 @@
 <html>
 <head>
     <title>Bookshelf</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
     <script src="/resources/css/ie/html5shiv.js"></script>
     <script src="/resources/js/jquery.min.js"></script>
     <script src="/resources/js/jquery.dropotron.min.js"></script>
@@ -17,10 +17,10 @@
     <script src="/resources/js/skel-layers.min.js"></script>
     <script src="/resources/js/init.js"></script>
     <noscript>
-        <link rel="stylesheet" href="/resources/css/skel.css" />
-        <link rel="stylesheet" href="/resources/css/style.css" />
+        <link rel="stylesheet" href="/resources/css/skel.css"/>
+        <link rel="stylesheet" href="/resources/css/style.css"/>
     </noscript>
-    <link rel="stylesheet" href="/resources/css/ie/v8.css" />
+    <link rel="stylesheet" href="/resources/css/ie/v8.css"/>
 </head>
 <body class="no-sidebar">
 
@@ -46,12 +46,17 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form action="/search_results" method="GET" class="searchform">
-        <input type='text' name='author_name' class='searchfield' placeholder='Имя автора' required><br />
-        <input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />
-        <input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />
-        <input type='submit' value='Поиск' class='submit-button search-button'>
-    </form>
+<#list bookList as book>
+    <a href="/book?id=${book.id}">
+        <p>${book.authorBookname.author.surname}
+        ${book.authorBookname.author.firstname}
+        ${book.authorBookname.author.middlename}
+        ${book.authorBookname.bookname}
+        ${book.pubhouse}
+        ${book.pubYear}
+        ${book.description}
+    </a>
+</#list>
 </div>
 
 <!-- Footer -->
@@ -70,7 +75,8 @@
                         <section class="6u">
                             <ul class="default">
                                 <li><a href="http://kpfu.ru">Казанский (Приволжский) федеральный университет</a></li>
-                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и информационных систем</a></li>
+                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и
+                                    информационных систем</a></li>
                                 <li><a href="http://www.fujitsu.com/global">Лаборатория Fujitsu Java</a></li>
                                 <!-- <li><a href="#">Cras vitae metus aliquam  pharetra.</a></li> -->
                             </ul>
@@ -87,7 +93,7 @@
                     <ul class="contact">
                         <li>
                             <span class="address">Адрес</span>
-                            <span>ул. Кремлевская 35, <br />аудитория 1509</span>
+                            <span>ул. Кремлевская 35, <br/>аудитория 1509</span>
                         </li>
                         <li>
                             <span class="mail">E-mail</span>
@@ -113,19 +119,19 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".username").focus(function() {
-            $(".user-icon").css("left","-48px");
+    $(document).ready(function () {
+        $(".username").focus(function () {
+            $(".user-icon").css("left", "-48px");
         });
-        $(".username").blur(function() {
-            $(".user-icon").css("left","0px");
+        $(".username").blur(function () {
+            $(".user-icon").css("left", "0px");
         });
 
-        $(".password").focus(function() {
-            $(".pass-icon").css("left","-48px");
+        $(".password").focus(function () {
+            $(".pass-icon").css("left", "-48px");
         });
-        $(".password").blur(function() {
-            $(".pass-icon").css("left","0px");
+        $(".password").blur(function () {
+            $(".pass-icon").css("left", "0px");
         });
     });
 </script>

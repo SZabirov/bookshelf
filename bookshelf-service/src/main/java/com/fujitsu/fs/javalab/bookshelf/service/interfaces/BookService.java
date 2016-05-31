@@ -24,4 +24,6 @@ public interface BookService {
     List<Book> getBooksByAuthorBookname(AuthorBookname authorBookname);
 
     List<Book> getAllVerifiedBooks();
+
+    Book getById(int id);
 }

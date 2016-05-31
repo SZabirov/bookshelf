@@ -1,5 +1,8 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
 import com.fujitsu.fs.javalab.bookshelf.web.utils.HashUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +20,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
 
 @Controller
 public class MainController {
 
     @Autowired
     UsersService usersService;
+    @Autowired
+    SearchService searchService;
+    @Autowired
+    BookService bookService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hiPage(Model model) {
@@ -60,8 +67,7 @@ public class MainController {
         String name = auth.getName();
         if (!name.equals("anonymousUser")) {
             return "redirect:/profile";
-        }
-        else {
+        } else {
             return "registration";
         }
     }
@@ -78,8 +84,7 @@ public class MainController {
 
         if (usersService.ifNicknameExists(username)) {
             return "redirect:/registration?error=loginIsBusy";
-        }
-        else {
+        } else {
             if (password1.equals(password2)) {
 
                 password1 = HashUtils.md5Apache(password1);
@@ -98,11 +103,27 @@ public class MainController {
             model.addAttribute("nickname", login);
             return "profile";
         }
-
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String getSearchPage(Model model) {
         return "search";
+    }
+
+    @RequestMapping(value = "/search_results", method = RequestMethod.GET)
+    public String getSearchResults(Model model,
+                                   @RequestParam(value = "author_name", required = false) String authorName,
+                                   @RequestParam(value = "author_surname", required = false) String authorSurname,
+                                   @RequestParam(value = "bookname", required = false) String bookname) {
+        List<Book> bookList = searchService.getSearchResult(authorName, authorSurname, bookname);
+        model.addAttribute("bookList", bookList);
+        return "search_results";
+    }
+
+    @RequestMapping(value = "/book", method = RequestMethod.GET)
+    public String getBook(Model model,
+                          @RequestParam(value = "id", required = false) int id) {
+        model.addAttribute("book", bookService.getById(id));
+        return "book";
     }
 }

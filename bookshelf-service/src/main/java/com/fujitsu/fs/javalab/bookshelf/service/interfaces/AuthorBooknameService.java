@@ -20,4 +20,6 @@ public interface AuthorBooknameService {
     List<AuthorBookname> getAllByBookname(String bookname);
 
     List<AuthorBookname> getAllVerifiedBooksForAuthor(Author author);
+
+    List<AuthorBookname> getAllByAuthorAndBookname(Author author, String bookname);
 }

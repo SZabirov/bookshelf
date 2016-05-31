@@ -36,8 +36,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public boolean ifBookIsVerified(int id) {
-        return bookRepository.findOneById(id).getVerified();
+        return bookRepository.findById(id).getVerified();
     }
+
+
 
     @Override
     public List<Book> getBooksByAuthorBookname(AuthorBookname authorBookname) {
@@ -49,5 +51,10 @@ public class BookServiceImpl implements BookService {
     public List<Book> getAllVerifiedBooks() {
 //        return bookRepository.findAllWhereVerifiedIsTrue();
         return null;
+    }
+
+    @Override
+    public Book getById(int id) {
+        return bookRepository.findById(id);
     }
 }

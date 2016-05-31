@@ -46,12 +46,13 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form action="/search_results" method="GET" class="searchform">
-        <input type='text' name='author_name' class='searchfield' placeholder='Имя автора' required><br />
-        <input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />
-        <input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />
-        <input type='submit' value='Поиск' class='submit-button search-button'>
-    </form>
+    ${book.authorBookname.author.surname}
+    ${book.authorBookname.author.firstname}
+    ${book.authorBookname.author.middlename}
+    ${book.authorBookname.bookname}
+    ${book.pubhouse}
+    ${book.pubYear}
+    ${book.description}
 </div>
 
 <!-- Footer -->
