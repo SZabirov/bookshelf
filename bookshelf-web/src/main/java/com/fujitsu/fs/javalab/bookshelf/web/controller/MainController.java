@@ -198,6 +198,6 @@ public class MainController {
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
         usersHavingService.addUsersHaving(users, authorName, authorSurname, authorMiddlename, pubhouse, pubyear, description, bookname);
-        return getProfilePage(model);
+        return getProfilePage(model, null);
     }
 }
