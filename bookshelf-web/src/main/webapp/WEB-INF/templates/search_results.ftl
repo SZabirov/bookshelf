@@ -46,17 +46,24 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-<#list bookList as book>
-    <a href="/book?id=${book.id}">
-        <p>${book.authorBookname.author.surname}
-        ${book.authorBookname.author.firstname}
-        ${book.authorBookname.author.middlename}
-        ${book.authorBookname.bookname}
-        ${book.pubhouse}
-        ${book.pubYear}
-        ${book.description}
-    </a>
-</#list>
+    <div class="profilebooks">
+        <h3>Результаты поиска: </h3>
+            <div class="bookshelf">
+                <#list bookList as book>
+                    <div class="book_in_bookshelf">
+                        <a href="/book?id=${book.id}"><img src="images/book.jpg"/></a>
+                        <div class="book_name"><b>Автор:</b> ${book.authorBookname.author.surname}
+                        ${book.authorBookname.author.firstname}
+                        ${book.authorBookname.author.middlename}<br/>
+                        <b>Книга:</b> ${book.authorBookname.bookname}<br/>
+                        <b>Издательство:</b> ${book.pubhouse}<br/>
+                        <b>Год издания:</b> ${book.pubYear}<br/>
+                        <b>Описание:</b> ${book.description}</div>
+                    </div>
+                </#list>
+            </div>
+    </div>
+
 </div>
 
 <!-- Footer -->
