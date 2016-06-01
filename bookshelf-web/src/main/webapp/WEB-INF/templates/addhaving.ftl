@@ -46,11 +46,14 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form action="/postwishing" method="POST" class="searchform">
+    <form action="/posthaving" method="POST" class="searchform">
         <input type='text' name='author_name' class='searchfield' placeholder='Имя автора' required><br />
         <input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />
         <input type='text' name='author_middlename' class='searchfield' placeholder='Отчество автора' required><br />
         <input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />
+        <input type='text' name='pubhouse' class='searchfield' placeholder='Издательство' required><br />
+        <input type='text' name='pub_year' class='searchfield' placeholder='Год выпуска' required><br />
+        <textarea name='description' class='searchfield' placeholder='Описание книги' required></textarea><br />
         <input type='submit' value='Добавить' class='submit-button search-button'>
     </form>
 </div>

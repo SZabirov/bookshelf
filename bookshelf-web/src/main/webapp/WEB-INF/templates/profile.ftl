@@ -76,6 +76,7 @@
             <a href="book.html"><img src="/resources/images/book.jpg"/></a>
             <div class="book_name">А.С. Пушкин "Евгений Онегин"</div>
         </#if>
+            <a class="book_name" href="/addhaving">Добавить предложение</a>
         </div>
         <div class="wishes">
             <h3>Хочу почитать: </h3>

@@ -4,7 +4,6 @@ package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -22,4 +21,14 @@ public interface UsersHavingService {
 
     void deleteUsersHaving(Users users, Book book);
 
+    UsersHaving createUsersHaving(Users users, Book book);
+
+    UsersHaving addUsersHaving(Users users,
+                               String authorName,
+                               String authorSurname,
+                               String authorMiddlename,
+                               String pubhouse,
+                               String pubyear,
+                               String description,
+                               String bookname);
 }
