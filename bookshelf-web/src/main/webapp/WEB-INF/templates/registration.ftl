@@ -12,6 +12,9 @@
     <script src="/resources/js/skel.min.js"></script>
     <script src="/resources/js/skel-layers.min.js"></script>
     <script src="/resources/js/init.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/resources/js/myscripts.js"></script>
     <noscript>
         <link rel="stylesheet" href="/resources/css/skel.css" />
         <link rel="stylesheet" href="/resources/css/style.css" />
@@ -42,7 +45,7 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form action='/registration' method='POST' class='form1'>
+    <form id="registr_form" action='/registration' method='POST' class='form1'>
         <#if error??>
             <span class="error_text">Пользователь с таким логином уже существует</span>
         </#if>
@@ -51,10 +54,11 @@
         <input type='text' name='name' class='loginform'  placeholder='Имя' required><br />
         <input type='text' name='surname' class='loginform'  placeholder='Фамилия' required><br />
         <input type='text' name='city' class='loginform'  placeholder='Город' required><br />
-        <input type='password' name='password1' class='loginform'  placeholder='Придумайте пароль' required><br />
+        <input type='password' name='password1' class='loginform' id="pswrd" placeholder='Придумайте пароль' required><br />
         <input type='password' name='password2' class='loginform'  placeholder='Повторите пароль' required><br />
         <input type='submit' value='Регистрация' class='submit-button'>
     </form>
+    <script type="text/javascript" src="/resources/js/validation.js"></script>
 </div>
 
 <!-- Footer -->
