@@ -70,12 +70,7 @@
                     <br/>${have.book.authorBookname.bookname}</div>
             </#list>
         <#else>
-            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-            <div class="book_name">Л.Н. Толстой "Война и мир"</div>
-            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-            <div class="book_name">Харпер Ли "Убить пересмешника"</div>
-            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-            <div class="book_name">А.С. Пушкин "Евгений Онегин"</div>
+            <div class="book_name">Список книг, которые Вы готовы предложить, пуст</div>
         </#if>
             <a class="book_name" href="/addhaving">Добавить предложение</a>
         </div>
@@ -88,12 +83,9 @@
                     <br/>${wish.authorBookname.bookname}</div>
             </#list>
         <#else>
-            <img src="/resources/images/book.jpg"/>
-            <div class="book_name">Гюстав Флобер "Госпожа Бовари"</div>
-            <img src="/resources/images/book.jpg"/>
-            <div class="book_name">Фрэнсис Скотт Фицджеральд "Великий Гэтсби"</div>
-            <a class="book_name" href="/addwishing">Добавить пожелание</a>
+            <div class="book_name">Список книг, которые Вы хотите получить, пуст</div>
         </#if>
+            <a class="book_name" href="/addwishing">Добавить пожелание</a>
         </div>
     </div>
 </div>

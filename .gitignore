@@ -16,3 +16,4 @@ effective-settings.xml
 *.lck
 *.jar
 .DS_Store
+/*/database.properties

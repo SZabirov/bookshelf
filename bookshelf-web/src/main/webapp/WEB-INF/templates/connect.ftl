@@ -46,11 +46,11 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form action="/connect" method="POST" class="searchform">
+    <form action="/connect?id=${receiver.id}" method="POST" class="searchform">
         <h3 class="offerH3">Предложение: </h3>
-        <select class="offerSelect">
+        <select class="offerSelect" name="have">
             <#list havingBooks as book>
-                <option>
+                <option value="${book.id}">
                     ${book.authorBookname.author.surname}
                     ${book.authorBookname.author.firstname}
                     <#if book.authorBookname.author.middlename??>
@@ -62,9 +62,9 @@
         </select>
         <br />
         <h3 class="offerH3">Пожелание: </h3>
-        <select class="offerSelect">
+        <select class="offerSelect" name="wish">
             <#list wishingBooks as book>
-                <option>
+                <option value="${book.id}">
                     ${book.authorBookname.author.surname}
                     ${book.authorBookname.author.firstname}
                     <#if book.authorBookname.author.middlename??>
@@ -75,9 +75,6 @@
             </#list>
         </select>
         <br />
-        <#--<input type='text' name='author_name' class='searchfield' placeholder='Имя автора' required><br />-->
-        <#--<input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />-->
-        <#--<input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />-->
         <input type='submit' value='Предложить' class='submit-button'>
     </form>
 </div>

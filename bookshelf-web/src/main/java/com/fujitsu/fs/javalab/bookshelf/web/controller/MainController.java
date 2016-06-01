@@ -30,14 +30,21 @@ public class MainController {
 
     @Autowired
     UsersService usersService;
+
     @Autowired
     SearchService searchService;
+
     @Autowired
     BookService bookService;
+
     @Autowired
     UsersWishService usersWishService;
+
     @Autowired
     UsersHavingService usersHavingService;
+
+    @Autowired
+    MessagesService messagesService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hiPage(Model model) {
@@ -231,7 +238,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/connect", method = RequestMethod.GET)
-    public String sendOffer(Model model,
+    public String getConnectPage(Model model,
                                  @RequestParam(value = "id") Integer id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
@@ -242,7 +249,29 @@ public class MainController {
 
         model.addAttribute("havingBooks", having);
         model.addAttribute("wishingBooks", wishing);
-        return "offer";
+        model.addAttribute("receiver", user2);
+        return "connect";
+    }
+
+    @RequestMapping(value = "/connect", method = RequestMethod.POST)
+    public String sendOffer(Model model,
+                            @RequestParam(value = "id") Integer id,
+                            @RequestParam(value = "have") Integer have,
+                            @RequestParam(value = "wish") Integer wish) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users user1 = usersService.getUsersByNickname(name);
+
+        Users user2 = usersService.getUserById(id);
+
+        Book havingBook = bookService.getById(have);
+        Book wishBook = bookService.getById(wish);
+
+        messagesService.addNewMessage(user1, user2, havingBook, wishBook);
+
+        model.addAttribute("success", "Ваше предложение успешно отправлено.");
+        return "success";
     }
 
 }
