@@ -110,3 +110,20 @@ correctEmail = function () {
         $('#valid').text('Это поле обязательно для заполнения');
     }
 }
+
+correctPhone = function () {
+    var phone = $("#phone").val();
+    if (phone != '') {
+        var pattern = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i;
+        if (pattern.test(phone)) {
+            $('#phone').css({'border': '1px solid #569b44'});
+            $('#phone_valid').text('');
+        } else {
+            $('#phone').css({'border': '1px solid black'});
+            $('#phone_valid').text('Incorrect phone number');
+        }
+    } else {
+        $('#phone').css({'border': '1px solid black'});
+        $('#phone_valid').text('Phone number should not be empty');
+    }
+}

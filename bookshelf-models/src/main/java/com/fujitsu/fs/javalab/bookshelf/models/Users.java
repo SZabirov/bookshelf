@@ -37,6 +37,10 @@ public class Users {
     private String city;
 
     @Basic
+    @Column(name = "phone")
+    private String phone;
+
+    @Basic
     @Column(name = "hashpassword")
     private String hashpassword;
 
@@ -102,6 +106,14 @@ public class Users {
         this.city = city;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getHashpassword() {
         return hashpassword;
     }
@@ -155,6 +167,7 @@ public class Users {
         if (firstname != null ? !firstname.equals(users.firstname) : users.firstname != null) return false;
         if (surname != null ? !surname.equals(users.surname) : users.surname != null) return false;
         if (city != null ? !city.equals(users.city) : users.city != null) return false;
+        if (phone != null ? !phone.equals(users.phone) : users.phone != null) return false;
         if (hashpassword != null ? !hashpassword.equals(users.hashpassword) : users.hashpassword != null) return false;
         if (avatar != null ? !avatar.equals(users.avatar) : users.avatar != null) return false;
 
@@ -169,6 +182,7 @@ public class Users {
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (hashpassword != null ? hashpassword.hashCode() : 0);
         result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
         return result;

@@ -55,9 +55,9 @@
             <b>Имя:</b> ${user.firstname} <br/>
             <b>Фамилия:</b> ${user.surname} <br/>
             <b>Логин:</b> ${user.nickname}
-            <if notCurrent??>
+            <#if notCurrent??>
             <br/><br/><a href="/connect?id=${user.id}"><input type='submit' value='Связаться' class='submit-button'></a>
-            </if>
+            </#if>
         </div>
     </div>
     <div class="profilebooks">
