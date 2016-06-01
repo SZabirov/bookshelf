@@ -51,7 +51,7 @@
         <input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />
         <input type='text' name='author_middlename' class='searchfield' placeholder='Отчество автора' required><br />
         <input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />
-        <input type='submit' value='Поиск' class='submit-button search-button'>
+        <input type='submit' value='Добавить' class='submit-button search-button'>
     </form>
 </div>
 
