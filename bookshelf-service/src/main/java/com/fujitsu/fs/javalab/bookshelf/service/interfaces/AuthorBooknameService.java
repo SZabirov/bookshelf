@@ -22,4 +22,8 @@ public interface AuthorBooknameService {
     List<AuthorBookname> getAllVerifiedBooksForAuthor(Author author);
 
     List<AuthorBookname> getAllByAuthorAndBookname(Author author, String bookname);
+
+    AuthorBookname getOneByAuthorAndBookname(Author author, String bookname);
+
+    AuthorBookname addAuthorBookname(AuthorBookname authorBookname);
 }

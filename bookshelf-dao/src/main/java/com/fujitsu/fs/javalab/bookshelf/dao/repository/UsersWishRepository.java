@@ -23,4 +23,5 @@ public interface UsersWishRepository extends JpaRepository<UsersWish, Integer> {
     List<UsersWish> findAllByUsers(Users users);
 
     List<UsersWish> findAllByAuthorBookname(AuthorBookname authorBookname);
+
 }

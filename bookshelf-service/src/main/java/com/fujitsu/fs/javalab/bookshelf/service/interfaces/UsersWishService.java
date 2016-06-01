@@ -20,5 +20,7 @@ public interface UsersWishService {
 
     List<AuthorBookname> getAllBooksThatUserWishes(Users users);  //AuthorBookname list, that User wishes
 
+    UsersWish addUsersWish(Users users, AuthorBookname authorBookname);
 
+    UsersWish addWishing(String authorName, String authorSurname, String authorMiddlename, String bookname, Users users);
 }
