@@ -13,6 +13,13 @@
         <csrf disabled="true"/>
         <security:intercept-url pattern="/search/**" access="permitAll()"/>
         <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/posthaving/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/addhaving/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/postwishing/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/addwishing/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/search_results/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/search/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/book/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/registration" access="isAnonymous()"/>
         <security:form-login login-page="/login"
                              login-processing-url="/j_spring_security_check"
