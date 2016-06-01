@@ -176,6 +176,16 @@
 		color: red;
 	}
 
+	.offerSelect {
+		width: 100%;
+		height: 45px;
+		margin-bottom: 10px;
+	}
+
+	.offerH3 {
+		margin-bottom: 0;
+	}
+
 
 /* Image */
 

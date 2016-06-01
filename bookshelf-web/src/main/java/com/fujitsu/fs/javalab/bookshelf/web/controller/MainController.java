@@ -1,9 +1,7 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
-import com.fujitsu.fs.javalab.bookshelf.models.Book;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
-import com.fujitsu.fs.javalab.bookshelf.models.UsersWish;
+import com.fujitsu.fs.javalab.bookshelf.models.*;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.*;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
@@ -38,7 +36,8 @@ public class MainController {
     BookService bookService;
     @Autowired
     UsersWishService usersWishService;
-
+    @Autowired
+    UsersHavingService usersHavingService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hiPage(Model model) {
@@ -59,15 +58,35 @@ public class MainController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String getProfilePage(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        Users users = usersService.getUsersByNickname(name);
-        List<UsersHaving> usersHavings = users.getUsersHavings();
-        List<UsersWish> usersWishes = users.getUsersWishes();
+    public String getProfilePage(Model model,
+                                 @RequestParam(value = "id", required = false) Integer id) {
+        Users user;
+        List<UsersHaving> usersHavings;
+        List<UsersWish> usersWishes;
+        if (id == null) {
+            System.out.println("Null id");
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String name = auth.getName();
+            user = usersService.getUsersByNickname(name);
+        }
+        else {
+            System.out.println("Not null id");
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String name = auth.getName();
+            if (usersService.getUsersByNickname(name).getId() != id) {
+                System.out.println("NOT CURRENT");
+                user = usersService.getUserById(id);
+                model.addAttribute("notCurrent", "notCurrent");
+            }
+            else {
+                user = usersService.getUsersByNickname(name);
+            }
+        }
+        usersHavings = user.getUsersHavings();
+        usersWishes = user.getUsersWishes();
         model.addAttribute("havings", usersHavings);
         model.addAttribute("wishes", usersWishes);
-        model.addAttribute("user", users);
+        model.addAttribute("user", user);
         return "profile";
     }
 
@@ -172,6 +191,11 @@ public class MainController {
         return "book";
     }
 
+    @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
+    public String addWishing(Model model) {
+        return "addwishing";
+    }
+
     @RequestMapping(value = "/postwishing", method = RequestMethod.POST)
     public String postWishing(Model model,
                               @RequestParam(value = "author_name", required = false) String authorName,
@@ -182,11 +206,47 @@ public class MainController {
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
         usersWishService.addWishing(authorName, authorSurname, authorMiddlename, bookname, users);
-        return getProfilePage(model);
+        return getProfilePage(model, null);
     }
 
     @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
     public String postWishing(Model model) {
         return "addwishing";
+    }
+    
+    @RequestMapping(value = "/addhaving", method = RequestMethod.GET)
+    public String addHaving(Model model) {
+        return "addhaving";
+    }
+
+    @RequestMapping(value = "/posthaving", method = RequestMethod.POST)
+    public String postHaving(Model model,
+                             @RequestParam(value = "author_name", required = false) String authorName,
+                             @RequestParam(value = "author_surname", required = false) String authorSurname,
+                             @RequestParam(value = "author_middlename", required = false) String authorMiddlename,
+                             @RequestParam(value = "pubhouse", required = false) String pubhouse,
+                             @RequestParam(value = "pub_year", required = false) String pubyear,
+                             @RequestParam(value = "description", required = false) String description,
+                             @RequestParam(value = "bookname", required = false) String bookname) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users users = usersService.getUsersByNickname(name);
+        usersHavingService.addUsersHaving(users, authorName, authorSurname, authorMiddlename, pubhouse, pubyear, description, bookname);
+        return getProfilePage(model, null);
+    }
+
+    @RequestMapping(value = "/connect", method = RequestMethod.GET)
+    public String sendOffer(Model model,
+                                 @RequestParam(value = "id") Integer id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users user1 = usersService.getUsersByNickname(name);
+        List<Book> having = usersHavingService.getAllBooksThatUserHas(user1);
+        Users user2 = usersService.getUserById(id);
+        List<Book> wishing = usersHavingService.getAllBooksThatUserHas(user2);
+
+        model.addAttribute("havingBooks", having);
+        model.addAttribute("wishingBooks", wishing);
+        return "offer";
     }
 }

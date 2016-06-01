@@ -1,5 +1,9 @@
 <!DOCTYPE HTML>
-
+<!--
+	Horizons by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html>
 <head>
     <title>Bookshelf</title>
@@ -16,9 +20,9 @@
         <link rel="stylesheet" href="/resources/css/skel.css" />
         <link rel="stylesheet" href="/resources/css/style.css" />
     </noscript>
-   <link rel="stylesheet" href="/resources/css/ie/v8.css" />
+    <link rel="stylesheet" href="/resources/css/ie/v8.css" />
 </head>
-<body class="homepage">
+<body class="no-sidebar">
 
 <!-- Header -->
 <div id="header">
@@ -26,54 +30,56 @@
 
         <!-- Logo -->
         <h1><a href="#" id="logo">Bookshelf</a></h1>
-        <!-- Nav -->
 
+        <!-- Nav -->
         <nav id="nav">
             <ul>
                 <li><a href="/">Главная</a></li>
                 <li><a href="/login">Вход</a></li>
                 <li><a href="/registration">Регистрация</a></li>
+                <li><a href="/search">Поиск</a></li>
             </ul>
         </nav>
-
-
-        <!-- Banner -->
-        <div id="banner">
-            <div class="container">
-                <section>
-                    <header class="major">
-                        <span class="byline">Наш ресурс создан для настоящих книголюбов. Он подарит Вам возможность обмениваться книгами, искать что-то новое, знакомиться с единомышленниками. </span>
-                        <br/>
-                        <span class="byline">Учитесь и читайте. Читайте книги серьезные. Жизнь сделает остальное. </span>
-                        <span class="byline">Ф.М. Достоевский </span>
-                    </header>
-                </section>
-            </div>
-        </div>
 
     </div>
 </div>
 
-<!-- Featured -->
-<div class="wrapper style2">
-    <section class="container">
-        <header class="major">
-            <h2>Лучшие книги на Bookshelf</h2>
-            <span class="byline">ПО КОЛИЧЕСТВУ ОБМЕНОВ</span>
-        </header>
-        <div class="row no-collapse-1">
-            <section class="4u">
-                <a href="#" class="image feature"><img src="/resources/images/pic02.jpg" alt=""></a>
-            </section>
-            <section class="4u">
-                <a href="#" class="image feature"><img src="/resources/images/pic03.jpg" alt=""></a>
-            </section>
-            <section class="4u">
-                <a href="#" class="image feature"><img src="/resources/images/pic04.jpg" alt=""></a>
-            </section>
-
-        </div>
-    </section>
+<!-- Main -->
+<div id="main" class="wrapper style1">
+    <form action="/connect" method="POST" class="searchform">
+        <h3 class="offerH3">Предложение: </h3>
+        <select class="offerSelect">
+            <#list havingBooks as book>
+                <option>
+                    ${book.authorBookname.author.surname}
+                    ${book.authorBookname.author.firstname}
+                    <#if book.authorBookname.author.middlename??>
+                        ${book.authorBookname.author.middlename}
+                    </#if>
+                    "${book.authorBookname.bookname}"
+                </option>
+            </#list>
+        </select>
+        <br />
+        <h3 class="offerH3">Пожелание: </h3>
+        <select class="offerSelect">
+            <#list wishingBooks as book>
+                <option>
+                    ${book.authorBookname.author.surname}
+                    ${book.authorBookname.author.firstname}
+                    <#if book.authorBookname.author.middlename??>
+                        ${book.authorBookname.author.middlename}
+                    </#if>
+                    "${book.authorBookname.bookname}"
+                </option>
+            </#list>
+        </select>
+        <br />
+        <#--<input type='text' name='author_name' class='searchfield' placeholder='Имя автора' required><br />-->
+        <#--<input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />-->
+        <#--<input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />-->
+        <input type='submit' value='Предложить' class='submit-button'>
+    </form>
 </div>
 
 <!-- Footer -->
@@ -86,6 +92,7 @@
                 <section>
                     <header class="major">
                         <h2>Партнеры</h2>
+                        <!-- <span class="byline">Quisque semper augue mattis wisi maecenas ligula</span> -->
                     </header>
                     <div class="row">
                         <section class="6u">
@@ -93,6 +100,7 @@
                                 <li><a href="http://kpfu.ru">Казанский (Приволжский) федеральный университет</a></li>
                                 <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и информационных систем</a></li>
                                 <li><a href="http://www.fujitsu.com/global">Лаборатория Fujitsu Java</a></li>
+                                <!-- <li><a href="#">Cras vitae metus aliquam  pharetra.</a></li> -->
                             </ul>
                         </section>
                     </div>
@@ -102,6 +110,7 @@
                 <section>
                     <header class="major">
                         <h2>Контакты</h2>
+                        <!-- <span class="byline">Mattis wisi maecenas ligula</span> -->
                     </header>
                     <ul class="contact">
                         <li>
@@ -124,10 +133,30 @@
         <!-- Copyright -->
         <div class="copyright">
             Казань, 2016
+            <!-- Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>) -->
         </div>
 
     </div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".username").focus(function() {
+            $(".user-icon").css("left","-48px");
+        });
+        $(".username").blur(function() {
+            $(".user-icon").css("left","0px");
+        });
+
+        $(".password").focus(function() {
+            $(".pass-icon").css("left","-48px");
+        });
+        $(".password").blur(function() {
+            $(".pass-icon").css("left","0px");
+        });
+    });
+</script>
 
 </body>
 </html>

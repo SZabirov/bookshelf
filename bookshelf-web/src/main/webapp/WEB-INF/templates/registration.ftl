@@ -38,7 +38,6 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/login">Вход</a></li>
                 <li><a href="/registration">Регистрация</a></li>
-                <li><a href="/search">Поиск</a></li>
             </ul>
         </nav>
 

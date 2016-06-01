@@ -5,4 +5,4 @@ DROP TABLE author_bookname;
 DROP TABLE author;
 DROP TABLE token;
 DROP TABLE users;
-
+DROP TABLE messages;

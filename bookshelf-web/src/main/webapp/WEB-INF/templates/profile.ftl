@@ -38,7 +38,7 @@
             <ul>
                 <li><a href="#">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="mybookshelf.html">Моя книжная полка</a></li>
+                <li><a href="mybookshelf.html">Предложения</a></li>
                 <li><a href="settings.html">Настройки</a></li>
                 <li><a href="search.html">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
@@ -55,6 +55,9 @@
             <b>Имя:</b> ${user.firstname} <br/>
             <b>Фамилия:</b> ${user.surname} <br/>
             <b>Логин:</b> ${user.nickname}
+            <#if notCurrent??>
+            <br/><br/><a href="/connect?id=${user.id}"><input type='submit' value='Связаться' class='submit-button'></a>
+            </#if>
         </div>
     </div>
     <div class="profilebooks">
@@ -73,6 +76,7 @@
             <a href="book.html"><img src="/resources/images/book.jpg"/></a>
             <div class="book_name">А.С. Пушкин "Евгений Онегин"</div>
         </#if>
+            <a class="book_name" href="/addhaving">Добавить предложение</a>
         </div>
         <div class="wishes">
             <h3>Хочу почитать: </h3>
