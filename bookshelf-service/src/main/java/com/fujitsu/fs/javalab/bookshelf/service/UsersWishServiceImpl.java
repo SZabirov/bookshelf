@@ -1,13 +1,16 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersWishService;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.UsersWishRepository;
+import com.fujitsu.fs.javalab.bookshelf.models.Author;
 import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.models.UsersWish;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorBooknameService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersWishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.fujitsu.fs.javalab.bookshelf.dao.repository.UsersWishRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +20,12 @@ import java.util.List;
  */
 @Service
 public class UsersWishServiceImpl implements UsersWishService {
-@Autowired
+    @Autowired
     UsersWishRepository usersWishRepository;
+    @Autowired
+    AuthorBooknameService authorBooknameService;
+    @Autowired
+    AuthorService authorService;
 
     @Override
     public List<UsersWish> getAllUsersWishesForUser(Users users) {
@@ -39,5 +46,39 @@ public class UsersWishServiceImpl implements UsersWishService {
             authorBooknames.add(usersWish.getAuthorBookname());
         }
         return authorBooknames;
+    }
+
+    @Override
+    public UsersWish addUsersWish(Users users, AuthorBookname authorBookname) {
+        UsersWish usersWish = new UsersWish();
+        usersWish.setAuthorBookname(authorBookname);
+        usersWish.setUsers(users);
+        UsersWish createdUsersWish = usersWishRepository.save(usersWish);
+        return (usersWish);
+    }
+
+    @Override
+    public UsersWish addWishing(String authorName, String authorSurname, String authorMiddlename, String bookname, Users users) {
+        Author author = authorService.getAuthorByFirstnameAndSurnameAndMiddlename(authorName, authorSurname, authorMiddlename);
+        if (author == null) {
+            author = new Author();
+            author.setFirstname(authorName);
+            author.setSurname(authorSurname);
+            author.setMiddlename(authorMiddlename);
+            author = authorService.addAuthor(author);
+        }
+        AuthorBookname authorBookname = authorBooknameService.getOneByAuthorAndBookname(author, bookname);
+        if (authorBookname == null) {
+            authorBookname = new AuthorBookname();
+            authorBookname.setAuthor(author);
+            authorBookname.setBookname(bookname);
+            authorBookname = authorBooknameService.addAuthorBookname(authorBookname);
+        }
+        UsersWish usersWish = usersWishRepository.findOneByUsersAndAuthorBookname(users, authorBookname);
+        if (usersWish == null) {
+            return addUsersWish(users, authorBookname);
+        } else {
+            return usersWish;
+        }
     }
 }

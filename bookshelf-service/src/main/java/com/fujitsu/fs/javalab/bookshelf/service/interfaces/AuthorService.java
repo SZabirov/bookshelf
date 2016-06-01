@@ -18,4 +18,7 @@ public interface AuthorService {
 
     Author getAuthorByFirstnameAndSurname(String firstname, String surname);
 
+    Author getAuthorByFirstnameAndSurnameAndMiddlename(String firstname, String surname, String middlename);
+
+    Author addAuthor(Author author);
 }

@@ -30,4 +30,14 @@ public class AuthorServiceImpl implements AuthorService {
     public Author getAuthorByFirstnameAndSurname(String firstname, String surname) {
         return authorRepository.findByFirstnameAndSurname(firstname, surname);
     }
+
+    @Override
+    public Author getAuthorByFirstnameAndSurnameAndMiddlename(String firstname, String surname, String middlename) {
+        return authorRepository.findByFirstnameAndSurnameAndMiddlename(firstname, surname, middlename);
+    }
+
+    @Override
+    public Author addAuthor(Author author) {
+        return authorRepository.save(author);
+    }
 }

@@ -5,6 +5,7 @@ import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersWishService;
 import com.fujitsu.fs.javalab.bookshelf.web.utils.HashUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,6 +34,9 @@ public class MainController {
     SearchService searchService;
     @Autowired
     BookService bookService;
+    @Autowired
+    UsersWishService usersWishService;
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hiPage(Model model) {
@@ -128,5 +132,22 @@ public class MainController {
                           @RequestParam(value = "id", required = false) int id) {
         model.addAttribute("book", bookService.getById(id));
         return "book";
+    }
+
+    @RequestMapping(value = "/postwishing", method = RequestMethod.POST)
+    public String postWishing(Model model,
+                              @RequestParam(value = "author_name", required = false) String authorName,
+                              @RequestParam(value = "author_surname", required = false) String authorSurname,
+                              @RequestParam(value = "author_middlename", required = false) String authorMiddlename,
+                              @RequestParam(value = "bookname", required = false) String bookname) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users users = usersService.getUsersByNickname(name);
+        usersWishService.addWishing(authorName, authorSurname, authorMiddlename, bookname, users);
+        return getProfilePage(model);
+    }
+    @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
+    public String postWishing(Model model){
+        return "addwishing";
     }
 }
