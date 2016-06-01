@@ -1,5 +1,6 @@
 package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import com.fujitsu.fs.javalab.bookshelf.models.Messages;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
 
@@ -12,5 +13,6 @@ public interface MessagesService {
 
     List<Messages> findMessageBySender(Users user);
     List<Messages> findMessageByReceiver(Users user);
+    void addNewMessage(Users sender, Users receiver, Book havingBook, Book wishingBook);
 
 }

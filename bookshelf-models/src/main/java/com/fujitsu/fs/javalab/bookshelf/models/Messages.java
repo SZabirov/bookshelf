@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class Messages {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_seq")
-    @SequenceGenerator(name = "message_seq", sequenceName = "message_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "messages_id_seq")
+    @SequenceGenerator(name = "messages_id_seq", sequenceName = "messages_id_seq", allocationSize = 1)
     @Column(name = "id")
     private int id;
 

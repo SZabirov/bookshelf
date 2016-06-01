@@ -7,20 +7,22 @@
 <html>
 <head>
     <title>Bookshelf</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <script src="/resources/css/ie/html5shiv.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <!--[if lte IE 8]>
+    <script src="/resources/css/ie/html5shiv.js"></script><![endif]-->
     <script src="/resources/js/jquery.min.js"></script>
     <script src="/resources/js/jquery.dropotron.min.js"></script>
     <script src="/resources/js/skel.min.js"></script>
     <script src="/resources/js/skel-layers.min.js"></script>
     <script src="/resources/js/init.js"></script>
     <noscript>
-        <link rel="stylesheet" href="/resources/css/skel.css" />
-        <link rel="stylesheet" href="/resources/css/style.css" />
+        <link rel="stylesheet" href="/resources/css/skel.css"/>
+        <link rel="stylesheet" href="/resources/css/style.css"/>
     </noscript>
-    <link rel="stylesheet" href="/resources/css/ie/v8.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/resources/css/ie/v8.css"/><![endif]-->
 </head>
 <body class="no-sidebar">
 
@@ -35,48 +37,23 @@
         <nav id="nav">
             <ul>
                 <li><a href="/">Главная</a></li>
-                <li><a href="/login">Вход</a></li>
-                <li><a href="/registration">Регистрация</a></li>
+                <li><a href="/profile">Мой профиль</a></li>
+                <li><a href="/offers">Предложения</a></li>
+                <li><a href="/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
-
     </div>
 </div>
 
 <!-- Main -->
-<div id="main" class="wrapper style1">
-    <form action="/connect?id=${receiver.id}" method="POST" class="searchform">
-        <h3 class="offerH3">Предложение: </h3>
-        <select class="offerSelect" name="have">
-            <#list havingBooks as book>
-                <option value="${book.id}">
-                    ${book.authorBookname.author.surname}
-                    ${book.authorBookname.author.firstname}
-                    <#if book.authorBookname.author.middlename??>
-                        ${book.authorBookname.author.middlename}
-                    </#if>
-                    "${book.authorBookname.bookname}"
-                </option>
-            </#list>
-        </select>
-        <br />
-        <h3 class="offerH3">Пожелание: </h3>
-        <select class="offerSelect" name="wish">
-            <#list wishingBooks as book>
-                <option value="${book.id}">
-                    ${book.authorBookname.author.surname}
-                    ${book.authorBookname.author.firstname}
-                    <#if book.authorBookname.author.middlename??>
-                        ${book.authorBookname.author.middlename}
-                    </#if>
-                    "${book.authorBookname.bookname}"
-                </option>
-            </#list>
-        </select>
-        <br />
-        <input type='submit' value='Предложить' class='submit-button'>
-    </form>
+<div id="main2" class="wrapper style1">
+    <div class="profilepage">
+        <#if success??>
+            <h3 class="success">${success}</h3>
+        </#if>
+    </div>
 </div>
 
 <!-- Footer -->
@@ -95,7 +72,8 @@
                         <section class="6u">
                             <ul class="default">
                                 <li><a href="http://kpfu.ru">Казанский (Приволжский) федеральный университет</a></li>
-                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и информационных систем</a></li>
+                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и
+                                    информационных систем</a></li>
                                 <li><a href="http://www.fujitsu.com/global">Лаборатория Fujitsu Java</a></li>
                                 <!-- <li><a href="#">Cras vitae metus aliquam  pharetra.</a></li> -->
                             </ul>
@@ -112,7 +90,7 @@
                     <ul class="contact">
                         <li>
                             <span class="address">Адрес</span>
-                            <span>ул. Кремлевская 35, <br />аудитория 1509</span>
+                            <span>ул. Кремлевская 35, <br/>аудитория 1509</span>
                         </li>
                         <li>
                             <span class="mail">E-mail</span>
@@ -138,19 +116,19 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".username").focus(function() {
-            $(".user-icon").css("left","-48px");
+    $(document).ready(function () {
+        $(".username").focus(function () {
+            $(".user-icon").css("left", "-48px");
         });
-        $(".username").blur(function() {
-            $(".user-icon").css("left","0px");
+        $(".username").blur(function () {
+            $(".user-icon").css("left", "0px");
         });
 
-        $(".password").focus(function() {
-            $(".pass-icon").css("left","-48px");
+        $(".password").focus(function () {
+            $(".pass-icon").css("left", "-48px");
         });
-        $(".password").blur(function() {
-            $(".pass-icon").css("left","0px");
+        $(".password").blur(function () {
+            $(".pass-icon").css("left", "0px");
         });
     });
 </script>
