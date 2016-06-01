@@ -2,6 +2,8 @@ package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersWish;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
@@ -61,6 +63,10 @@ public class MainController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
+        List<UsersHaving> usersHavings = users.getUsersHavings();
+        List<UsersWish> usersWishes = users.getUsersWishes();
+        model.addAttribute("havings", usersHavings);
+        model.addAttribute("wishes", usersWishes);
         model.addAttribute("user", users);
         return "profile";
     }

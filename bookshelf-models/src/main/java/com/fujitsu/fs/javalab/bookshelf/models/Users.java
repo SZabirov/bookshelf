@@ -47,10 +47,10 @@ public class Users {
     @OneToMany(mappedBy = "users")
     private List<Token> tokens;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<UsersHaving> usersHavings;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<UsersWish> usersWishes;
 
 

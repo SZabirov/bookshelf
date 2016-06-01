@@ -28,10 +28,10 @@ public class AuthorBookname {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
-    @OneToMany(mappedBy = "authorBookname")
+    @OneToMany(mappedBy = "authorBookname", fetch = FetchType.EAGER)
     private Collection<Book> books;
 
-    @OneToMany(mappedBy = "authorBookname")
+    @OneToMany(mappedBy = "authorBookname", fetch = FetchType.EAGER)
     private Collection<UsersWish> usersWishes;
 
     public int getId() {

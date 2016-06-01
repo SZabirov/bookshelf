@@ -28,7 +28,7 @@ public class Author {
     @Column(name = "middlename")
     private String middlename;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private Collection<AuthorBookname> authorBooknames;
 
 

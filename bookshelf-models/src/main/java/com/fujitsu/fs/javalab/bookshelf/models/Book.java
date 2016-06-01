@@ -40,7 +40,7 @@ public class Book {
     @JoinColumn(name = "author_bookname_id", referencedColumnName = "id")
     private AuthorBookname authorBookname;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
     private List<UsersHaving> usersHavings;
 
     public int getId() {

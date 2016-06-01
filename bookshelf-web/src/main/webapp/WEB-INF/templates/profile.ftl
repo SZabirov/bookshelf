@@ -7,20 +7,22 @@
 <html>
 <head>
     <title>Bookshelf</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <!--[if lte IE 8]><script src="/resources/css/ie/html5shiv.js"></script><![endif]-->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <!--[if lte IE 8]>
+    <script src="/resources/css/ie/html5shiv.js"></script><![endif]-->
     <script src="/resources/js/jquery.min.js"></script>
     <script src="/resources/js/jquery.dropotron.min.js"></script>
     <script src="/resources/js/skel.min.js"></script>
     <script src="/resources/js/skel-layers.min.js"></script>
     <script src="/resources/js/init.js"></script>
     <noscript>
-        <link rel="stylesheet" href="/resources/css/skel.css" />
-        <link rel="stylesheet" href="/resources/css/style.css" />
+        <link rel="stylesheet" href="/resources/css/skel.css"/>
+        <link rel="stylesheet" href="/resources/css/style.css"/>
     </noscript>
-    <!--[if lte IE 8]><link rel="stylesheet" href="/resources/css/ie/v8.css" /><![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/resources/css/ie/v8.css"/><![endif]-->
 </head>
 <body class="no-sidebar">
 
@@ -42,14 +44,13 @@
                 <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
-
     </div>
 </div>
 
 <!-- Main -->
 <div id="main2" class="wrapper style1">
     <div class="profilepage">
-        <img src="/resources/images/no_user_photo.png" class="profile_photo" />
+        <img src="/resources/images/no_user_photo.png" class="profile_photo"/>
         <div class="profile_information">
             <b>Имя:</b> ${user.firstname} <br/>
             <b>Фамилия:</b> ${user.surname} <br/>
@@ -59,20 +60,34 @@
     <div class="profilebooks">
         <div class="offerings">
             <h3>Могу предложить: </h3>
+        <#if havings?has_content>
+            <#list havings as have>
+                <a href="book.html"><img src="/resources/images/book.jpg"/></a>
+                <div class="book_name">${have.book.authorBookname.author.firstname} ${have.book.authorBookname.author.surname} <br/>${have.book.authorBookname.bookname}</div>
+            </#list>
+        <#else>
             <a href="book.html"><img src="/resources/images/book.jpg"/></a>
             <div class="book_name">Л.Н. Толстой "Война и мир"</div>
             <a href="book.html"><img src="/resources/images/book.jpg"/></a>
             <div class="book_name">Харпер Ли "Убить пересмешника"</div>
             <a href="book.html"><img src="/resources/images/book.jpg"/></a>
             <div class="book_name">А.С. Пушкин "Евгений Онегин"</div>
+        </#if>
         </div>
         <div class="wishes">
             <h3>Хочу почитать: </h3>
+        <#if wishes?has_content>
+            <#list wishes as wish>
+                <a href="book.html"><img src="/resources/images/book.jpg"/></a>
+                <div class="book_name">${wish.authorBookname.author.firstname} ${wish.authorBookname.author.surname} <br/>${wish.authorBookname.bookname}</div>
+            </#list>
+        <#else>
             <img src="/resources/images/book.jpg"/>
             <div class="book_name">Гюстав Флобер "Госпожа Бовари"</div>
             <img src="/resources/images/book.jpg"/>
             <div class="book_name">Фрэнсис Скотт Фицджеральд "Великий Гэтсби"</div>
             <a class="book_name" href="/addwishing">Добавить пожелание</a>
+        </#if>
         </div>
     </div>
 </div>
@@ -93,7 +108,8 @@
                         <section class="6u">
                             <ul class="default">
                                 <li><a href="http://kpfu.ru">Казанский (Приволжский) федеральный университет</a></li>
-                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и информационных систем</a></li>
+                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и
+                                    информационных систем</a></li>
                                 <li><a href="http://www.fujitsu.com/global">Лаборатория Fujitsu Java</a></li>
                                 <!-- <li><a href="#">Cras vitae metus aliquam  pharetra.</a></li> -->
                             </ul>
@@ -110,7 +126,7 @@
                     <ul class="contact">
                         <li>
                             <span class="address">Адрес</span>
-                            <span>ул. Кремлевская 35, <br />аудитория 1509</span>
+                            <span>ул. Кремлевская 35, <br/>аудитория 1509</span>
                         </li>
                         <li>
                             <span class="mail">E-mail</span>
@@ -136,19 +152,19 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".username").focus(function() {
-            $(".user-icon").css("left","-48px");
+    $(document).ready(function () {
+        $(".username").focus(function () {
+            $(".user-icon").css("left", "-48px");
         });
-        $(".username").blur(function() {
-            $(".user-icon").css("left","0px");
+        $(".username").blur(function () {
+            $(".user-icon").css("left", "0px");
         });
 
-        $(".password").focus(function() {
-            $(".pass-icon").css("left","-48px");
+        $(".password").focus(function () {
+            $(".pass-icon").css("left", "-48px");
         });
-        $(".password").blur(function() {
-            $(".pass-icon").css("left","0px");
+        $(".password").blur(function () {
+            $(".pass-icon").css("left", "0px");
         });
     });
 </script>
