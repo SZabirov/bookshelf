@@ -46,6 +46,21 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
+    <div class="book_profile">
+        <a href="#" title="Удалить" alt="Удалить"><img class="del_book" src="images/delete.png"/></a>
+        <a href="#" title="Редактировать" alt="Редактировать"><img class="edit_book" src="images/edit.png"/></a>
+        <h3>${book.authorBookname.author.surname}
+    ${book.authorBookname.author.firstname}
+    ${book.authorBookname.author.middlename}
+    "${book.authorBookname.bookname}" </h3>
+        <img class="book_img" src="images/book.jpg"/>
+        <div class="about_book">
+            <b>Издательство:</b> ${book.pubhouse}<br/>
+            <b>Год издания:</b> ${book.pubYear}<br/>
+            <b>Описание:</b> ${book.description}</div>
+
+        </div>
+    </div>
     ${book.authorBookname.author.surname}
     ${book.authorBookname.author.firstname}
     ${book.authorBookname.author.middlename}

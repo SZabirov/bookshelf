@@ -3,6 +3,12 @@ package com.fujitsu.fs.javalab.bookshelf.web.controller;
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.*;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
+import com.fujitsu.fs.javalab.bookshelf.models.UsersWish;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersWishService;
 import com.fujitsu.fs.javalab.bookshelf.web.utils.HashUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -59,6 +65,10 @@ public class MainController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
+        List<UsersHaving> usersHavings = users.getUsersHavings();
+        List<UsersWish> usersWishes = users.getUsersWishes();
+        model.addAttribute("havings", usersHavings);
+        model.addAttribute("wishes", usersWishes);
         model.addAttribute("user", users);
         return "profile";
     }

@@ -15,27 +15,27 @@ correctLogin = function () {
             success: function (response_data) {
                 if (response_data == 'true') {
                     $("#login").css({'border': '1px solid black'});
-                    $("#login_valid").html("Login is busy");
+                    $("#login_valid").html("Логин занят");
                 } else {
                     if (pattern.test(login)) {
                         $('#login').css({'border': '1px solid #569b44'});
                         $('#login_valid').text('');
                     } else if (login.length < 4) {
                         $('#login').css({'border': '1px solid black'});
-                        $('#login_valid').text('Login length should be > 3');
+                        $('#login_valid').text('Длина логина должна быть > 3');
                     } else if (login.length > 20) {
                         $('#login').css({'border': '1px solid black'});
-                        $('#login_valid').text('Login length should be < 20');
+                        $('#login_valid').text('Длина логина должна быть < 20');
                     } else {
                         $('#login').css({'border': '1px solid black'});
-                        $('#login_valid').text('Irregular symbols in login');
+                        $('#login_valid').text('Неверный формат');
                     }
                 }
             }
         });
     } else {
         $('#login').css({'border': '1px solid black'});
-        $('#login_valid').text('Login should not be empty');
+        $('#login_valid').text('Это поле обязательно для заполнения');
     }
 }
 
@@ -48,17 +48,17 @@ correctPass = function () {
             $('#correct').text('');
         } else if (pass.length < 5) {
             $('#pass').css({'border': '1px solid black'});
-            $('#correct').text('Password length should be > 4');
+            $('#correct').text('Длина пароля должна быть > 4');
         } else if (pass.length > 20) {
             $('#pass').css({'border': '1px solid black'});
-            $('#correct').text('Password length should be < 20');
+            $('#correct').text('Длина пароля должна быть < 20');
         } else {
             $('#pass').css({'border': '1px solid black'});
-            $('#correct').text('Irregular symbols in password');
+            $('#correct').text('Неверный формат');
         }
     } else {
         $('#pass').css({'border': '1px solid black'});
-        $('#correct').text('Password should not be empty');
+        $('#correct').text('Это поле обязательно для заполнения');
     }
 }
 
@@ -68,14 +68,14 @@ correctRepeat = function () {
     if (pass2 != '') {
         if (pass1 != pass2) {
             $('#pass_repeat').css({'border': '1px solid black'});
-            $('#info').text('Password repeated incorrectly');
+            $('#info').text('Пароль повторен неверно');
         } else {
             $('#pass_repeat').css({'border': '1px solid #569b44'});
             $('#info').text('');
         }
     } else {
         $('#pass_repeat').css({'border': '1px solid black'});
-        $('#info').text('Repeat your password');
+        $('#info').text('Повторите пароль');
     }
 }
 
@@ -93,20 +93,20 @@ correctEmail = function () {
             success: function (response_data) {
                 if (response_data == 'true') {
                     $("#email").css({'border': '1px solid black'});
-                    $("#valid").html("Email is busy");
+                    $("#valid").html("Email занят");
                 } else {
                     if (pattern.test(email)) {
                         $('#email').css({'border': '1px solid #569b44'});
                         $('#valid').text('');
                     } else {
                         $('#email').css({'border': '1px solid black'});
-                        $('#valid').text('Incorrect email');
+                        $('#valid').text('Неверный email');
                     }
                 }
             }
         });
     } else {
         $('#email').css({'border': '1px solid black'});
-        $('#valid').text('Email should not be empty');
+        $('#valid').text('Это поле обязательно для заполнения');
     }
 }

@@ -68,15 +68,8 @@
         <p class="loginform" id="info" style="margin-bottom: 0"></p><br/>
         <input type='submit' value='Регистрация' class='submit-button'>
 
-    <#--<input type='text' name='user' class='loginform' placeholder='Придумайте логин' required><br />-->
-    <#--<input type='text' name='email' class='loginform'  placeholder='Ваш e-mail' required><br />-->
-    <#--<input type='text' name='name' class='loginform'  placeholder='Имя' required><br />-->
-    <#--<input type='text' name='surname' class='loginform'  placeholder='Фамилия' required><br />-->
-    <#--<input type='text' name='city' class='loginform'  placeholder='Город' required><br />-->
-    <#--<input type='password' name='password1' class='loginform' id="pswrd" placeholder='Придумайте пароль' required><br />-->
-    <#--<input type='password' name='password2' class='loginform'  placeholder='Повторите пароль' required><br />-->
     </form>
-<#--<script type="text/javascript" src="/resources/js/validation.js"></script>-->
+<script type="text/javascript" src="/resources/js/validation.js"></script>
 </div>
 
 <!-- Footer -->
