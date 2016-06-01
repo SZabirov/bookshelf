@@ -75,9 +75,6 @@
             </#list>
         </select>
         <br />
-        <#--<input type='text' name='author_name' class='searchfield' placeholder='Имя автора' required><br />-->
-        <#--<input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />-->
-        <#--<input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />-->
         <input type='submit' value='Предложить' class='submit-button'>
     </form>
 </div>
