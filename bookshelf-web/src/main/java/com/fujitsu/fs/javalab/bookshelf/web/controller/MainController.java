@@ -59,15 +59,35 @@ public class MainController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String getProfilePage(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        Users users = usersService.getUsersByNickname(name);
-        List<UsersHaving> usersHavings = users.getUsersHavings();
-        List<UsersWish> usersWishes = users.getUsersWishes();
+    public String getProfilePage(Model model,
+                                 @RequestParam(value = "id", required = false) Integer id) {
+        Users user;
+        List<UsersHaving> usersHavings;
+        List<UsersWish> usersWishes;
+        if (id == null) {
+            System.out.println("Null id");
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String name = auth.getName();
+            user = usersService.getUsersByNickname(name);
+        }
+        else {
+            System.out.println("Not null id");
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String name = auth.getName();
+            if (usersService.getUsersByNickname(name).getId() != id) {
+                System.out.println("NOT CURRENT");
+                user = usersService.getUserById(id);
+                model.addAttribute("notCurrent", "notCurrent");
+            }
+            else {
+                user = usersService.getUsersByNickname(name);
+            }
+        }
+        usersHavings = user.getUsersHavings();
+        usersWishes = user.getUsersWishes();
         model.addAttribute("havings", usersHavings);
         model.addAttribute("wishes", usersWishes);
-        model.addAttribute("user", users);
+        model.addAttribute("user", user);
         return "profile";
     }
 
@@ -150,7 +170,7 @@ public class MainController {
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
         usersWishService.addWishing(authorName, authorSurname, authorMiddlename, bookname, users);
-        return getProfilePage(model);
+        return getProfilePage(model, null);
     }
     @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
     public String postWishing(Model model){

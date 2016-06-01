@@ -62,3 +62,17 @@ CREATE TABLE users_having(
   FOREIGN KEY (users_id) REFERENCES users(id),
   FOREIGN KEY (book_id) REFERENCES book(id)
 );
+
+CREATE TABLE messages (
+  id SERIAL PRIMARY KEY,
+  sender_id INT,
+  receiver_id INT,
+  having_book_id INT,
+  wish_book_id INT,
+  status VARCHAR(255),
+
+  FOREIGN KEY (sender_id) REFERENCES users(id),
+  FOREIGN KEY (receiver_id) REFERENCES users(id),
+  FOREIGN KEY (having_book_id) REFERENCES book(id),
+  FOREIGN KEY (wish_book_id) REFERENCES book(id)
+);
