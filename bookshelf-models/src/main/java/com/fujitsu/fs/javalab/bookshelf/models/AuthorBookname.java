@@ -103,4 +103,11 @@ public class AuthorBookname {
     public void setUsersWishes(Collection<UsersWish> usersWishes) {
         this.usersWishes = usersWishes;
     }
+
+    @Override
+    public String toString() {
+        return "AuthorBookname{" +
+                "author=" + author +
+                '}';
+    }
 }

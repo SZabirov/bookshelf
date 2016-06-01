@@ -68,4 +68,11 @@ public class Token {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Token{" +
+                "token='" + token + '\'' +
+                ", users=" + users +
+                '}';
+    }
 }

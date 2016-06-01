@@ -64,4 +64,11 @@ public class UsersWish {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "UsersWish{" +
+                "authorBookname=" + authorBookname +
+                ", users=" + users +
+                '}';
+    }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by aygulmardanova on 08.05.16.
  */
-@Service
+//@Service
 public interface TokenService {
 
     List<Token> getAllTokensForUser(Users users);

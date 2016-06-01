@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by aygulmardanova on 08.05.16.
  */
-@Service
+//@Service
 public interface AuthorService {
 
     Author getAuthorById(int id);

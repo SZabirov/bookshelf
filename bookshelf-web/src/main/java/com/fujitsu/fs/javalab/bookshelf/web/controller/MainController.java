@@ -60,7 +60,8 @@ public class MainController {
     public String getProfilePage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        model.addAttribute("nickname", name);
+        Users users = usersService.getUsersByNickname(name);
+        model.addAttribute("user", users);
         return "profile";
     }
 
@@ -105,7 +106,8 @@ public class MainController {
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String login = auth.getName();
-            model.addAttribute("nickname", login);
+            Users user = usersService.getUsersByNickname(login);
+            model.addAttribute("user", user);
             return "profile";
         }
     }

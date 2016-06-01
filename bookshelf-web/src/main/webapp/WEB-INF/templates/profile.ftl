@@ -51,9 +51,9 @@
     <div class="profilepage">
         <img src="/resources/images/no_user_photo.png" class="profile_photo" />
         <div class="profile_information">
-            <b>Имя:</b> Алексей <br/>
-            <b>Фамилия:</b> Бархатов <br/>
-            <b>Логин:</b> ${nickname}
+            <b>Имя:</b> ${user.firstname} <br/>
+            <b>Фамилия:</b> ${user.surname} <br/>
+            <b>Логин:</b> ${user.nickname}
         </div>
     </div>
     <div class="profilebooks">
