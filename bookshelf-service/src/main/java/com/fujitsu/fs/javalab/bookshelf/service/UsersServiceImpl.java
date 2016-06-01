@@ -20,13 +20,14 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void addNewUsers(String nickname, String email, String firstname, String surname,
-                            String city, String hashpassword, String avatar) {
+                            String city, String phone, String hashpassword, String avatar) {
         Users users = new Users();
         users.setNickname(nickname);
         users.setEmail(email);
         users.setFirstname(firstname);
         users.setSurname(surname);
         users.setCity(city);
+        users.setPhone(phone);
         users.setHashpassword(hashpassword);
         users.setAvatar(avatar);
         jpaRepositoryUsers.save(users);
@@ -34,9 +35,10 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void updateUser(int id, String new_nickname, String new_email, String new_firstname,
-                           String new_surname, String new_city, String old_hashpassword, String new_hashpassword,
-                           String new_avatar) {
+                           String new_surname, String new_city, String new_phone,
+                           String new_hashpassword, String new_avatar) {
         Users users = jpaRepositoryUsers.findOneById(id);
+        System.out.println(users);
         if (new_nickname != null && !new_nickname.equals("")) {
             users.setNickname(new_nickname);
         }
@@ -52,19 +54,17 @@ public class UsersServiceImpl implements UsersService {
         if (new_city != null && !new_city.equals("")) {
             users.setCity(new_city);
         }
-        if (ifCorrectUser(id, old_hashpassword)) {
-            if (new_hashpassword != null && !new_hashpassword.equals("")) {
-                users.setHashpassword(new_hashpassword);
-            }
-        } else {
-            //FIXME:do smth with old password - check it or not?
-            System.out.println("Wrong old password");
-            return;
+        if (new_phone != null && !new_phone.equals("")) {
+            users.setPhone(new_phone);
+        }
+        if (new_hashpassword != null && !new_hashpassword.equals("")) {
+            users.setHashpassword(new_hashpassword);
         }
         if (new_avatar != null && !new_avatar.equals("")) {
             users.setAvatar(new_avatar);
         }
-
+        System.out.println(users);
+        jpaRepositoryUsers.save(users);
     }
 
     @Override
@@ -103,10 +103,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users getUsersByNickname(String nickname) {
-        System.out.println("Getting user by name " + nickname);
-        Users user = jpaRepositoryUsers.findOneByNickname(nickname);
-        System.out.println("In service got user " + user );
-        return user;
+        return jpaRepositoryUsers.findOneByNickname(nickname);
     }
 
     @Override

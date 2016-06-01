@@ -41,44 +41,42 @@
                 <li><a href="/search">Поиск</a></li>
             </ul>
         </nav>
-
     </div>
 </div>
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form id="registr_form" action='/registration' method='POST' class='form1'>
+    <form id="settings_form" action='/user/settings' method='POST' class='form1'>
     <#if error??>
         <span class="error_text">${error}</span>
-        <#--<span class="error_text">Пользователь с таким логином уже существует</span>-->
     </#if>
+        <input type="hidden" name="id" value="${user.id}">
         <input id="login" oninput="correctLogin()" type='text' name='user' class='loginform'
-               placeholder='Придумайте логин' required>
+               placeholder='${user.nickname}'>
         <p class="loginform" id="login_valid" style="margin-bottom: 0"></p><br/>
-        <input id="email" oninput="correctEmail()" type='text' name='email' class='loginform' placeholder='Ваш e-mail'
-               required>
+        <input id="email" oninput="correctEmail()" type='text' name='email' class='loginform'
+               placeholder='${user.email}'>
         <p class="loginform" id="valid" style="margin-bottom: 0"></p><br/>
-        <input type='text' name='name' class='loginform' placeholder='Имя' required><br/>
-        <input type='text' name='surname' class='loginform' placeholder='Фамилия' required><br/>
-        <input type='text' name='city' class='loginform' placeholder='Город' required><br/>
-        <input id="phone" oninput="correctPhone()" type='text' name='phone' class='loginform' placeholder='Номер телефона' required>
+        <input type='text' name='city' class='loginform' placeholder='${user.city}'><br/>
+        <input id="phone" oninput="correctPhone()" type='text' name='phone' class='loginform'
+               placeholder='${user.phone}'>
         <p class="loginform" id="phone_valid" style="margin-bottom: 0"></p><br/>
+        <input id="old_pass" type='password' name='old_password' class='loginform'
+               placeholder='Введите старый пароль'>
         <input id="pass" oninput="correctPass()" type='password' name='password1' class='loginform'
-               placeholder='Придумайте пароль' required>
+               placeholder='Придумайте новый пароль'>
         <p class="loginform" id="correct" style="margin-bottom: 0"></p><br/>
         <input id="pass_repeat" oninput="correctRepeat()" type='password' name='password2' class='loginform'
-               placeholder='Повторите пароль' required>
+               placeholder='Повторите новый пароль'>
         <p class="loginform" id="info" style="margin-bottom: 0"></p><br/>
-        <input type='submit' value='Регистрация' class='submit-button'>
-
+        <input type='submit' value='Сохранить' class='submit-button'>
     </form>
-<script type="text/javascript" src="/resources/js/validation.js"></script>
+    <script type="text/javascript" src="/resources/js/validation.js"></script>
 </div>
 
 <!-- Footer -->
 <div id="footer">
     <div class="container">
-
         <!-- Lists -->
         <div class="row">
             <div class="8u">
@@ -120,7 +118,6 @@
                 </section>
             </div>
         </div>
-
         <!-- Copyright -->
         <div class="copyright">
             Казань, 2016
@@ -128,24 +125,6 @@
 
     </div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".username").focus(function () {
-            $(".user-icon").css("left", "-48px");
-        });
-        $(".username").blur(function () {
-            $(".user-icon").css("left", "0px");
-        });
-
-        $(".password").focus(function () {
-            $(".pass-icon").css("left", "-48px");
-        });
-        $(".password").blur(function () {
-            $(".pass-icon").css("left", "0px");
-        });
-    });
-</script>
 
 </body>
 </html>

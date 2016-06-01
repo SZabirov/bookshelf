@@ -5,6 +5,7 @@ CREATE TABLE users (
   firstname VARCHAR(255),
   surname VARCHAR(255),
   city VARCHAR(255),
+  phone VARCHAR(15),
   hashpassword VARCHAR(255),
   avatar VARCHAR(255)
 );

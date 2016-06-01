@@ -12,10 +12,10 @@ import java.util.List;
 public interface UsersService {
 
     void addNewUsers(String nickname, String email, String firstname, String surname,
-                     String city, String hashpassword, String avatar);
+                     String city, String phone, String hashpassword, String avatar);
 
     void updateUser(int id, String new_nickname, String new_email, String new_firstname,
-                    String new_surname, String new_city, String old_hashpassword, String new_hashpassword,
+                    String new_surname, String new_city, String new_phone, String new_hashpassword,
                     String new_avatar);
 
     boolean ifCorrectUser(int id, String hashpassword);
