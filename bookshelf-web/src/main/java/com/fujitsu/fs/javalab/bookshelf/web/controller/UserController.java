@@ -132,13 +132,22 @@ public class UserController {
                 model.addAttribute("user", users);
                 return "settings";
             } else {
-                password1 = HashUtils.md5Apache(old_password);
+                password1 = HashUtils.md5Apache(password1);
             }
         }
         usersService.updateUser(id, login, email, null, null, city, phone, password1, null);
         System.out.println("user updated");
         model.addAttribute("user", usersService.getUserById(id));
         return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/requests", method = RequestMethod.GET)
+    public String getRequestsPage(ModelMap model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users users = usersService.getUsersByNickname(name);
+        model.addAttribute("user", users);
+        return "requests";
     }
 
 }

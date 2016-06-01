@@ -14,6 +14,7 @@
         <security:intercept-url pattern="/search/**" access="permitAll()"/>
         <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/posthaving/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/connect/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/addhaving/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/postwishing/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/addwishing/**" access="isAuthenticated()"/>

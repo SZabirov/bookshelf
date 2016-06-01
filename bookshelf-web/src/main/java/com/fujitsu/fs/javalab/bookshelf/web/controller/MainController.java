@@ -48,6 +48,11 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hiPage(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        if (!name.equals("anonymousUser")) {
+            model.addAttribute("login", name);
+        }
         return "index";
     }
 

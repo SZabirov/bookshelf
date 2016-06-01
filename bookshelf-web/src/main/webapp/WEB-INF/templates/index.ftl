@@ -3,9 +3,9 @@
 <html>
 <head>
     <title>Bookshelf</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
     <script src="/resources/css/ie/html5shiv.js"></script>
     <script src="/resources/js/jquery.min.js"></script>
     <script src="/resources/js/jquery.dropotron.min.js"></script>
@@ -13,10 +13,10 @@
     <script src="/resources/js/skel-layers.min.js"></script>
     <script src="/resources/js/init.js"></script>
     <noscript>
-        <link rel="stylesheet" href="/resources/css/skel.css" />
-        <link rel="stylesheet" href="/resources/css/style.css" />
+        <link rel="stylesheet" href="/resources/css/skel.css"/>
+        <link rel="stylesheet" href="/resources/css/style.css"/>
     </noscript>
-   <link rel="stylesheet" href="/resources/css/ie/v8.css" />
+    <link rel="stylesheet" href="/resources/css/ie/v8.css"/>
 </head>
 <body class="homepage">
 
@@ -30,9 +30,19 @@
 
         <nav id="nav">
             <ul>
+            <#if login??>
+                <li><a href="#">Главная</a></li>
+                <li><a href="/profile">Мой профиль</a></li>
+                <li><a href="/user/requests">Предложения</a></li>
+                <li><a href="/user/settings">Настройки</a></li>
+                <li><a href="/search">Поиск</a></li>
+                <li><a href="/logout">Выход</a></li>
+            <#else>
                 <li><a href="/">Главная</a></li>
                 <li><a href="/login">Вход</a></li>
                 <li><a href="/registration">Регистрация</a></li>
+            </#if>
+
             </ul>
         </nav>
 
@@ -91,7 +101,8 @@
                         <section class="6u">
                             <ul class="default">
                                 <li><a href="http://kpfu.ru">Казанский (Приволжский) федеральный университет</a></li>
-                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и информационных систем</a></li>
+                                <li><a href="http://kpfu.ru/itis">Высшая школа информационных технологий и
+                                    информационных систем</a></li>
                                 <li><a href="http://www.fujitsu.com/global">Лаборатория Fujitsu Java</a></li>
                             </ul>
                         </section>
@@ -106,7 +117,7 @@
                     <ul class="contact">
                         <li>
                             <span class="address">Адрес</span>
-                            <span>ул. Кремлевская 35, <br />аудитория 1509</span>
+                            <span>ул. Кремлевская 35, <br/>аудитория 1509</span>
                         </li>
                         <li>
                             <span class="mail">E-mail</span>

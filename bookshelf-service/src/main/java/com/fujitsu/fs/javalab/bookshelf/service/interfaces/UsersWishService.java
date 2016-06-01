@@ -11,7 +11,6 @@ import java.util.List;
 /**
  * Created by aygulmardanova on 08.05.16.
  */
-//@Service
 public interface UsersWishService {
 
     List<UsersWish> getAllUsersWishesForUser(Users users);

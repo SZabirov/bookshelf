@@ -57,6 +57,8 @@ public class Users {
     @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<UsersWish> usersWishes;
 
+    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
+    private List<Messages> messages;
 
     public int getId() {
         return id;
@@ -152,6 +154,14 @@ public class Users {
 
     public void setUsersWishs(List<UsersWish> usersWishes) {
         this.usersWishes = usersWishes;
+    }
+
+    public List<Messages> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Messages> messages) {
+        this.messages = messages;
     }
 
     @Override

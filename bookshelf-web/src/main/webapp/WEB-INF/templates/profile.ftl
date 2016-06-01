@@ -36,9 +36,9 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="#">Главная</a></li>
+                <li><a href="/">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="mybookshelf.html">Предложения</a></li>
+                <li><a href="/user/requests">Предложения</a></li>
                 <li><a href="/user/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
@@ -70,9 +70,13 @@
                     <br/>${have.book.authorBookname.bookname}</div>
             </#list>
         <#else>
-            <div class="book_name">Список книг, которые Вы готовы предложить, пуст</div>
+            <#if notCurrent??>
+                <div class="book_name">Список книг, которые <b>${user.nickname}</b> готов предложить, пуст</div>
+            <#else>
+                <div class="book_name">Список книг, которые Вы готовы предложить, пуст</div>
+                <a class="book_name" href="/addhaving">Добавить предложение</a>
+            </#if>
         </#if>
-            <a class="book_name" href="/addhaving">Добавить предложение</a>
         </div>
         <div class="wishes">
             <h3>Хочу почитать: </h3>
@@ -83,9 +87,14 @@
                     <br/>${wish.authorBookname.bookname}</div>
             </#list>
         <#else>
-            <div class="book_name">Список книг, которые Вы хотите получить, пуст</div>
+            <#if notCurrent??>
+                <div class="book_name">Список книг, которые <b>${user.nickname}</b> хочет получить, пуст</div>
+            <#else>
+                <div class="book_name">Список книг, которые Вы хотите получить, пуст</div>
+                <a class="book_name" href="/addwishing">Добавить пожелание</a>
+            </#if>
         </#if>
-            <a class="book_name" href="/addwishing">Добавить пожелание</a>
+
         </div>
     </div>
 </div>

@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * Created by aygulmardanova on 08.05.16.
  */
-//@Service
 public interface AuthorBooknameService {
 
     List<AuthorBookname> getAll();

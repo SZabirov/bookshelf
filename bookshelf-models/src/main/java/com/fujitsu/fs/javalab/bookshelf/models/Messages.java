@@ -71,4 +71,15 @@ public class Messages {
     public void setWishBook(Book wishBook) {
         this.wishBook = wishBook;
     }
+
+    @Override
+    public String toString() {
+        return "Messages{" +
+                "sender=" + sender.getNickname() +
+                ", receiver=" + receiver.getNickname() +
+                ", havingBook=" + havingBook.getAuthorBookname().getBookname() + " "
+                + havingBook.getAuthorBookname().getAuthor().getSurname() +
+                ", wishBook=" + wishBook.getAuthorBookname().getBookname() +
+                '}';
+    }
 }

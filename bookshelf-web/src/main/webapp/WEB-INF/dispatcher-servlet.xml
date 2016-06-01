@@ -8,6 +8,7 @@
     <mvc:annotation-driven />
 
     <import resource="classpath*:service-config.xml"/>
+    <import resource="classpath*:service-config.xml"/>
     <import resource="spring-security.xml"/>
     <context:component-scan base-package="com.fujitsu.fs.javalab.bookshelf.web.controller"/>
 

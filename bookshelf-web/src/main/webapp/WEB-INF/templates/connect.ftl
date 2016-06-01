@@ -35,9 +35,11 @@
         <nav id="nav">
             <ul>
                 <li><a href="/">Главная</a></li>
-                <li><a href="/login">Вход</a></li>
-                <li><a href="/registration">Регистрация</a></li>
+                <li><a href="/profile">Мой профиль</a></li>
+                <li><a href="/user/requests">Предложения</a></li>
+                <li><a href="/user/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
 
