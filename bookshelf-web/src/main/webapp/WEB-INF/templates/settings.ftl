@@ -36,9 +36,11 @@
         <nav id="nav">
             <ul>
                 <li><a href="/">Главная</a></li>
-                <li><a href="/login">Вход</a></li>
-                <li><a href="/registration">Регистрация</a></li>
+                <li><a href="/profile">Мой профиль</a></li>
+                <li><a href="mybookshelf.html">Предложения</a></li>
+                <li><a href="/user/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
     </div>
@@ -125,6 +127,24 @@
 
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".username").focus(function () {
+            $(".user-icon").css("left", "-48px");
+        });
+        $(".username").blur(function () {
+            $(".user-icon").css("left", "0px");
+        });
+
+        $(".password").focus(function () {
+            $(".pass-icon").css("left", "-48px");
+        });
+        $(".password").blur(function () {
+            $(".pass-icon").css("left", "0px");
+        });
+    });
+</script>
 
 </body>
 </html>

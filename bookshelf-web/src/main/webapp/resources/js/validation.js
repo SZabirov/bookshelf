@@ -41,6 +41,28 @@ $("#registr_form").validate({
 });
 
 
+$("#settings_form").validate({
+
+    rules: {
+
+        city: {
+            required: false,
+            regx: /^[A-Za-zА-яа-я- ]*$/
+        }
+
+    },
+
+    messages: {
+        city: {
+            regx: "Неверный формат"
+        }
+
+    }
+
+});
+
+
+
 $.validator.addMethod("regx", function(value, element, regexpr) {
     return regexpr.test(value);
 });

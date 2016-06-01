@@ -209,11 +209,6 @@ public class MainController {
         return getProfilePage(model, null);
     }
 
-    @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
-    public String postWishing(Model model) {
-        return "addwishing";
-    }
-    
     @RequestMapping(value = "/addhaving", method = RequestMethod.GET)
     public String addHaving(Model model) {
         return "addhaving";
@@ -249,4 +244,5 @@ public class MainController {
         model.addAttribute("wishingBooks", wishing);
         return "offer";
     }
+
 }

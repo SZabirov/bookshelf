@@ -39,8 +39,8 @@
                 <li><a href="#">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
                 <li><a href="mybookshelf.html">Предложения</a></li>
-                <li><a href="settings.html">Настройки</a></li>
-                <li><a href="search.html">Поиск</a></li>
+                <li><a href="/user/settings">Настройки</a></li>
+                <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
@@ -55,9 +55,9 @@
             <b>Имя:</b> ${user.firstname} <br/>
             <b>Фамилия:</b> ${user.surname} <br/>
             <b>Логин:</b> ${user.nickname}
-            <#if notCurrent??>
+        <#if notCurrent??>
             <br/><br/><a href="/connect?id=${user.id}"><input type='submit' value='Связаться' class='submit-button'></a>
-            </#if>
+        </#if>
         </div>
     </div>
     <div class="profilebooks">
@@ -66,7 +66,8 @@
         <#if havings?has_content>
             <#list havings as have>
                 <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-                <div class="book_name">${have.book.authorBookname.author.firstname} ${have.book.authorBookname.author.surname} <br/>${have.book.authorBookname.bookname}</div>
+                <div class="book_name">${have.book.authorBookname.author.firstname} ${have.book.authorBookname.author.surname}
+                    <br/>${have.book.authorBookname.bookname}</div>
             </#list>
         <#else>
             <a href="book.html"><img src="/resources/images/book.jpg"/></a>
@@ -83,7 +84,8 @@
         <#if wishes?has_content>
             <#list wishes as wish>
                 <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-                <div class="book_name">${wish.authorBookname.author.firstname} ${wish.authorBookname.author.surname} <br/>${wish.authorBookname.bookname}</div>
+                <div class="book_name">${wish.authorBookname.author.firstname} ${wish.authorBookname.author.surname}
+                    <br/>${wish.authorBookname.bookname}</div>
             </#list>
         <#else>
             <img src="/resources/images/book.jpg"/>

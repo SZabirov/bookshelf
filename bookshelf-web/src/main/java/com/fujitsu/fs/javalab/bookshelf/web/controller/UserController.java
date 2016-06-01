@@ -59,7 +59,6 @@ public class UserController {
         return m.matches();
     }
 
-
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String getSettingsPage(ModelMap model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -80,7 +79,6 @@ public class UserController {
                                      @RequestParam(value = "password1", required = false) String password1,
                                      @RequestParam(value = "password1", required = false) String password2
     ) {
-
         Users users = usersService.getUserById(id);
         if (usersService.ifNicknameExists(login)) {
             model.addAttribute("error", "Пользователь с таким логином уже существует");
