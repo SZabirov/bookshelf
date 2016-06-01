@@ -117,17 +117,50 @@ public class MainController {
                                    @RequestParam(value = "name", required = false) String name,
                                    @RequestParam(value = "surname", required = false) String surname,
                                    @RequestParam(value = "city", required = false) String city,
+                                   @RequestParam(value = "phone", required = false) String phone,
                                    @RequestParam(value = "password1", required = false) String password1,
                                    @RequestParam(value = "password2", required = false) String password2) {
 
         if (usersService.ifNicknameExists(username)) {
-            return "redirect:/registration?error=loginIsBusy";
-        } else {
-            if (password1.equals(password2)) {
-
+            model.addAttribute("error", "Пользователь с таким логином уже существует");
+            return "registration";
+        }
+        if (usersService.ifEmailExists(email)) {
+            model.addAttribute("error", "Пользователь с таким email уже существует");
+            return "registration";
+        }
+        if (!UserController.checkWithRegExp(email, "email")) {
+            model.addAttribute("error", "Неправильный email: " + email);
+            return "registration";
+        }
+        if (!UserController.checkWithRegExp(username, "login")) {
+            model.addAttribute("error", "Login " + username + " is incorrect");
+            return "registration";
+        }
+        if (!UserController.checkWithRegExp(name, "name")) {
+            model.addAttribute("error", "Неправильное имя: " + name);
+            return "registration";
+        }
+        if (!UserController.checkWithRegExp(surname, "name")) {
+            model.addAttribute("error", "Неправильная фамилия: " + surname);
+            return "registration";
+        }
+        if (!UserController.checkWithRegExp(city, "name")) {
+            model.addAttribute("error", "Неправильный город: " + city);
+            return "registration";
+        }
+        if (!UserController.checkWithRegExp(phone, "phone")) {
+            model.addAttribute("error", "Неправильный номер " + phone);
+            return "registration";
+        }
+        if (!UserController.checkWithRegExp(password1, "pass")) {
+            model.addAttribute("error", "Неправильный формат пароля: " + password1);
+            return "registration";
+        }
+        if (password1.equals(password2)) {
                 password1 = HashUtils.md5Apache(password1);
 
-                usersService.addNewUsers(username, email, name, surname, city, password1, null);
+                usersService.addNewUsers(username, email, name, surname, city, phone, password1, null);
                 Set<GrantedAuthority> roles = new HashSet();
                 roles.add(new SimpleGrantedAuthority("CLIENT"));
                 UserDetails userDetails = new org.springframework.security.core.userdetails.User(username, password1, roles);
@@ -141,7 +174,6 @@ public class MainController {
             Users user = usersService.getUsersByNickname(login);
             model.addAttribute("user", user);
             return "profile";
-        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -184,6 +216,11 @@ public class MainController {
         return getProfilePage(model, null);
     }
 
+    @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
+    public String postWishing(Model model) {
+        return "addwishing";
+    }
+    
     @RequestMapping(value = "/addhaving", method = RequestMethod.GET)
     public String addHaving(Model model) {
         return "addhaving";
