@@ -3,7 +3,6 @@ package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 
 import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -26,4 +25,6 @@ public interface BookService {
     List<Book> getAllVerifiedBooks();
 
     Book getById(int id);
+
+    Book addBook(Book book);
 }

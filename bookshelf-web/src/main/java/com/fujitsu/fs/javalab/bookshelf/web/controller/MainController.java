@@ -2,10 +2,7 @@ package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersWishService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.*;
 import com.fujitsu.fs.javalab.bookshelf.web.utils.HashUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,7 +33,8 @@ public class MainController {
     BookService bookService;
     @Autowired
     UsersWishService usersWishService;
-
+    @Autowired
+    UsersHavingService usersHavingService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hiPage(Model model) {
@@ -134,6 +132,11 @@ public class MainController {
         return "book";
     }
 
+    @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
+    public String addWishing(Model model) {
+        return "addwishing";
+    }
+
     @RequestMapping(value = "/postwishing", method = RequestMethod.POST)
     public String postWishing(Model model,
                               @RequestParam(value = "author_name", required = false) String authorName,
@@ -146,8 +149,25 @@ public class MainController {
         usersWishService.addWishing(authorName, authorSurname, authorMiddlename, bookname, users);
         return getProfilePage(model);
     }
-    @RequestMapping(value = "/addwishing", method = RequestMethod.GET)
-    public String postWishing(Model model){
-        return "addwishing";
+
+    @RequestMapping(value = "/addhaving", method = RequestMethod.GET)
+    public String addHaving(Model model) {
+        return "addhaving";
+    }
+
+    @RequestMapping(value = "/posthaving", method = RequestMethod.POST)
+    public String postHaving(Model model,
+                             @RequestParam(value = "author_name", required = false) String authorName,
+                             @RequestParam(value = "author_surname", required = false) String authorSurname,
+                             @RequestParam(value = "author_middlename", required = false) String authorMiddlename,
+                             @RequestParam(value = "pubhouse", required = false) String pubhouse,
+                             @RequestParam(value = "pub_year", required = false) String pubyear,
+                             @RequestParam(value = "description", required = false) String description,
+                             @RequestParam(value = "bookname", required = false) String bookname) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users users = usersService.getUsersByNickname(name);
+        usersHavingService.addUsersHaving(users, authorName, authorSurname, authorMiddlename, pubhouse, pubyear, description, bookname);
+        return getProfilePage(model);
     }
 }

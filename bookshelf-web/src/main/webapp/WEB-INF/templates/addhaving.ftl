@@ -10,7 +10,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <!--[if lte IE 8]><script src="/resources/css/ie/html5shiv.js"></script><![endif]-->
+    <script src="/resources/css/ie/html5shiv.js"></script>
     <script src="/resources/js/jquery.min.js"></script>
     <script src="/resources/js/jquery.dropotron.min.js"></script>
     <script src="/resources/js/skel.min.js"></script>
@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="/resources/css/skel.css" />
         <link rel="stylesheet" href="/resources/css/style.css" />
     </noscript>
-    <!--[if lte IE 8]><link rel="stylesheet" href="/resources/css/ie/v8.css" /><![endif]-->
+    <link rel="stylesheet" href="/resources/css/ie/v8.css" />
 </head>
 <body class="no-sidebar">
 
@@ -34,12 +34,10 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="#">Главная</a></li>
-                <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="mybookshelf.html">Моя книжная полка</a></li>
-                <li><a href="settings.html">Настройки</a></li>
-                <li><a href="search.html">Поиск</a></li>
-                <li><a href="/logout">Выход</a></li>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/login">Вход</a></li>
+                <li><a href="/registration">Регистрация</a></li>
+                <li><a href="/search">Поиск</a></li>
             </ul>
         </nav>
 
@@ -47,35 +45,17 @@
 </div>
 
 <!-- Main -->
-<div id="main2" class="wrapper style1">
-    <div class="profilepage">
-        <img src="/resources/images/no_user_photo.png" class="profile_photo" />
-        <div class="profile_information">
-            <b>Имя:</b> ${user.firstname} <br/>
-            <b>Фамилия:</b> ${user.surname} <br/>
-            <b>Логин:</b> ${user.nickname}
-        </div>
-    </div>
-    <div class="profilebooks">
-        <div class="offerings">
-            <h3>Могу предложить: </h3>
-            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-            <div class="book_name">Л.Н. Толстой "Война и мир"</div>
-            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-            <div class="book_name">Харпер Ли "Убить пересмешника"</div>
-            <a href="book.html"><img src="/resources/images/book.jpg"/></a>
-            <div class="book_name">А.С. Пушкин "Евгений Онегин"</div>
-            <a class="book_name" href="/addhaving">Добавить предложение</a>
-        </div>
-        <div class="wishes">
-            <h3>Хочу почитать: </h3>
-            <img src="/resources/images/book.jpg"/>
-            <div class="book_name">Гюстав Флобер "Госпожа Бовари"</div>
-            <img src="/resources/images/book.jpg"/>
-            <div class="book_name">Фрэнсис Скотт Фицджеральд "Великий Гэтсби"</div>
-            <a class="book_name" href="/addwishing">Добавить пожелание</a>
-        </div>
-    </div>
+<div id="main" class="wrapper style1">
+    <form action="/posthaving" method="POST" class="searchform">
+        <input type='text' name='author_name' class='searchfield' placeholder='Имя автора' required><br />
+        <input type='text' name='author_surname' class='searchfield' placeholder='Фамилия автора' required><br />
+        <input type='text' name='author_middlename' class='searchfield' placeholder='Отчество автора' required><br />
+        <input type='text' name='bookname' class='searchfield' placeholder='Название книги' required><br />
+        <input type='text' name='pubhouse' class='searchfield' placeholder='Издательство' required><br />
+        <input type='text' name='pub_year' class='searchfield' placeholder='Год выпуска' required><br />
+        <textarea name='description' class='searchfield' placeholder='Описание книги' required></textarea><br />
+        <input type='submit' value='Добавить' class='submit-button search-button'>
+    </form>
 </div>
 
 <!-- Footer -->
