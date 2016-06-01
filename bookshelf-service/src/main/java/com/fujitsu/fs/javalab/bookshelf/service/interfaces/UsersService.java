@@ -32,5 +32,9 @@ public interface UsersService {
 
     Users getUsersByNickname(String nickname);
 
+    Users getUsersByEmail(String email);
+
     boolean ifNicknameExists(String nickname);
+
+    boolean ifEmailExists(String email);
 }

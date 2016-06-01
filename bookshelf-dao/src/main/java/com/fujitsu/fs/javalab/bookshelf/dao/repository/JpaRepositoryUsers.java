@@ -18,6 +18,8 @@ public interface JpaRepositoryUsers extends JpaRepository<Users, Integer> {
 
     Users findOneByNickname(String nickname);
 
+    Users findOneByEmail(String email);
+
     List<Users> findAllByCity(String city);
 // FIXME: 20.05.2016
 //    @Query("select u from Users u order by u.nickname asc")

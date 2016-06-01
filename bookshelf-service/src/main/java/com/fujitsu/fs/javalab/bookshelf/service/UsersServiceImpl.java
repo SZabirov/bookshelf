@@ -114,4 +114,16 @@ public class UsersServiceImpl implements UsersService {
         Users users = jpaRepositoryUsers.findOneByNickname(nickname);
         return users != null;
     }
+
+    @Override
+    public Users getUsersByEmail(String email) {
+        return jpaRepositoryUsers.findOneByEmail(email);
+    }
+
+
+    @Override
+    public boolean ifEmailExists(String email) {
+        Users users = jpaRepositoryUsers.findOneByEmail(email);
+        return users != null;
+    }
 }
