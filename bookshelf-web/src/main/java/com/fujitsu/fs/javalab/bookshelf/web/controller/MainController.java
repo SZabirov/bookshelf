@@ -1,10 +1,7 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
-import com.fujitsu.fs.javalab.bookshelf.models.Book;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.*;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.*;
-import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
-import com.fujitsu.fs.javalab.bookshelf.models.UsersWish;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
@@ -199,5 +196,20 @@ public class MainController {
         Users users = usersService.getUsersByNickname(name);
         usersHavingService.addUsersHaving(users, authorName, authorSurname, authorMiddlename, pubhouse, pubyear, description, bookname);
         return getProfilePage(model, null);
+    }
+
+    @RequestMapping(value = "/connect", method = RequestMethod.GET)
+    public String sendOffer(Model model,
+                                 @RequestParam(value = "id") Integer id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users user1 = usersService.getUsersByNickname(name);
+        List<Book> having = usersHavingService.getAllBooksThatUserHas(user1);
+        Users user2 = usersService.getUserById(id);
+        List<Book> wishing = usersHavingService.getAllBooksThatUserHas(user2);
+
+        model.addAttribute("havingBooks", having);
+        model.addAttribute("wishingBooks", wishing);
+        return "offer";
     }
 }
