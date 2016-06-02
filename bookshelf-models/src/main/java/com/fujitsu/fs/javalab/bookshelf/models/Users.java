@@ -48,7 +48,7 @@ public class Users {
     @Column(name = "avatar")
     private String avatar;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<Token> tokens;
 
     @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
@@ -59,6 +59,9 @@ public class Users {
 
     @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
     private List<Messages> messages;
+
+    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
+    private List<Messages> sentMessages;
 
     public int getId() {
         return id;
@@ -163,6 +166,15 @@ public class Users {
     public void setMessages(List<Messages> messages) {
         this.messages = messages;
     }
+
+    public List<Messages> getSentMessages() {
+        return sentMessages;
+    }
+
+    public void setSentMessages(List<Messages> sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
 
     @Override
     public boolean equals(Object o) {

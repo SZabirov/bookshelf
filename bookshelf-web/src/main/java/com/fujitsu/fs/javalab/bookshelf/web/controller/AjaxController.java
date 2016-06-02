@@ -1,13 +1,20 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
+import com.fujitsu.fs.javalab.bookshelf.models.Messages;
+import com.fujitsu.fs.javalab.bookshelf.models.Users;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aygulmardanova on 01.06.16.
@@ -38,4 +45,5 @@ public class AjaxController {
         }
         return "false";
     }
+
 }

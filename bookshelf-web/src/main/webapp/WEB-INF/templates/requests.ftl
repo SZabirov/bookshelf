@@ -7,17 +7,26 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <script src="/resources/css/ie/html5shiv.js"></script>
+    <script type="text/javascript" src="/resources/css/ie/html5shiv.js"></script>
     <![endif]-->
-    <script src="/resources/js/jquery.min.js"></script>
-    <script src="/resources/js/jquery.dropotron.min.js"></script>
-    <script src="/resources/js/skel.min.js"></script>
-    <script src="/resources/js/skel-layers.min.js"></script>
-    <script src="/resources/js/init.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery.dropotron.min.js"></script>
+    <script type="text/javascript" src="/resources/js/skel.min.js"></script>
+    <script type="text/javascript" src="/resources/js/skel-layers.min.js"></script>
+    <script type="text/javascript" src="/resources/js/init.js"></script>
+
     <noscript>
         <link rel="stylesheet" href="/resources/css/skel.css"/>
         <link rel="stylesheet" href="/resources/css/style.css"/>
     </noscript>
+    <style>
+        .th1 {
+            width: 20%;
+        }
+        .th2 {
+            width: 30%;
+        }
+    </style>
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/resources/css/ie/v8.css"/><![endif]-->
 </head>
@@ -54,29 +63,53 @@
         </#if>
         </div>
 
-        <div class="profilebooks">
-            <h2>ПРЕДЛОЖЕНИЯ</h2>
+        <div class="profilebooks" style="width: 100%; border-width: 0">
+            <h2 class="requests_h2" style="text-align: center">ПРЕДЛОЖЕНИЯ</h2>
+            <p style="text-align: center; font-weight: bold">Входящие предложения</p>
             <#if user.messages?has_content>
             <table>
                 <tr>
-                    <th>ОТ КОГО</th>
-                    <th>ПРЕДЛАГАЕТ</th>
-                    <th>ХОЧЕТ ПОЛУЧИТЬ</th>
+                    <th class="th1">ОТ КОГО</th>
+                    <th class="th2">ПРЕДЛОЖЕНИЕ</th>
+                    <th class="th2">ПОЖЕЛАНИЕ</th>
+                    <th class="th1">КОНТАКТЫ</th>
                 </tr>
                 <#list user.messages as m>
                     <tr>
-                        <th>${m.sender.nickname}</th>
-                        <th>${m.havingBook.authorBookname.bookname}</th>
-                        <th>${m.wishBook.authorBookname.bookname}</th>
+                        <th class="th1">${m.sender.nickname}</th>
+                        <th class="th2">${m.havingBook.authorBookname.bookname}</th>
+                        <th class="th2">${m.wishBook.authorBookname.bookname}</th>
+                        <th class="th2">${m.sender.phone}</th>
                     </tr>
                 </#list>
             </table>
             <#else>
-                <p>Нет предложений</p>
+                <p>Вы еще не получили ни одного предложения</p>
             </#if>
+            <hr width="1px"/>
+            <p style="text-align: center; font-weight: bold">Исходящие предложения</p>
+        <#if user.sentMessages?has_content>
+            <table>
+                <tr>
+                    <th class="th1"> КОМУ  </th>
+                    <th class="th2">ПРЕДЛОЖЕНИЕ</th>
+                    <th class="th2">ПОЖЕЛАНИЕ</th>
+                    <th class="th1">КОНТАКТЫ</th>
+                </tr>
+                <#list user.sentMessages as sm>
+                    <tr>
+                        <th class="th1">${sm.receiver.nickname}</th>
+                        <th class="th2">${sm.havingBook.authorBookname.bookname}</th>
+                        <th class="th2">${sm.wishBook.authorBookname.bookname}</th>
+                        <th class="th2">${sm.receiver.phone}</th>
+                    </tr>
+                </#list>
+            </table>
+        <#else>
+            <p>Вы еще не отправили ни одного предложения</p>
+        </#if>
         </div>
     </div>
-
 
 </div>
 

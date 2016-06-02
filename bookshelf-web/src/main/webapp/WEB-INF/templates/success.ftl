@@ -38,7 +38,7 @@
             <ul>
                 <li><a href="/">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="/offers">Предложения</a></li>
+                <li><a href="/user/requests">Предложения</a></li>
                 <li><a href="/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>

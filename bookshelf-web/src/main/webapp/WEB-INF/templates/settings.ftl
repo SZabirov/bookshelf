@@ -64,7 +64,7 @@
                placeholder='${user.phone}'>
         <p class="loginform" id="phone_valid" style="margin-bottom: 0"></p><br/>
         <input id="old_pass" type='password' name='old_password' class='loginform'
-               placeholder='Введите старый пароль'>
+               placeholder='Введите старый пароль'><br/>
         <input id="pass" oninput="correctPass()" type='password' name='password1' class='loginform'
                placeholder='Придумайте новый пароль'>
         <p class="loginform" id="correct" style="margin-bottom: 0"></p><br/>

@@ -146,6 +146,8 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
+        System.out.println("Got messages for " + name + ": " + users.getMessages());
+        System.out.println("Sent messages for " + name + ": " + users.getSentMessages());
         model.addAttribute("user", users);
         return "requests";
     }
