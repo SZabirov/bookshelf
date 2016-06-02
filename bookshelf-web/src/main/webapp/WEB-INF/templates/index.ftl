@@ -68,8 +68,7 @@
 <div class="wrapper style2">
     <section class="container">
         <header class="major">
-            <h2>Лучшие книги на Bookshelf</h2>
-            <span class="byline">ПО КОЛИЧЕСТВУ ОБМЕНОВ</span>
+            <h2>Лучшие книги по версии Bookshelf</h2>
         </header>
         <div class="row no-collapse-1">
             <section class="4u">

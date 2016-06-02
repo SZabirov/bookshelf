@@ -49,8 +49,8 @@
 <!-- Main -->
 <div id="main" class="wrapper style1">
     <div class="book_profile">
-        <a href="#" title="Удалить" alt="Удалить"><img class="del_book" src="images/delete.png"/></a>
-        <a href="#" title="Редактировать" alt="Редактировать"><img class="edit_book" src="images/edit.png"/></a>
+        <#--<a href="#" title="Удалить" alt="Удалить"><img class="del_book" src="images/delete.png"/></a>-->
+        <#--<a href="#" title="Редактировать" alt="Редактировать"><img class="edit_book" src="images/edit.png"/></a>-->
         <h3>${book.authorBookname.author.surname}
     ${book.authorBookname.author.firstname}
        <#if book.authorBookname.author.middlename??>

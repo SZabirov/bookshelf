@@ -22,4 +22,7 @@ public interface UsersWishService {
     UsersWish addUsersWish(Users users, AuthorBookname authorBookname);
 
     UsersWish addWishing(String authorName, String authorSurname, String authorMiddlename, String bookname, Users users);
+
+    void deleteById(Integer id);
+
 }

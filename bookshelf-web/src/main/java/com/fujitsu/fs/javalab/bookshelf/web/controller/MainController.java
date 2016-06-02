@@ -282,4 +282,28 @@ public class MainController {
         return "success";
     }
 
+    @RequestMapping(value = "/deleteHaving", method = RequestMethod.POST)
+    public String deleteHaving(Model model,
+                            @RequestParam(value = "id") Integer id) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Users user = usersService.getUsersByNickname(name);
+
+        Book book = bookService.getById(id);
+
+        usersHavingService.deleteUsersHaving(user, book);
+
+        return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/deleteWish", method = RequestMethod.POST)
+    public String deleteWish(Model model,
+                               @RequestParam(value = "id") Integer id) {
+
+        usersWishService.deleteById(id);
+
+        return "redirect:/profile";
+    }
+
 }
