@@ -2,6 +2,7 @@ package com.fujitsu.fs.javalab.bookshelf.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Айгуль on 04.05.2016.
@@ -29,7 +30,7 @@ public class AuthorBookname {
     private Author author;
 
     @OneToMany(mappedBy = "authorBookname", fetch = FetchType.EAGER)
-    private Collection<Book> books;
+    private List<Book> books;
 
     @OneToMany(mappedBy = "authorBookname", fetch = FetchType.EAGER)
     private Collection<UsersWish> usersWishes;
@@ -88,11 +89,11 @@ public class AuthorBookname {
         this.author = author;
     }
 
-    public Collection<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Collection<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 
