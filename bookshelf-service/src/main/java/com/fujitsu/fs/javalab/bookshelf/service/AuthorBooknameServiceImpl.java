@@ -54,6 +54,11 @@ public class AuthorBooknameServiceImpl implements AuthorBooknameService {
 
     @Override
     public AuthorBookname addAuthorBookname(AuthorBookname authorBookname) {
-        return jpaRepositoryAuthorBookname.save(authorBookname);
+        AuthorBookname foundAuthorBookname = jpaRepositoryAuthorBookname.findOneByAuthorAndBookname(authorBookname.getAuthor(),
+                authorBookname.getBookname());
+        if (foundAuthorBookname == null) {
+            foundAuthorBookname =  jpaRepositoryAuthorBookname.save(authorBookname);
+        }
+        return foundAuthorBookname;
     }
 }
