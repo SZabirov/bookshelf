@@ -218,7 +218,7 @@ public class MainController {
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
         usersWishService.addWishing(authorName, authorSurname, authorMiddlename, bookname, users);
-        return getProfilePage(model, null);
+        return "redirect:/profile";
     }
 
     @RequestMapping(value = "/addhaving", method = RequestMethod.GET)
@@ -239,7 +239,7 @@ public class MainController {
         String name = auth.getName();
         Users users = usersService.getUsersByNickname(name);
         usersHavingService.addUsersHaving(users, authorName, authorSurname, authorMiddlename, pubhouse, pubyear, description, bookname);
-        return getProfilePage(model, null);
+        return "redirect:/profile";
     }
 
     @RequestMapping(value = "/connect", method = RequestMethod.GET)
