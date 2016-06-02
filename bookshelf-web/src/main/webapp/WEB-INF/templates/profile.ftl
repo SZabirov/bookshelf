@@ -65,7 +65,7 @@
             <h3>Могу предложить: </h3>
         <#if havings?has_content>
             <#list havings as have>
-                <a href="/book?id=${have.id}"><img src="/resources/images/book.jpg"/></a>
+                <a href="/book?id=${have.book.id}"><img src="/resources/images/book.jpg"/></a>
                 <div class="book_name">${have.book.authorBookname.author.firstname} ${have.book.authorBookname.author.surname}
                     <br/>${have.book.authorBookname.bookname}
                     <#if notCurrent??>
@@ -77,7 +77,10 @@
                 </div>
 
             </#list>
-            <a class="book_name" href="/addhaving">Добавить предложение</a>
+            <#if notCurrent??>
+            <#else>
+                <a class="book_name" href="/addhaving">Добавить предложение</a>
+            </#if>
         <#else>
             <#if notCurrent??>
                 <div class="book_name">Список книг, которые <b>${user.nickname}</b> готов предложить, пуст</div>
@@ -91,7 +94,7 @@
             <h3>Хочу почитать: </h3>
         <#if wishes?has_content>
             <#list wishes as wish>
-                <a href="/book?id=${wish.id}"><img src="/resources/images/book.jpg"/></a>
+                <img src="/resources/images/book.jpg"/>
                 <div class="book_name">${wish.authorBookname.author.firstname} ${wish.authorBookname.author.surname}
                     <br/>${wish.authorBookname.bookname}
                 <#if notCurrent??>
@@ -103,7 +106,10 @@
                 </div>
 
             </#list>
-            <a class="book_name" href="/addwishing">Добавить пожелание</a>
+            <#if notCurrent??>
+            <#else>
+                <a class="book_name" href="/addwishing">Добавить пожелание</a>
+            </#if>
         <#else>
             <#if notCurrent??>
                 <div class="book_name">Список книг, которые <b>${user.nickname}</b> хочет получить, пуст</div>
