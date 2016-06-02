@@ -56,7 +56,9 @@
                         <a href="/book?id=${book.id}"><img src="images/book.jpg"/></a>
                         <div class="book_name"><b>Автор:</b> ${book.authorBookname.author.surname}
                         ${book.authorBookname.author.firstname}
-                        ${book.authorBookname.author.middlename}<br/>
+                            <#if book.authorBookname.author.middlename??>
+                            ${book.authorBookname.author.middlename}
+                            </#if><br/>
                         <b>Книга:</b> ${book.authorBookname.bookname}<br/>
                         <b>Издательство:</b> ${book.pubhouse}<br/>
                         <b>Год издания:</b> ${book.pubYear}<br/>

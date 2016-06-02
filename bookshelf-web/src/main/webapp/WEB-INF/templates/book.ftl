@@ -53,23 +53,23 @@
         <a href="#" title="Редактировать" alt="Редактировать"><img class="edit_book" src="images/edit.png"/></a>
         <h3>${book.authorBookname.author.surname}
     ${book.authorBookname.author.firstname}
-    ${book.authorBookname.author.middlename}
+       <#if book.authorBookname.author.middlename??>
+            ${book.authorBookname.author.middlename}
+       </#if>
     "${book.authorBookname.bookname}" </h3>
         <img class="book_img" src="images/book.jpg"/>
         <div class="about_book">
             <b>Издательство:</b> ${book.pubhouse}<br/>
             <b>Год издания:</b> ${book.pubYear}<br/>
-            <b>Описание:</b> ${book.description}</div>
+            <b>Описание:</b> ${book.description}<br/>
+            <b>Эту книгу предлагает:</b>
+            <#list owners as owner>
+                <a href="/profile?id=${owner.id}">${owner.nickname}</a>
+            </#list>
+        </div>
 
         </div>
     </div>
-    ${book.authorBookname.author.surname}
-    ${book.authorBookname.author.firstname}
-    ${book.authorBookname.author.middlename}
-    ${book.authorBookname.bookname}
-    ${book.pubhouse}
-    ${book.pubYear}
-    ${book.description}
 </div>
 
 <!-- Footer -->

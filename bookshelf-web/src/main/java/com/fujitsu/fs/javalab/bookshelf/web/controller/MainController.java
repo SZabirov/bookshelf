@@ -199,7 +199,10 @@ public class MainController {
     @RequestMapping(value = "/book", method = RequestMethod.GET)
     public String getBook(Model model,
                           @RequestParam(value = "id", required = false) int id) {
-        model.addAttribute("book", bookService.getById(id));
+        Book book = bookService.getById(id);
+        model.addAttribute("book", book);
+        List<Users> users = usersHavingService.getAllUsersHavingsForBook(book);
+        model.addAttribute("owners", users);
         return "book";
     }
 
