@@ -16,7 +16,6 @@ public class MessagesServiceImpl implements MessagesService {
     @Autowired
     MessagesRepository messagesRepository;
 
-
     @Override
     public List<Messages> findMessageBySender(Users user) {
         return messagesRepository.findBySender(user);
@@ -43,5 +42,11 @@ public class MessagesServiceImpl implements MessagesService {
         messagesRepository.delete(message);
     }
 
+    public MessagesRepository getMessagesRepository() {
+        return messagesRepository;
+    }
 
+    public void setMessagesRepository(MessagesRepository messagesRepository) {
+        this.messagesRepository = messagesRepository;
+    }
 }

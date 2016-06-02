@@ -19,19 +19,11 @@ public interface UsersService {
 
     boolean ifCorrectUser(int id, String hashpassword);
 
-    boolean ifCorrectUser(String nickname, String hashpassword);
-
-    List<Users> getAllUsersByCity(String city);
-
     Users getUserById(int id);
 
     List<Users> getAll();
 
-    List<Users> getAllUsersOrderBySurnameAndFirstname();
-
     Users getUsersByNickname(String nickname);
-
-    Users getUsersByEmail(String email);
 
     boolean ifNicknameExists(String nickname);
 

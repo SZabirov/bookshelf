@@ -33,4 +33,12 @@ public class TokenServiceImpl implements TokenService {
     public List<Token> getAll() {
         return tokenRepository.findAll();
     }
+
+    public TokenRepository getTokenRepository() {
+        return tokenRepository;
+    }
+
+    public void setTokenRepository(TokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
+    }
 }

@@ -92,4 +92,12 @@ public class UsersHavingServiceImpl implements UsersHavingService {
         book = bookService.addBook(book);
         return createUsersHaving(users, book);
     }
+
+    public UsersHavingRepository getUsersHavingRepository() {
+        return usersHavingRepository;
+    }
+
+    public void setUsersHavingRepository(UsersHavingRepository usersHavingRepository) {
+        this.usersHavingRepository = usersHavingRepository;
+    }
 }

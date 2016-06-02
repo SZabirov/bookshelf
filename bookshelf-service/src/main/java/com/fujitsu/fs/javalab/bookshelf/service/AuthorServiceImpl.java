@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Service
 public class AuthorServiceImpl implements AuthorService {
+
     @Autowired
     AuthorRepository authorRepository;
 
@@ -40,4 +41,13 @@ public class AuthorServiceImpl implements AuthorService {
     public Author addAuthor(Author author) {
         return authorRepository.save(author);
     }
+
+    public AuthorRepository getAuthorRepository() {
+        return authorRepository;
+    }
+
+    public void setAuthorRepository(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
+
 }

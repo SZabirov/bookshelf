@@ -25,12 +25,5 @@ public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBooknam
     List<AuthorBookname> findAllByAuthorAndBookname(Author author, String bookname);
 
     AuthorBookname findOneByAuthorAndBookname(Author author, String bookname);
-// FIXME: 20.05.2016
-//    List<AuthorBookname> findAllWhereVerifiedIsTrue();
-//
-//    List<AuthorBookname> findAllWhereVerifiedIsFalse();
-
-    //???
-//    List<AuthorBookname> findAllWhereVerifiedIsTrueByAuthor(Author author);
 
 }

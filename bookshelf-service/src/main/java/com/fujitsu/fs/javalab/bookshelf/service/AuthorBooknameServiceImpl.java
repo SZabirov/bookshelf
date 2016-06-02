@@ -35,13 +35,6 @@ public class AuthorBooknameServiceImpl implements AuthorBooknameService {
         return jpaRepositoryAuthorBookname.findAllByBookname(bookname);
     }
 
-    // FIXME: 20.05.2016
-    @Override
-    public List<AuthorBookname> getAllVerifiedBooksForAuthor(Author author) {
-        //        return authorBooknameRepository.findAllWhereVerifiedIsTrueByAuthor(author);
-        return null;
-    }
-
     @Override
     public List<AuthorBookname> getAllByAuthorAndBookname(Author author, String bookname) {
         return jpaRepositoryAuthorBookname.findAllByAuthorAndBookname(author, bookname);
@@ -61,4 +54,14 @@ public class AuthorBooknameServiceImpl implements AuthorBooknameService {
         }
         return foundAuthorBookname;
     }
+
+    public JpaRepositoryAuthorBookname getJpaRepositoryAuthorBookname() {
+        return jpaRepositoryAuthorBookname;
+    }
+
+    public void setJpaRepositoryAuthorBookname(JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname) {
+        this.jpaRepositoryAuthorBookname = jpaRepositoryAuthorBookname;
+    }
+
+
 }

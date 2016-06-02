@@ -74,17 +74,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public boolean ifCorrectUser(String nickname, String hashpassword) {
-        Users users = jpaRepositoryUsers.findOneByNickname(nickname);
-        return users.getHashpassword().equals(hashpassword);
-    }
-
-    @Override
-    public List<Users> getAllUsersByCity(String city) {
-        return jpaRepositoryUsers.findAllByCity(city);
-    }
-
-    @Override
     public Users getUserById(int id) {
         return jpaRepositoryUsers.findOneById(id);
     }
@@ -92,13 +81,6 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<Users> getAll() {
         return jpaRepositoryUsers.findAll();
-    }
-
-    // FIXME: 20.05.2016 
-    @Override
-    public List<Users> getAllUsersOrderBySurnameAndFirstname() {
-        return null;
-//        return usersRepository.findAllOrderbySurnameAndFirstname();
     }
 
     @Override
@@ -113,14 +95,16 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users getUsersByEmail(String email) {
-        return jpaRepositoryUsers.findOneByEmail(email);
-    }
-
-
-    @Override
     public boolean ifEmailExists(String email) {
         Users users = jpaRepositoryUsers.findOneByEmail(email);
         return users != null;
+    }
+
+    public JpaRepositoryUsers getJpaRepositoryUsers() {
+        return jpaRepositoryUsers;
+    }
+
+    public void setJpaRepositoryUsers(JpaRepositoryUsers jpaRepositoryUsers) {
+        this.jpaRepositoryUsers = jpaRepositoryUsers;
     }
 }
