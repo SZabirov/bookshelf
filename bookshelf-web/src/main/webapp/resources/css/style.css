@@ -788,6 +788,18 @@
 			margin-right: 40px;
 			margin-top: 15px;
 		}
+
+		.del {
+			width: 20px;
+			height: 37px;
+			vertical-align: top;
+			margin-top: 10px;
+		}
+
+		.book_name input[type="submit"] {
+			min-width: 4.5em;
+			font-size: 13pt;
+		}
 		
 		.about_book {
 			margin-left: 20px;

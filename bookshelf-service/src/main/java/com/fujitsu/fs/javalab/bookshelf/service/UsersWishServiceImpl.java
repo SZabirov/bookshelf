@@ -81,4 +81,10 @@ public class UsersWishServiceImpl implements UsersWishService {
             return usersWish;
         }
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        UsersWish usersWish = usersWishRepository.findOneById(id);
+        usersWishRepository.delete(usersWish);
+    }
 }

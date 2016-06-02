@@ -67,7 +67,15 @@
             <#list havings as have>
                 <a href="/book?id=${have.id}"><img src="/resources/images/book.jpg"/></a>
                 <div class="book_name">${have.book.authorBookname.author.firstname} ${have.book.authorBookname.author.surname}
-                    <br/>${have.book.authorBookname.bookname}</div>
+                    <br/>${have.book.authorBookname.bookname}
+                    <#if notCurrent??>
+                    <#else>
+                        <form action="/deleteHaving?id=${have.book.id}" method="post">
+                            <input type="submit" class="del" value="Удалить" />
+                        </form>
+                    </#if>
+                </div>
+
             </#list>
             <a class="book_name" href="/addhaving">Добавить предложение</a>
         <#else>
@@ -85,7 +93,15 @@
             <#list wishes as wish>
                 <a href="/book?id=${wish.id}"><img src="/resources/images/book.jpg"/></a>
                 <div class="book_name">${wish.authorBookname.author.firstname} ${wish.authorBookname.author.surname}
-                    <br/>${wish.authorBookname.bookname}</div>
+                    <br/>${wish.authorBookname.bookname}
+                <#if notCurrent??>
+                <#else>
+                    <form action="/deleteWish?id=${wish.id}" method="post">
+                        <input type="submit" class="del" value="Удалить" />
+                    </form>
+                </#if>
+                </div>
+
             </#list>
             <a class="book_name" href="/addwishing">Добавить пожелание</a>
         <#else>
