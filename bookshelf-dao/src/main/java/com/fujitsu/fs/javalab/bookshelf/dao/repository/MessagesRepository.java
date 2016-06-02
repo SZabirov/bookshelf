@@ -12,5 +12,6 @@ public interface MessagesRepository extends JpaRepository<Messages, Integer> {
 
     List<Messages> findBySender(Users user);
     List<Messages> findByReceiver(Users user);
+    Messages findOneById(Integer id);
 
 }

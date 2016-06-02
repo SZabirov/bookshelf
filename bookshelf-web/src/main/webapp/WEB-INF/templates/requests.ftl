@@ -73,6 +73,7 @@
                     <th class="th2">ПРЕДЛОЖЕНИЕ</th>
                     <th class="th2">ПОЖЕЛАНИЕ</th>
                     <th class="th1">КОНТАКТЫ</th>
+                    <th></th>
                 </tr>
                 <#list user.messages as m>
                     <tr>
@@ -80,6 +81,13 @@
                         <th class="th2">${m.havingBook.authorBookname.bookname}</th>
                         <th class="th2">${m.wishBook.authorBookname.bookname}</th>
                         <th class="th2">${m.sender.phone}</th>
+                        <th>
+                            <div class="book_name">
+                                <form action="/deleteMessage?id=${m.id}" method="post">
+                                    <input type="submit" class="del2" value="Удалить" />
+                                </form>
+                            </div>
+                        </th>
                     </tr>
                 </#list>
             </table>
@@ -102,6 +110,13 @@
                         <th class="th2">${sm.havingBook.authorBookname.bookname}</th>
                         <th class="th2">${sm.wishBook.authorBookname.bookname}</th>
                         <th class="th2">${sm.receiver.phone}</th>
+                        <th>
+                            <div class="book_name">
+                                <form action="/deleteMessage?id=${sm.id}" method="post">
+                                    <input type="submit" class="del2" value="Удалить" />
+                                </form>
+                            </div>
+                        </th>
                     </tr>
                 </#list>
             </table>

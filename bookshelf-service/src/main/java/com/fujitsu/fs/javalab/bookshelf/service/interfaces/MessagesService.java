@@ -14,5 +14,6 @@ public interface MessagesService {
     List<Messages> findMessageBySender(Users user);
     List<Messages> findMessageByReceiver(Users user);
     void addNewMessage(Users sender, Users receiver, Book havingBook, Book wishingBook);
+    void deleteById(Integer id);
 
 }

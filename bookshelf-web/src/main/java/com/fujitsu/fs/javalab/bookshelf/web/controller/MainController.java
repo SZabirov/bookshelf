@@ -306,4 +306,14 @@ public class MainController {
         return "redirect:/profile";
     }
 
+
+    @RequestMapping(value = "/deleteMessage", method = RequestMethod.POST)
+    public String deleteMessage(Model model,
+                             @RequestParam(value = "id") Integer id) {
+
+        messagesService.deleteById(id);
+
+        return "redirect:/user/requests";
+    }
+
 }
