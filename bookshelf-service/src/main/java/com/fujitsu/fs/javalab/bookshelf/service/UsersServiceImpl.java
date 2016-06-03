@@ -100,11 +100,4 @@ public class UsersServiceImpl implements UsersService {
         return users != null;
     }
 
-    public JpaRepositoryUsers getJpaRepositoryUsers() {
-        return jpaRepositoryUsers;
-    }
-
-    public void setJpaRepositoryUsers(JpaRepositoryUsers jpaRepositoryUsers) {
-        this.jpaRepositoryUsers = jpaRepositoryUsers;
-    }
 }

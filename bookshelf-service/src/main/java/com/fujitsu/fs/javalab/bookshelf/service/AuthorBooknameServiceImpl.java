@@ -19,7 +19,6 @@ public class AuthorBooknameServiceImpl implements AuthorBooknameService {
     @Autowired
     JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname;
 
-
     @Override
     public List<AuthorBookname> getAll() {
         return jpaRepositoryAuthorBookname.findAll();
@@ -54,14 +53,5 @@ public class AuthorBooknameServiceImpl implements AuthorBooknameService {
         }
         return foundAuthorBookname;
     }
-
-    public JpaRepositoryAuthorBookname getJpaRepositoryAuthorBookname() {
-        return jpaRepositoryAuthorBookname;
-    }
-
-    public void setJpaRepositoryAuthorBookname(JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname) {
-        this.jpaRepositoryAuthorBookname = jpaRepositoryAuthorBookname;
-    }
-
 
 }

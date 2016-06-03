@@ -14,13 +14,9 @@ import java.util.List;
 public class AuthorServiceImplTest {
 
     private static TestData testData;
-
     private static Author author;
-
     private static List<Author> authors;
-
     private static AuthorServiceImpl authorService;
-
     private static AuthorRepository authorRepository;
 
     @BeforeClass
@@ -32,7 +28,7 @@ public class AuthorServiceImplTest {
         authorRepository = testData.getAuthorRepository();
 
         authorService = new AuthorServiceImpl();
-        authorService.setAuthorRepository(authorRepository);
+        authorService.authorRepository = authorRepository;
     }
 
     @Test

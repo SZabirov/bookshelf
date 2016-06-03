@@ -23,8 +23,4 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findAllByPubhouse(String pubhouse);
 
     List<Book> findAllByPubYear(String pubYear);
-// FIXME: 20.05.2016 should work but it isn't
-//    List<Book> findAllWhereVerifiedIsTrue();
-//
-//    List<Book> findAllWhereVerifiedIsFalse();
 }

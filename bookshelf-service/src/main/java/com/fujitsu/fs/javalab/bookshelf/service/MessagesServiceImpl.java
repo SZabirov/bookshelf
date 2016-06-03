@@ -42,11 +42,4 @@ public class MessagesServiceImpl implements MessagesService {
         messagesRepository.delete(message);
     }
 
-    public MessagesRepository getMessagesRepository() {
-        return messagesRepository;
-    }
-
-    public void setMessagesRepository(MessagesRepository messagesRepository) {
-        this.messagesRepository = messagesRepository;
-    }
 }

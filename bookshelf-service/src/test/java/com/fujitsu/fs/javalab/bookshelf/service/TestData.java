@@ -1,17 +1,15 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
-import com.fujitsu.fs.javalab.bookshelf.dao.repository.AuthorRepository;
-import com.fujitsu.fs.javalab.bookshelf.dao.repository.JpaRepositoryAuthorBookname;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.*;
 import com.fujitsu.fs.javalab.bookshelf.models.*;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorBooknameService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.when;
 
 /**
@@ -20,38 +18,30 @@ import static org.mockito.Mockito.when;
 public class TestData {
 
     private Author author;
-
     private AuthorBookname authorBookname;
-
     private Book book;
-
     private Messages messages;
-
-    private Token token;
-
     private Users users;
-
     private Users users2;
-
+    private Token token;
     private UsersHaving usersHaving;
-
     private UsersWish usersWish;
 
     private List<AuthorBookname> authorBooknames;
-
     private List<Author> authors;
-
     private List<Book> books;
-
     private List<Messages> messagesList;
-
     private List<UsersHaving> usersHavings;
-
     private List<UsersWish> usersWishes;
+    private List<Token> tokens;
 
     private JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname;
-
     private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
+    private MessagesRepository messagesRepository;
+    private TokenRepository tokenRepository;
+    private UsersHavingRepository usersHavingRepository;
+    private UsersWishRepository usersWishRepository;
 
     public TestData() {
         author = new Author();
@@ -65,6 +55,7 @@ public class TestData {
         authorBookname.setVerified(true);
 
         book = new Book();
+        book.setId(1);
         book.setAuthorBookname(authorBookname);
         book.setPubhouse("АСТ");
         book.setVerified(true);
@@ -78,6 +69,10 @@ public class TestData {
         users2 = new Users();
         users2.setNickname("login2");
         users2.setEmail("email2@mail.ru");
+
+        token = new Token();
+        token.setUsers(users);
+        token.setToken("token");
 
         usersHaving = new UsersHaving();
         usersHaving.setUsers(users);
@@ -95,10 +90,16 @@ public class TestData {
 
         authorBooknames = new ArrayList<>();
         authorBooknames.add(authorBookname);
+
         authors = new ArrayList<>();
         authors.add(author);
+
         books = new ArrayList<>();
         books.add(book);
+
+        tokens = new ArrayList<>();
+        tokens.add(token);
+
         messagesList = new ArrayList<>();
         messagesList.add(messages);
 
@@ -132,6 +133,48 @@ public class TestData {
         when(authorRepository.findByFirstnameAndSurnameAndMiddlename(author.getFirstname(), author.getSurname(), author.getMiddlename())).thenReturn(author);
         when(authorRepository.save(any(Author.class))).thenReturn(null);
         when(authorRepository.save(author)).thenReturn(author);
+
+        bookRepository = mock(BookRepository.class);
+        when(bookRepository.findAll()).thenReturn(books);
+        when(bookRepository.findById(anyInt())).thenReturn(null);
+        when(bookRepository.findById(book.getId())).thenReturn(book);
+        when(bookRepository.findAllByPubYear(anyString())).thenReturn(null);
+        when(bookRepository.findAllByPubYear(book.getPubYear())).thenReturn(books);
+        when(bookRepository.findAllByAuthorBookname(any(AuthorBookname.class))).thenReturn(null);
+        when(bookRepository.findAllByAuthorBookname(authorBookname)).thenReturn(books);
+        when(bookRepository.findAllByPubhouse(anyString())).thenReturn(null);
+        when(bookRepository.findAllByPubhouse(book.getPubhouse())).thenReturn(books);
+        when(bookRepository.save(book)).thenReturn(book);
+
+        messagesRepository = mock(MessagesRepository.class);
+        when(messagesRepository.findByReceiver(any(Users.class))).thenReturn(null);
+        when(messagesRepository.findByReceiver(users)).thenReturn(messagesList);
+        when(messagesRepository.findBySender(any(Users.class))).thenReturn(null);
+        when(messagesRepository.findBySender(users2)).thenReturn(messagesList);
+        when(messagesRepository.findOneById(anyInt())).thenReturn(null);
+        when(messagesRepository.findOneById(messages.getId())).thenReturn(messages);
+        when(messagesRepository.save(messages)).thenReturn(messages);
+
+        tokenRepository = mock(TokenRepository.class);
+        when(tokenRepository.findAll()).thenReturn(tokens);
+        when(tokenRepository.findAllByUsers(any(Users.class))).thenReturn(null);
+        when(tokenRepository.findAllByUsers(users)).thenReturn(tokens);
+        when(tokenRepository.save(any(Token.class))).thenReturn(token);
+
+        usersHavingRepository = mock(UsersHavingRepository.class);
+        when(usersHavingRepository.findAll()).thenReturn(usersHavings);
+        when(usersHavingRepository.findOneById(anyInt())).thenReturn(null);
+        when(usersHavingRepository.findOneById(usersHaving.getId())).thenReturn(usersHaving);
+        when(usersHavingRepository.findAllByUsers(any(Users.class))).thenReturn(null);
+        when(usersHavingRepository.findAllByUsers(users)).thenReturn(usersHavings);
+        when(usersHavingRepository.findAllByBook(any(Book.class))).thenReturn(null);
+        when(usersHavingRepository.findAllByBook(book)).thenReturn(usersHavings);
+        when(usersHavingRepository.findOneByUsersAndBook(any(Users.class), any(Book.class))).thenReturn(null);
+        when(usersHavingRepository.findOneByUsersAndBook(users, book)).thenReturn(usersHaving);
+        when(usersHavingRepository.save(any(UsersHaving.class))).thenReturn(usersHaving);
+
+        usersWishRepository = mock(UsersWishRepository.class);
+
     }
 
     public Author getAuthor() {
@@ -254,6 +297,14 @@ public class TestData {
         this.usersWishes = usersWishes;
     }
 
+    public List<Token> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(List<Token> tokens) {
+        this.tokens = tokens;
+    }
+
     public JpaRepositoryAuthorBookname getJpaRepositoryAuthorBookname() {
         return jpaRepositoryAuthorBookname;
     }
@@ -268,5 +319,45 @@ public class TestData {
 
     public void setAuthorRepository(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
+    }
+
+    public BookRepository getBookRepository() {
+        return bookRepository;
+    }
+
+    public void setBookRepository(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public MessagesRepository getMessagesRepository() {
+        return messagesRepository;
+    }
+
+    public void setMessagesRepository(MessagesRepository messagesRepository) {
+        this.messagesRepository = messagesRepository;
+    }
+
+    public TokenRepository getTokenRepository() {
+        return tokenRepository;
+    }
+
+    public void setTokenRepository(TokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
+    }
+
+    public UsersHavingRepository getUsersHavingRepository() {
+        return usersHavingRepository;
+    }
+
+    public void setUsersHavingRepository(UsersHavingRepository usersHavingRepository) {
+        this.usersHavingRepository = usersHavingRepository;
+    }
+
+    public UsersWishRepository getUsersWishRepository() {
+        return usersWishRepository;
+    }
+
+    public void setUsersWishRepository(UsersWishRepository usersWishRepository) {
+        this.usersWishRepository = usersWishRepository;
     }
 }

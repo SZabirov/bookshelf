@@ -17,7 +17,6 @@ public class AuthorBooknameServiceImplTest {
     private static TestData testData;
 
     private static Author author;
-
     private static AuthorBookname authorBookname;
 
     private static AuthorBooknameServiceImpl authorBooknameService;
@@ -33,7 +32,7 @@ public class AuthorBooknameServiceImplTest {
         jpaRepositoryAuthorBookname = testData.getJpaRepositoryAuthorBookname();
 
         authorBooknameService = new AuthorBooknameServiceImpl();
-        authorBooknameService.setJpaRepositoryAuthorBookname(jpaRepositoryAuthorBookname);
+        authorBooknameService.jpaRepositoryAuthorBookname = jpaRepositoryAuthorBookname;
     }
 
     @Test

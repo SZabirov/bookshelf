@@ -34,9 +34,12 @@ public class UsersHavingServiceImpl implements UsersHavingService {
     }
 
     @Override
-    public List<Users> getAllUsersHavingsForBook(Book book) {
+    public List<Users> getAllUsersForBook(Book book) {
         List<UsersHaving> usersHavings = usersHavingRepository.findAllByBook(book);
         List<Users> users = new ArrayList<>();
+        if (usersHavings == null) {
+            return null;
+        }
         for (UsersHaving usersHaving : usersHavings) {
             users.add(usersHaving.getUsers());
         }
@@ -45,8 +48,11 @@ public class UsersHavingServiceImpl implements UsersHavingService {
 
     @Override
     public List<Book> getAllBooksThatUserHas(Users users) {
-        List<UsersHaving> usersHavings = users.getUsersHavings();
+        List<UsersHaving> usersHavings = usersHavingRepository.findAllByUsers(users);
         List<Book> books = new ArrayList<>();
+        if (usersHavings == null) {
+            return null;
+        }
         for (UsersHaving usersHaving : usersHavings) {
             books.add(usersHaving.getBook());
         }
@@ -93,11 +99,4 @@ public class UsersHavingServiceImpl implements UsersHavingService {
         return createUsersHaving(users, book);
     }
 
-    public UsersHavingRepository getUsersHavingRepository() {
-        return usersHavingRepository;
-    }
-
-    public void setUsersHavingRepository(UsersHavingRepository usersHavingRepository) {
-        this.usersHavingRepository = usersHavingRepository;
-    }
 }

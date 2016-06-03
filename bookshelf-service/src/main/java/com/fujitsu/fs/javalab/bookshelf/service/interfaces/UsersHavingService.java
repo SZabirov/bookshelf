@@ -14,7 +14,7 @@ public interface UsersHavingService {
 
     List<UsersHaving> getAllByUser(Users users);
 
-    List<Users> getAllUsersHavingsForBook(Book book);
+    List<Users> getAllUsersForBook(Book book);
 
     List<Book> getAllBooksThatUserHas(Users users);
 

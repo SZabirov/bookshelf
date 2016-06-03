@@ -42,12 +42,4 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.save(author);
     }
 
-    public AuthorRepository getAuthorRepository() {
-        return authorRepository;
-    }
-
-    public void setAuthorRepository(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
-    }
-
 }

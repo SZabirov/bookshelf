@@ -87,12 +87,4 @@ public class UsersWishServiceImpl implements UsersWishService {
         UsersWish usersWish = usersWishRepository.findOneById(id);
         usersWishRepository.delete(usersWish);
     }
-
-    public UsersWishRepository getUsersWishRepository() {
-        return usersWishRepository;
-    }
-
-    public void setUsersWishRepository(UsersWishRepository usersWishRepository) {
-        this.usersWishRepository = usersWishRepository;
-    }
 }

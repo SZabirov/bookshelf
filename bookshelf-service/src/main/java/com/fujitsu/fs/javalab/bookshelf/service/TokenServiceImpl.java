@@ -25,20 +25,17 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public Token getById(int id) {
-        return tokenRepository.findOneById(id);
-    }
-
-    @Override
     public List<Token> getAll() {
         return tokenRepository.findAll();
     }
 
-    public TokenRepository getTokenRepository() {
-        return tokenRepository;
+    @Override
+    public Token addToken(Users users, String tokenText) {
+        Token token = new Token();
+        token.setUsers(users);
+        token.setToken(tokenText);
+        tokenRepository.save(token);
+        return token;
     }
 
-    public void setTokenRepository(TokenRepository tokenRepository) {
-        this.tokenRepository = tokenRepository;
-    }
 }

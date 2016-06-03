@@ -14,8 +14,7 @@ public interface TokenService {
 
     List<Token> getAllTokensForUser(Users users);
 
-    Token getById(int id);
-
     List<Token> getAll();
 
+    Token addToken(Users users, String token);
 }
