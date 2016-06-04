@@ -121,6 +121,8 @@ public class TestData {
         when(authorRepository.findAll()).thenReturn(authors);
         when(authorRepository.findById(anyInt())).thenReturn(null);
         when(authorRepository.findById(author.getId())).thenReturn(author);
+        when(authorRepository.findAllByFirstnameAndSurname(anyString(), anyString())).thenReturn(null);
+        when(authorRepository.findAllByFirstnameAndSurname(author.getFirstname(), author.getSurname())).thenReturn(authors);
         when(authorRepository.findByFirstnameAndSurnameAndMiddlename(anyString(), anyString(), anyString())).thenReturn(null);
         when(authorRepository.findByFirstnameAndSurnameAndMiddlename(author.getFirstname(), author.getSurname(), author.getMiddlename())).thenReturn(author);
         when(authorRepository.save(any(Author.class))).thenReturn(null);
