@@ -14,7 +14,8 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
 /**
- * Created by aygulmardanova on 03.06.16.
+ * Test class for SearchServiceImpl class
+ * Cover all possible situations
  */
 public class SearchServiceImplTest {
     private static TestData testData;
@@ -24,11 +25,11 @@ public class SearchServiceImplTest {
     private static Book book;
     private static List<Book> books;
 
+    private static BookRepository bookRepository;
     private static SearchServiceImpl searchService;
     private static AuthorServiceImpl authorService;
     private static AuthorBooknameServiceImpl authorBooknameService;
     private static BookServiceImpl bookService;
-    private static BookRepository bookRepository;
 
     @BeforeClass
     public static void beforeClass() {
@@ -43,8 +44,8 @@ public class SearchServiceImplTest {
         authorBooknameService = new AuthorBooknameServiceImpl();
         bookService = new BookServiceImpl();
         authorService.authorRepository = testData.getAuthorRepository();
-        authorBooknameService.jpaRepositoryAuthorBookname = testData.getJpaRepositoryAuthorBookname();
         bookService.bookRepository = bookRepository;
+        authorBooknameService.jpaRepositoryAuthorBookname = testData.getJpaRepositoryAuthorBookname();
 
         searchService = new SearchServiceImpl();
         searchService.authorService = authorService;

@@ -11,7 +11,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- * Created by aygulmardanova on 02.06.16.
+ * Creating all the necessary class instances.
+ * Creating of all mocks for repository classes.
+ * Defining the output of certain method calls.
+ *
  */
 public class TestData {
 

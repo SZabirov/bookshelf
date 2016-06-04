@@ -39,7 +39,6 @@ public class ClientHavingServiceImplTest {
     private static AuthorBooknameServiceImpl authorBooknameService;
     private static BookServiceImpl bookService;
 
-
     @BeforeClass
     public static void beforeClass() {
         testData = new TestData();

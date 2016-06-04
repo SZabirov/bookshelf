@@ -5,7 +5,6 @@ import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -52,7 +51,6 @@ public class BookServiceImplTest {
         Assert.assertNull(bookService.getById(book.getId() + 100));
     }
 
-//    @Ignore
     @Test
     public void ifBookIsVerifiedShouldReturnTrueIfVerifiedBook() {
         Assert.assertTrue(bookService.ifBookIsVerified(book.getId()));
