@@ -16,14 +16,12 @@ public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBooknam
 
     List<AuthorBookname> findAll();
 
-    AuthorBookname findOneById(int id);
-
     List<AuthorBookname> findAllByAuthor(Author author);
 
     List<AuthorBookname> findAllByBookname(String bookname);
 
     List<AuthorBookname> findAllByAuthorAndBookname(Author author, String bookname);
 
-    AuthorBookname findOneByAuthorAndBookname(Author author, String bookname);
+    AuthorBookname findByAuthorAndBookname(Author author, String bookname);
 
 }

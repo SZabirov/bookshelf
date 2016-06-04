@@ -17,11 +17,9 @@ public interface UsersHavingRepository extends JpaRepository<UsersHaving, Intege
 
     List<UsersHaving> findAll();
 
-    UsersHaving findOneById(int id);
-
     List<UsersHaving> findAllByUsers(Users users);
 
     List<UsersHaving> findAllByBook(Book book);
 
-    UsersHaving findOneByUsersAndBook(Users users, Book book);
+    UsersHaving findByUsersAndBook(Users users, Book book);
 }

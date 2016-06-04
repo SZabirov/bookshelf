@@ -61,7 +61,7 @@ public class UsersHavingServiceImpl implements UsersHavingService {
 
     @Override
     public void deleteUsersHaving(Users users, Book book) {
-        UsersHaving usersHaving = usersHavingRepository.findOneByUsersAndBook(users, book);
+        UsersHaving usersHaving = usersHavingRepository.findByUsersAndBook(users, book);
         usersHavingRepository.delete(usersHaving);
     }
 

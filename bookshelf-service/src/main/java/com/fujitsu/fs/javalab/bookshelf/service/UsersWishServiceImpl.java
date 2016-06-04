@@ -34,7 +34,7 @@ public class UsersWishServiceImpl implements UsersWishService {
 
     @Override
     public void deleteUsersWish(Users users, AuthorBookname authorBookname) {
-        UsersWish usersWish = usersWishRepository.findOneByUsersAndAuthorBookname(users, authorBookname);
+        UsersWish usersWish = usersWishRepository.findByUsersAndAuthorBookname(users, authorBookname);
         usersWishRepository.delete(usersWish);
     }
 
@@ -74,7 +74,7 @@ public class UsersWishServiceImpl implements UsersWishService {
             authorBookname.setBookname(bookname);
             authorBookname = authorBooknameService.addAuthorBookname(authorBookname);
         }
-        UsersWish usersWish = usersWishRepository.findOneByUsersAndAuthorBookname(users, authorBookname);
+        UsersWish usersWish = usersWishRepository.findByUsersAndAuthorBookname(users, authorBookname);
         if (usersWish == null) {
             return addUsersWish(users, authorBookname);
         } else {
@@ -84,7 +84,7 @@ public class UsersWishServiceImpl implements UsersWishService {
 
     @Override
     public void deleteById(Integer id) {
-        UsersWish usersWish = usersWishRepository.findOneById(id);
+        UsersWish usersWish = usersWishRepository.findById(id);
         usersWishRepository.delete(usersWish);
     }
 }

@@ -38,7 +38,7 @@ public class MessagesServiceImpl implements MessagesService {
 
     @Override
     public void deleteById(Integer id) {
-        Messages message = messagesRepository.findOneById(id);
+        Messages message = messagesRepository.findById(id);
         messagesRepository.delete(message);
     }
 

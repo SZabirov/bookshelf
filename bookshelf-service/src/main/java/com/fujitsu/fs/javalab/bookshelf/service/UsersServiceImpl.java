@@ -37,7 +37,7 @@ public class UsersServiceImpl implements UsersService {
     public void updateUser(int id, String new_nickname, String new_email, String new_firstname,
                            String new_surname, String new_city, String new_phone,
                            String new_hashpassword, String new_avatar) {
-        Users users = jpaRepositoryUsers.findOneById(id);
+        Users users = jpaRepositoryUsers.findById(id);
         System.out.println(users);
         if (new_nickname != null && !new_nickname.equals("")) {
             users.setNickname(new_nickname);
@@ -69,13 +69,13 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public boolean ifCorrectUser(int id, String hashpassword) {
-        Users users = jpaRepositoryUsers.findOneById(id);
+        Users users = jpaRepositoryUsers.findById(id);
         return users.getHashpassword().equals(hashpassword);
     }
 
     @Override
     public Users getUserById(int id) {
-        return jpaRepositoryUsers.findOneById(id);
+        return jpaRepositoryUsers.findById(id);
     }
 
     @Override
@@ -85,18 +85,18 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users getUsersByNickname(String nickname) {
-        return jpaRepositoryUsers.findOneByNickname(nickname);
+        return jpaRepositoryUsers.findByNickname(nickname);
     }
 
     @Override
     public boolean ifNicknameExists(String nickname) {
-        Users users = jpaRepositoryUsers.findOneByNickname(nickname);
+        Users users = jpaRepositoryUsers.findByNickname(nickname);
         return users != null;
     }
 
     @Override
     public boolean ifEmailExists(String email) {
-        Users users = jpaRepositoryUsers.findOneByEmail(email);
+        Users users = jpaRepositoryUsers.findByEmail(email);
         return users != null;
     }
 

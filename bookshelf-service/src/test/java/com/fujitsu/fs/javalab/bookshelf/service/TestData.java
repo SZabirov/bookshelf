@@ -109,14 +109,12 @@ public class TestData {
 
         jpaRepositoryAuthorBookname = mock(JpaRepositoryAuthorBookname.class);
         when(jpaRepositoryAuthorBookname.findAll()).thenReturn(authorBooknames);
-        when(jpaRepositoryAuthorBookname.findOneById(anyInt())).thenReturn(null);
-        when(jpaRepositoryAuthorBookname.findOneById(authorBookname.getId())).thenReturn(authorBookname);
         when(jpaRepositoryAuthorBookname.findAllByAuthor(any(Author.class))).thenReturn(null);
         when(jpaRepositoryAuthorBookname.findAllByAuthor(author)).thenReturn(authorBooknames);
         when(jpaRepositoryAuthorBookname.findAllByBookname(anyString())).thenReturn(null);
         when(jpaRepositoryAuthorBookname.findAllByBookname(authorBookname.getBookname())).thenReturn(authorBooknames);
-        when(jpaRepositoryAuthorBookname.findOneByAuthorAndBookname(any(Author.class), anyString())).thenReturn(null);
-        when(jpaRepositoryAuthorBookname.findOneByAuthorAndBookname(author, authorBookname.getBookname())).thenReturn(authorBookname);
+        when(jpaRepositoryAuthorBookname.findByAuthorAndBookname(any(Author.class), anyString())).thenReturn(null);
+        when(jpaRepositoryAuthorBookname.findByAuthorAndBookname(author, authorBookname.getBookname())).thenReturn(authorBookname);
         when(jpaRepositoryAuthorBookname.findAllByAuthorAndBookname(any(Author.class), anyString())).thenReturn(null);
         when(jpaRepositoryAuthorBookname.findAllByAuthorAndBookname(author, authorBookname.getBookname())).thenReturn(authorBooknames);
         when(jpaRepositoryAuthorBookname.save(any(AuthorBookname.class))).thenReturn(authorBookname);
@@ -145,8 +143,8 @@ public class TestData {
         when(messagesRepository.findByReceiver(users)).thenReturn(messagesList);
         when(messagesRepository.findBySender(any(Users.class))).thenReturn(null);
         when(messagesRepository.findBySender(users2)).thenReturn(messagesList);
-        when(messagesRepository.findOneById(anyInt())).thenReturn(null);
-        when(messagesRepository.findOneById(messages.getId())).thenReturn(messages);
+        when(messagesRepository.findById(anyInt())).thenReturn(null);
+        when(messagesRepository.findById(messages.getId())).thenReturn(messages);
         when(messagesRepository.save(messages)).thenReturn(messages);
 
         tokenRepository = mock(TokenRepository.class);
@@ -157,14 +155,12 @@ public class TestData {
 
         usersHavingRepository = mock(UsersHavingRepository.class);
         when(usersHavingRepository.findAll()).thenReturn(usersHavings);
-        when(usersHavingRepository.findOneById(anyInt())).thenReturn(null);
-        when(usersHavingRepository.findOneById(usersHaving.getId())).thenReturn(usersHaving);
         when(usersHavingRepository.findAllByUsers(any(Users.class))).thenReturn(null);
         when(usersHavingRepository.findAllByUsers(users)).thenReturn(usersHavings);
         when(usersHavingRepository.findAllByBook(any(Book.class))).thenReturn(null);
         when(usersHavingRepository.findAllByBook(book)).thenReturn(usersHavings);
-        when(usersHavingRepository.findOneByUsersAndBook(any(Users.class), any(Book.class))).thenReturn(null);
-        when(usersHavingRepository.findOneByUsersAndBook(users, book)).thenReturn(usersHaving);
+        when(usersHavingRepository.findByUsersAndBook(any(Users.class), any(Book.class))).thenReturn(null);
+        when(usersHavingRepository.findByUsersAndBook(users, book)).thenReturn(usersHaving);
         when(usersHavingRepository.save(any(UsersHaving.class))).thenReturn(usersHaving);
 
         usersWishRepository = mock(UsersWishRepository.class);

@@ -16,12 +16,9 @@ public interface UsersWishRepository extends JpaRepository<UsersWish, Integer> {
 
     List<UsersWish> findAll();
 
-    UsersWish findOneById(int id);
+    UsersWish findById(int id);
 
-    UsersWish findOneByUsersAndAuthorBookname(Users users, AuthorBookname authorBookname);
+    UsersWish findByUsersAndAuthorBookname(Users users, AuthorBookname authorBookname);
 
     List<UsersWish> findAllByUsers(Users users);
-
-    List<UsersWish> findAllByAuthorBookname(AuthorBookname authorBookname);
-
 }
