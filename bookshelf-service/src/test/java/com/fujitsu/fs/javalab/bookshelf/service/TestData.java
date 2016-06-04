@@ -115,8 +115,6 @@ public class TestData {
         when(jpaRepositoryAuthorBookname.findAllByBookname(authorBookname.getBookname())).thenReturn(authorBooknames);
         when(jpaRepositoryAuthorBookname.findByAuthorAndBookname(any(Author.class), anyString())).thenReturn(null);
         when(jpaRepositoryAuthorBookname.findByAuthorAndBookname(author, authorBookname.getBookname())).thenReturn(authorBookname);
-        when(jpaRepositoryAuthorBookname.findAllByAuthorAndBookname(any(Author.class), anyString())).thenReturn(null);
-        when(jpaRepositoryAuthorBookname.findAllByAuthorAndBookname(author, authorBookname.getBookname())).thenReturn(authorBooknames);
         when(jpaRepositoryAuthorBookname.save(any(AuthorBookname.class))).thenReturn(authorBookname);
 
         authorRepository = mock(AuthorRepository.class);

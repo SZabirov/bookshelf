@@ -35,12 +35,7 @@ public class AuthorBooknameServiceImpl implements AuthorBooknameService {
     }
 
     @Override
-    public List<AuthorBookname> getAllByAuthorAndBookname(Author author, String bookname) {
-        return jpaRepositoryAuthorBookname.findAllByAuthorAndBookname(author, bookname);
-    }
-
-    @Override
-    public AuthorBookname getOneByAuthorAndBookname(Author author, String bookname) {
+    public AuthorBookname getByAuthorAndBookname(Author author, String bookname) {
         return jpaRepositoryAuthorBookname.findByAuthorAndBookname(author, bookname);
     }
 

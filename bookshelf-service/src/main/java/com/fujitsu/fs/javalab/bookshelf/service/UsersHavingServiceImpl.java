@@ -83,7 +83,7 @@ public class UsersHavingServiceImpl implements UsersHavingService {
             author.setMiddlename(authorMiddlename);
             author = authorService.addAuthor(author);
         }
-        AuthorBookname authorBookname = authorBooknameService.getOneByAuthorAndBookname(author, bookname);
+        AuthorBookname authorBookname = authorBooknameService.getByAuthorAndBookname(author, bookname);
         if (authorBookname == null) {
             authorBookname = new AuthorBookname();
             authorBookname.setAuthor(author);

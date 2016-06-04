@@ -61,43 +61,23 @@ public class AuthorBooknameServiceImplTest {
     }
 
     @Test
-    public void getAllByAuthorAndBooknameShouldReturnCorrectListIfCorrectData() {
-        Assert.assertEquals(testData.getAuthorBooknames(), authorBooknameService.getAllByAuthorAndBookname(author, authorBookname.getBookname()));
-    }
-
-    @Test
-    public void getAllByAuthorAndBooknameShouldReturnNullIfNoBooksWithSuchBookname() {
-        Assert.assertNull(authorBooknameService.getAllByAuthorAndBookname(author, ""));
-    }
-
-    @Test
-    public void getAllByAuthorAndBooknameShouldReturnNullIfNoBooksForAuthor() {
-        Assert.assertNull(authorBooknameService.getAllByAuthorAndBookname(new Author(), authorBookname.getBookname()));
-    }
-
-    @Test
-    public void getAllByAuthorAndBooknameShouldReturnNullIfNoBooksWithThisParameters() {
-        Assert.assertNull(authorBooknameService.getAllByAuthorAndBookname(new Author(), ""));
-    }
-
-    @Test
     public void getOneByAuthorAndBooknameShouldReturnCorrectAuthorBooknameIfCorrectData() {
-        Assert.assertEquals(authorBookname, authorBooknameService.getOneByAuthorAndBookname(author, authorBookname.getBookname()));
+        Assert.assertEquals(authorBookname, authorBooknameService.getByAuthorAndBookname(author, authorBookname.getBookname()));
     }
 
     @Test
     public void getOneByAuthorAndBooknameShouldReturnNullIfNoBooksWithSuchBookname() {
-        Assert.assertNull(authorBooknameService.getOneByAuthorAndBookname(author, ""));
+        Assert.assertNull(authorBooknameService.getByAuthorAndBookname(author, ""));
     }
 
     @Test
     public void getOneByAuthorAndBooknameShouldReturnNullIfNoBooksForAuthor() {
-        Assert.assertNull(authorBooknameService.getOneByAuthorAndBookname(new Author(), authorBookname.getBookname()));
+        Assert.assertNull(authorBooknameService.getByAuthorAndBookname(new Author(), authorBookname.getBookname()));
     }
 
     @Test
     public void getOneByAuthorAndBooknameShouldReturnNullIfNoBooksWithThisParameters() {
-        Assert.assertNull(authorBooknameService.getOneByAuthorAndBookname(new Author(), ""));
+        Assert.assertNull(authorBooknameService.getByAuthorAndBookname(new Author(), ""));
     }
 
     @Test
