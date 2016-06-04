@@ -25,32 +25,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getByPubhouse(String pubhouse) {
-        return bookRepository.findAllByPubhouse(pubhouse);
-    }
-
-    @Override
-    public List<Book> getByPubYear(String pubYear) {
-        return bookRepository.findAllByPubYear(pubYear);
-    }
-
-    @Override
     public boolean ifBookIsVerified(int id) {
         return bookRepository.findById(id).getVerified();
     }
 
-
-
     @Override
     public List<Book> getBooksByAuthorBookname(AuthorBookname authorBookname) {
         return bookRepository.findAllByAuthorBookname(authorBookname);
-    }
-
-    // FIXME: 20.05.2016 
-    @Override
-    public List<Book> getAllVerifiedBooks() {
-//        return bookRepository.findAllWhereVerifiedIsTrue();
-        return null;
     }
 
     @Override

@@ -201,7 +201,7 @@ public class MainController {
                           @RequestParam(value = "id", required = false) int id) {
         Book book = bookService.getById(id);
         model.addAttribute("book", book);
-        List<Users> users = usersHavingService.getAllUsersHavingsForBook(book);
+        List<Users> users = usersHavingService.getAllUsersForBook(book);
         model.addAttribute("owners", users);
         return "book";
     }

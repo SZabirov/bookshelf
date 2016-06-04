@@ -3,7 +3,6 @@ package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 
 import com.fujitsu.fs.javalab.bookshelf.models.Token;
 import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,8 +13,7 @@ public interface TokenService {
 
     List<Token> getAllTokensForUser(Users users);
 
-    Token getById(int id);
-
     List<Token> getAll();
 
+    Token addToken(Users users, String token);
 }

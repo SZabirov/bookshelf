@@ -1,51 +1,89 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 import com.fujitsu.fs.javalab.bookshelf.dao.repository.BookRepository;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
-import org.junit.Before;
+import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
+import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestServiceContext.class})
 public class BookServiceImplTest {
 
-    @Autowired
-    BookService bookService;
+    private static TestData testData;
+    private static Book book;
+    private static List<Book> books;
+    private static AuthorBookname authorBookname;
 
-    @Autowired
-    BookRepository bookRepository;
+    private static BookRepository bookRepository;
 
-    BookServiceTestData bookServiceTestData;
+    private static BookServiceImpl bookService;
 
-    @Ignore
-    @Before
-    public void setUp() {
-        bookServiceTestData = new BookServiceTestData();
-        Mockito.reset(bookRepository);
-        Mockito.doReturn(bookServiceTestData.getBooksList()).when(bookRepository).findAll();
+    @BeforeClass
+    public static void beforeClass() {
+        testData = new TestData();
+
+        authorBookname = testData.getAuthorBookname();
+        book = testData.getBook();
+        books = testData.getBooks();
+        bookRepository = testData.getBookRepository();
+        bookService = new BookServiceImpl();
+        bookService.bookRepository = bookRepository;
     }
 
-    @Ignore
     @Test
-    public void testGetAll() {
-        bookService.getAll();
-        verify(bookRepository).findAll();
+    public void getAllShouldReturnCorrectList() {
+        Assert.assertEquals(books, bookService.getAll());
     }
 
-    @Ignore
     @Test
-    public void testGetAllOnCorrectData() {
-        bookService.getAll();
-        assertEquals(bookServiceTestData.getBooksList(), bookRepository.findAll());
+    public void getBookByIdShouldReturnCorrectBookIfIdExists() {
+        Assert.assertEquals(book, bookService.getById(book.getId()));
+    }
+
+    @Test
+    public void getBookByIdShouldReturnNullBookIfIdDoesNotExists() {
+        Assert.assertNull(bookService.getById(book.getId() + 100));
+    }
+
+//    @Ignore
+    @Test
+    public void ifBookIsVerifiedShouldReturnTrueIfVerifiedBook() {
+        Assert.assertTrue(bookService.ifBookIsVerified(book.getId()));
+    }
+
+    @Test
+    public void ifBookIsVerifiedShouldReturnFalseIfNotVerifiedBook() {
+        Book book2 = new Book();
+        book2.setVerified(false);
+        when(bookRepository.findById(book2.getId())).thenReturn(book2);
+        Assert.assertFalse(bookService.ifBookIsVerified(book2.getId()));
+    }
+
+    @Test
+    public void getBooksByAuthorBooknameShouldReturnCorrectBookIfCorrectAuthorBookname() {
+        Assert.assertEquals(books, bookService.getBooksByAuthorBookname(authorBookname));
+    }
+
+    @Test
+    public void getBooksByAuthorBooknameShouldReturnNullIfNoBooksForAuthorBookname() {
+        Assert.assertNull(bookService.getBooksByAuthorBookname(new AuthorBookname()));
+    }
+
+    @Test
+    public void addBookShouldReturnSavedBook() {
+        Assert.assertEquals(book, bookService.addBook(book));
+    }
+
+    @Test
+    public void addBookMethodShouldCallSaveMethodInRepository() {
+        bookService.addBook(book);
+        verify(bookRepository, atLeastOnce()).save(book);
     }
 }

@@ -14,17 +14,25 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
+    /**
+     * Returns all the books from table
+     *
+     * @return list of authors or null if none was found
+     */
     List<Book> findAll();
 
+    /**
+     * Returns book by id
+     *
+     * @param id
+     * @return the book or null if nothing was found
+     */
     Book findById(int id);
 
+    /**
+     * Returns group of books by author and bookname
+     * @param authorBookname
+     * @return book list or null if none was found
+     */
     List<Book> findAllByAuthorBookname(AuthorBookname authorBookname);
-
-    List<Book> findAllByPubhouse(String pubhouse);
-
-    List<Book> findAllByPubYear(String pubYear);
-// FIXME: 20.05.2016 should work but it isn't
-//    List<Book> findAllWhereVerifiedIsTrue();
-//
-//    List<Book> findAllWhereVerifiedIsFalse();
 }

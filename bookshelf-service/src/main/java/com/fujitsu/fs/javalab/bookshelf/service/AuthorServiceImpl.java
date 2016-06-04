@@ -13,12 +13,13 @@ import java.util.List;
  */
 @Service
 public class AuthorServiceImpl implements AuthorService {
+
     @Autowired
     AuthorRepository authorRepository;
 
     @Override
     public Author getAuthorById(int id) {
-        return authorRepository.findOneById(id);
+        return authorRepository.findById(id);
     }
 
     @Override
@@ -40,4 +41,5 @@ public class AuthorServiceImpl implements AuthorService {
     public Author addAuthor(Author author) {
         return authorRepository.save(author);
     }
+
 }

@@ -13,15 +13,9 @@ public interface BookService {
 
     List<Book> getAll();
 
-    List<Book> getByPubhouse(String pubhouse);
-
-    List<Book> getByPubYear(String pubYear);
-
     boolean ifBookIsVerified(int id);
 
     List<Book> getBooksByAuthorBookname(AuthorBookname authorBookname);
-
-    List<Book> getAllVerifiedBooks();
 
     Book getById(int id);
 
