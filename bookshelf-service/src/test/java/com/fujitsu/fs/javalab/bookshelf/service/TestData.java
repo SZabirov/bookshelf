@@ -18,28 +18,28 @@ public class TestData {
     private Author author;
     private AuthorBookname authorBookname;
     private Book book;
-    private Messages messages;
-    private Users users;
-    private Users users2;
+    private Message message;
+    private Client client;
+    private Client client2;
     private Token token;
-    private UsersHaving usersHaving;
-    private UsersWish usersWish;
+    private ClientHaving clientHaving;
+    private ClientWish clientWish;
 
     private List<AuthorBookname> authorBooknames;
     private List<Author> authors;
     private List<Book> books;
-    private List<Messages> messagesList;
-    private List<UsersHaving> usersHavings;
-    private List<UsersWish> usersWishes;
+    private List<Message> messageList;
+    private List<ClientHaving> clientHavings;
+    private List<ClientWish> clientWishes;
     private List<Token> tokens;
 
     private JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname;
     private AuthorRepository authorRepository;
     private BookRepository bookRepository;
-    private MessagesRepository messagesRepository;
+    private MessageRepository messageRepository;
     private TokenRepository tokenRepository;
-    private UsersHavingRepository usersHavingRepository;
-    private UsersWishRepository usersWishRepository;
+    private ClientHavingRepository clientHavingRepository;
+    private ClientWishRepository clientWishRepository;
 
     public TestData() {
         author = new Author();
@@ -58,33 +58,33 @@ public class TestData {
         book.setPubhouse("АСТ");
         book.setVerified(true);
 
-        users = new Users();
-        users.setNickname("login");
-        users.setPhone("123456789");
-        users.setEmail("email@mail.ru");
-        users.setCity("city");
+        client = new Client();
+        client.setNickname("login");
+        client.setPhone("123456789");
+        client.setEmail("email@mail.ru");
+        client.setCity("city");
 
-        users2 = new Users();
-        users2.setNickname("login2");
-        users2.setEmail("email2@mail.ru");
+        client2 = new Client();
+        client2.setNickname("login2");
+        client2.setEmail("email2@mail.ru");
 
         token = new Token();
-        token.setUsers(users);
+        token.setClient(client);
         token.setToken("token");
 
-        usersHaving = new UsersHaving();
-        usersHaving.setUsers(users);
-        usersHaving.setBook(book);
+        clientHaving = new ClientHaving();
+        clientHaving.setClient(client);
+        clientHaving.setBook(book);
 
-        usersWish = new UsersWish();
-        usersWish.setUsers(users);
-        usersWish.setAuthorBookname(authorBookname);
+        clientWish = new ClientWish();
+        clientWish.setClient(client);
+        clientWish.setAuthorBookname(authorBookname);
 
-        messages = new Messages();
-        messages.setSender(users);
-        messages.setReceiver(users2);
-        messages.setHavingBook(book);
-        messages.setWishBook(book);
+        message = new Message();
+        message.setSender(client);
+        message.setReceiver(client2);
+        message.setHavingBook(book);
+        message.setWishBook(book);
 
         authorBooknames = new ArrayList<>();
         authorBooknames.add(authorBookname);
@@ -98,14 +98,14 @@ public class TestData {
         tokens = new ArrayList<>();
         tokens.add(token);
 
-        messagesList = new ArrayList<>();
-        messagesList.add(messages);
+        messageList = new ArrayList<>();
+        messageList.add(message);
 
-        usersHavings = new ArrayList<>();
-        usersHavings.add(usersHaving);
+        clientHavings = new ArrayList<>();
+        clientHavings.add(clientHaving);
 
-        usersWishes = new ArrayList<>();
-        usersWishes.add(usersWish);
+        clientWishes = new ArrayList<>();
+        clientWishes.add(clientWish);
 
         jpaRepositoryAuthorBookname = mock(JpaRepositoryAuthorBookname.class);
         when(jpaRepositoryAuthorBookname.findAll()).thenReturn(authorBooknames);
@@ -121,8 +121,6 @@ public class TestData {
         when(authorRepository.findAll()).thenReturn(authors);
         when(authorRepository.findById(anyInt())).thenReturn(null);
         when(authorRepository.findById(author.getId())).thenReturn(author);
-        when(authorRepository.findByFirstnameAndSurname(anyString(), anyString())).thenReturn(null);
-        when(authorRepository.findByFirstnameAndSurname(author.getFirstname(), author.getSurname())).thenReturn(author);
         when(authorRepository.findByFirstnameAndSurnameAndMiddlename(anyString(), anyString(), anyString())).thenReturn(null);
         when(authorRepository.findByFirstnameAndSurnameAndMiddlename(author.getFirstname(), author.getSurname(), author.getMiddlename())).thenReturn(author);
         when(authorRepository.save(any(Author.class))).thenReturn(null);
@@ -136,32 +134,32 @@ public class TestData {
         when(bookRepository.findAllByAuthorBookname(authorBookname)).thenReturn(books);
         when(bookRepository.save(book)).thenReturn(book);
 
-        messagesRepository = mock(MessagesRepository.class);
-        when(messagesRepository.findByReceiver(any(Users.class))).thenReturn(null);
-        when(messagesRepository.findByReceiver(users)).thenReturn(messagesList);
-        when(messagesRepository.findBySender(any(Users.class))).thenReturn(null);
-        when(messagesRepository.findBySender(users2)).thenReturn(messagesList);
-        when(messagesRepository.findById(anyInt())).thenReturn(null);
-        when(messagesRepository.findById(messages.getId())).thenReturn(messages);
-        when(messagesRepository.save(messages)).thenReturn(messages);
+        messageRepository = mock(MessageRepository.class);
+        when(messageRepository.findByReceiver(any(Client.class))).thenReturn(null);
+        when(messageRepository.findByReceiver(client)).thenReturn(messageList);
+        when(messageRepository.findBySender(any(Client.class))).thenReturn(null);
+        when(messageRepository.findBySender(client2)).thenReturn(messageList);
+        when(messageRepository.findById(anyInt())).thenReturn(null);
+        when(messageRepository.findById(message.getId())).thenReturn(message);
+        when(messageRepository.save(message)).thenReturn(message);
 
         tokenRepository = mock(TokenRepository.class);
         when(tokenRepository.findAll()).thenReturn(tokens);
-        when(tokenRepository.findAllByUsers(any(Users.class))).thenReturn(null);
-        when(tokenRepository.findAllByUsers(users)).thenReturn(tokens);
+        when(tokenRepository.findAllByClient(any(Client.class))).thenReturn(null);
+        when(tokenRepository.findAllByClient(client)).thenReturn(tokens);
         when(tokenRepository.save(any(Token.class))).thenReturn(token);
 
-        usersHavingRepository = mock(UsersHavingRepository.class);
-        when(usersHavingRepository.findAll()).thenReturn(usersHavings);
-        when(usersHavingRepository.findAllByUsers(any(Users.class))).thenReturn(null);
-        when(usersHavingRepository.findAllByUsers(users)).thenReturn(usersHavings);
-        when(usersHavingRepository.findAllByBook(any(Book.class))).thenReturn(null);
-        when(usersHavingRepository.findAllByBook(book)).thenReturn(usersHavings);
-        when(usersHavingRepository.findByUsersAndBook(any(Users.class), any(Book.class))).thenReturn(null);
-        when(usersHavingRepository.findByUsersAndBook(users, book)).thenReturn(usersHaving);
-        when(usersHavingRepository.save(any(UsersHaving.class))).thenReturn(usersHaving);
+        clientHavingRepository = mock(ClientHavingRepository.class);
+        when(clientHavingRepository.findAll()).thenReturn(clientHavings);
+        when(clientHavingRepository.findAllByClient(any(Client.class))).thenReturn(null);
+        when(clientHavingRepository.findAllByClient(client)).thenReturn(clientHavings);
+        when(clientHavingRepository.findAllByBook(any(Book.class))).thenReturn(null);
+        when(clientHavingRepository.findAllByBook(book)).thenReturn(clientHavings);
+        when(clientHavingRepository.findByClientAndBook(any(Client.class), any(Book.class))).thenReturn(null);
+        when(clientHavingRepository.findByClientAndBook(client, book)).thenReturn(clientHaving);
+        when(clientHavingRepository.save(any(ClientHaving.class))).thenReturn(clientHaving);
 
-        usersWishRepository = mock(UsersWishRepository.class);
+        clientWishRepository = mock(ClientWishRepository.class);
 
     }
 
@@ -197,12 +195,12 @@ public class TestData {
         this.book = book;
     }
 
-    public Messages getMessages() {
-        return messages;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setMessages(Messages messages) {
-        this.messages = messages;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
     public Token getToken() {
@@ -213,36 +211,36 @@ public class TestData {
         this.token = token;
     }
 
-    public Users getUsers() {
-        return users;
+    public Client getClient() {
+        return client;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public Users getUsers2() {
-        return users2;
+    public Client getClient2() {
+        return client2;
     }
 
-    public void setUsers2(Users users2) {
-        this.users2 = users2;
+    public void setClient2(Client client2) {
+        this.client2 = client2;
     }
 
-    public UsersHaving getUsersHaving() {
-        return usersHaving;
+    public ClientHaving getClientHaving() {
+        return clientHaving;
     }
 
-    public void setUsersHaving(UsersHaving usersHaving) {
-        this.usersHaving = usersHaving;
+    public void setClientHaving(ClientHaving clientHaving) {
+        this.clientHaving = clientHaving;
     }
 
-    public UsersWish getUsersWish() {
-        return usersWish;
+    public ClientWish getClientWish() {
+        return clientWish;
     }
 
-    public void setUsersWish(UsersWish usersWish) {
-        this.usersWish = usersWish;
+    public void setClientWish(ClientWish clientWish) {
+        this.clientWish = clientWish;
     }
 
     public List<AuthorBookname> getAuthorBooknames() {
@@ -261,28 +259,28 @@ public class TestData {
         this.books = books;
     }
 
-    public List<Messages> getMessagesList() {
-        return messagesList;
+    public List<Message> getMessageList() {
+        return messageList;
     }
 
-    public void setMessagesList(List<Messages> messagesList) {
-        this.messagesList = messagesList;
+    public void setMessageList(List<Message> messageList) {
+        this.messageList = messageList;
     }
 
-    public List<UsersHaving> getUsersHavings() {
-        return usersHavings;
+    public List<ClientHaving> getClientHavings() {
+        return clientHavings;
     }
 
-    public void setUsersHavings(List<UsersHaving> usersHavings) {
-        this.usersHavings = usersHavings;
+    public void setClientHavings(List<ClientHaving> clientHavings) {
+        this.clientHavings = clientHavings;
     }
 
-    public List<UsersWish> getUsersWishes() {
-        return usersWishes;
+    public List<ClientWish> getClientWishes() {
+        return clientWishes;
     }
 
-    public void setUsersWishes(List<UsersWish> usersWishes) {
-        this.usersWishes = usersWishes;
+    public void setClientWishes(List<ClientWish> clientWishes) {
+        this.clientWishes = clientWishes;
     }
 
     public List<Token> getTokens() {
@@ -317,12 +315,12 @@ public class TestData {
         this.bookRepository = bookRepository;
     }
 
-    public MessagesRepository getMessagesRepository() {
-        return messagesRepository;
+    public MessageRepository getMessageRepository() {
+        return messageRepository;
     }
 
-    public void setMessagesRepository(MessagesRepository messagesRepository) {
-        this.messagesRepository = messagesRepository;
+    public void setMessageRepository(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
     }
 
     public TokenRepository getTokenRepository() {
@@ -333,19 +331,19 @@ public class TestData {
         this.tokenRepository = tokenRepository;
     }
 
-    public UsersHavingRepository getUsersHavingRepository() {
-        return usersHavingRepository;
+    public ClientHavingRepository getClientHavingRepository() {
+        return clientHavingRepository;
     }
 
-    public void setUsersHavingRepository(UsersHavingRepository usersHavingRepository) {
-        this.usersHavingRepository = usersHavingRepository;
+    public void setClientHavingRepository(ClientHavingRepository clientHavingRepository) {
+        this.clientHavingRepository = clientHavingRepository;
     }
 
-    public UsersWishRepository getUsersWishRepository() {
-        return usersWishRepository;
+    public ClientWishRepository getClientWishRepository() {
+        return clientWishRepository;
     }
 
-    public void setUsersWishRepository(UsersWishRepository usersWishRepository) {
-        this.usersWishRepository = usersWishRepository;
+    public void setClientWishRepository(ClientWishRepository clientWishRepository) {
+        this.clientWishRepository = clientWishRepository;
     }
 }

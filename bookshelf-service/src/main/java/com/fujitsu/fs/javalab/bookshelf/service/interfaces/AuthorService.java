@@ -2,7 +2,6 @@ package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 
 
 import com.fujitsu.fs.javalab.bookshelf.models.Author;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface AuthorService {
 
     List<Author> getAll();
 
-    Author getAuthorByFirstnameAndSurname(String firstname, String surname);
+    List<Author> getAllAuthorByFirstnameAndSurname(String firstname, String surname);
 
     Author getAuthorByFirstnameAndSurnameAndMiddlename(String firstname, String surname, String middlename);
 

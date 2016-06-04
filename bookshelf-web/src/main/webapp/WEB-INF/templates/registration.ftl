@@ -51,7 +51,7 @@
         <span class="error_text">${error}</span>
         <#--<span class="error_text">Пользователь с таким логином уже существует</span>-->
     </#if>
-        <input id="login" oninput="correctLogin()" type='text' name='user' class='loginform'
+        <input id="login" oninput="correctLogin()" type='text' name='client' class='loginform'
                placeholder='Придумайте логин' required>
         <p class="loginform" id="login_valid" style="margin-bottom: 0"></p><br/>
         <input id="email" oninput="correctEmail()" type='text' name='email' class='loginform' placeholder='Ваш e-mail'
@@ -130,11 +130,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".username").focus(function () {
-            $(".user-icon").css("left", "-48px");
+        $(".clientname").focus(function () {
+            $(".client-icon").css("left", "-48px");
         });
-        $(".username").blur(function () {
-            $(".user-icon").css("left", "0px");
+        $(".clientname").blur(function () {
+            $(".client-icon").css("left", "0px");
         });
 
         $(".password").focus(function () {

@@ -6,12 +6,12 @@ import javax.persistence.*;
  * Created by Айгуль on 04.05.2016.
  */
 @Entity
-@Table(name = "users_wish")
-public class UsersWish {
+@Table(name = "client_wish")
+public class ClientWish {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_wish_id_seq")
-    @SequenceGenerator(name = "users_wish_id_seq", sequenceName = "users_wish_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_wish_id_seq")
+    @SequenceGenerator(name = "client_wish_id_seq", sequenceName = "client_wish_id_seq", allocationSize = 1)
     @Column(name = "id")
     private int id;
 
@@ -19,9 +19,9 @@ public class UsersWish {
     @JoinColumn(name = "author_bookname_id", referencedColumnName = "id")
     private AuthorBookname authorBookname;
 
-    @ManyToOne(targetEntity = Users.class)
-    @JoinColumn(name = "users_id", referencedColumnName = "id")
-    private Users users;
+    @ManyToOne(targetEntity = Client.class)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private Client client;
 
     public int getId() {
         return id;
@@ -39,12 +39,12 @@ public class UsersWish {
         this.authorBookname = authorBookname;
     }
 
-    public Users getUsers() {
-        return users;
+    public Client getClient() {
+        return client;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
@@ -52,9 +52,9 @@ public class UsersWish {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UsersWish usersWish = (UsersWish) o;
+        ClientWish clientWish = (ClientWish) o;
 
-        if (id != usersWish.id) return false;
+        if (id != clientWish.id) return false;
 
         return true;
     }
@@ -66,9 +66,9 @@ public class UsersWish {
 
     @Override
     public String toString() {
-        return "UsersWish{" +
+        return "ClientWish{" +
                 "authorBookname=" + authorBookname +
-                ", users=" + users +
+                ", client=" + client +
                 '}';
     }
 }

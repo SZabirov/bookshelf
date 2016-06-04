@@ -26,17 +26,17 @@ public class TestServiceContext {
 //    }
 //
 //    @Bean
-//    public UsersHavingRepository usersHavingRepository(){
-//        return Mockito.mock(UsersHavingRepository.class);
+//    public ClientHavingRepository clientHavingRepository(){
+//        return Mockito.mock(ClientHavingRepository.class);
 //    }
 //
 //    @Bean
-//    public JpaRepositoryUsers usersRepository(){
-//        return Mockito.mock(JpaRepositoryUsers.class);
+//    public JpaRepositoryClient clientRepository(){
+//        return Mockito.mock(JpaRepositoryClient.class);
 //    }
 //
 //    @Bean
-//    public UsersWishRepository usersWishRepository(){
-//        return Mockito.mock(UsersWishRepository.class);
+//    public ClientWishRepository clientWishRepository(){
+//        return Mockito.mock(ClientWishRepository.class);
 //    }
 }

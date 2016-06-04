@@ -33,8 +33,8 @@
             <#if login??>
                 <li><a href="#">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="/user/requests">Предложения</a></li>
-                <li><a href="/user/settings">Настройки</a></li>
+                <li><a href="/client/requests">Предложения</a></li>
+                <li><a href="/client/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
             <#else>

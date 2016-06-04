@@ -7,12 +7,12 @@ import java.util.List;
  * Created by Айгуль on 04.05.2016.
  */
 @Entity
-@Table(name = "users")
-public class Users {
+@Table(name = "client")
+public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
-    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id_seq")
+    @SequenceGenerator(name = "client_id_seq", sequenceName = "client_id_seq", allocationSize = 1)
     @Column(name = "id")
     private int id;
 
@@ -48,20 +48,20 @@ public class Users {
     @Column(name = "avatar")
     private String avatar;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private List<Token> tokens;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
-    private List<UsersHaving> usersHavings;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<ClientHaving> clientHavings;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
-    private List<UsersWish> usersWishes;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<ClientWish> clientWishes;
 
     @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
-    private List<Messages> messages;
+    private List<Message> message;
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
-    private List<Messages> sentMessages;
+    private List<Message> sentMessage;
 
     public int getId() {
         return id;
@@ -143,36 +143,36 @@ public class Users {
         this.tokens = tokens;
     }
 
-    public List<UsersHaving> getUsersHavings() {
-        return usersHavings;
+    public List<ClientHaving> getClientHavings() {
+        return clientHavings;
     }
 
-    public void setUsersHavings(List<UsersHaving> usersHavings) {
-        this.usersHavings = usersHavings;
+    public void setClientHavings(List<ClientHaving> clientHavings) {
+        this.clientHavings = clientHavings;
     }
 
-    public List<UsersWish> getUsersWishes() {
-        return usersWishes;
+    public List<ClientWish> getClientWishes() {
+        return clientWishes;
     }
 
-    public void setUsersWishs(List<UsersWish> usersWishes) {
-        this.usersWishes = usersWishes;
+    public void setClientWishs(List<ClientWish> clientWishes) {
+        this.clientWishes = clientWishes;
     }
 
-    public List<Messages> getMessages() {
-        return messages;
+    public List<Message> getMessage() {
+        return message;
     }
 
-    public void setMessages(List<Messages> messages) {
-        this.messages = messages;
+    public void setMessage(List<Message> message) {
+        this.message = message;
     }
 
-    public List<Messages> getSentMessages() {
-        return sentMessages;
+    public List<Message> getSentMessage() {
+        return sentMessage;
     }
 
-    public void setSentMessages(List<Messages> sentMessages) {
-        this.sentMessages = sentMessages;
+    public void setSentMessage(List<Message> sentMessage) {
+        this.sentMessage = sentMessage;
     }
 
 
@@ -181,17 +181,17 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Users users = (Users) o;
+        Client client = (Client) o;
 
-        if (id != users.id) return false;
-        if (nickname != null ? !nickname.equals(users.nickname) : users.nickname != null) return false;
-        if (email != null ? !email.equals(users.email) : users.email != null) return false;
-        if (firstname != null ? !firstname.equals(users.firstname) : users.firstname != null) return false;
-        if (surname != null ? !surname.equals(users.surname) : users.surname != null) return false;
-        if (city != null ? !city.equals(users.city) : users.city != null) return false;
-        if (phone != null ? !phone.equals(users.phone) : users.phone != null) return false;
-        if (hashpassword != null ? !hashpassword.equals(users.hashpassword) : users.hashpassword != null) return false;
-        if (avatar != null ? !avatar.equals(users.avatar) : users.avatar != null) return false;
+        if (id != client.id) return false;
+        if (nickname != null ? !nickname.equals(client.nickname) : client.nickname != null) return false;
+        if (email != null ? !email.equals(client.email) : client.email != null) return false;
+        if (firstname != null ? !firstname.equals(client.firstname) : client.firstname != null) return false;
+        if (surname != null ? !surname.equals(client.surname) : client.surname != null) return false;
+        if (city != null ? !city.equals(client.city) : client.city != null) return false;
+        if (phone != null ? !phone.equals(client.phone) : client.phone != null) return false;
+        if (hashpassword != null ? !hashpassword.equals(client.hashpassword) : client.hashpassword != null) return false;
+        if (avatar != null ? !avatar.equals(client.avatar) : client.avatar != null) return false;
 
         return true;
     }
@@ -212,7 +212,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "Client{" +
                 "nickname='" + nickname + '\'' +
                 ", city='" + city + '\'' +
                 ", hashpassword='" + hashpassword + '\'' +

@@ -44,7 +44,7 @@
         <#if error??>
             <span class="error_text">Неверный логин или пароль</span>
         </#if>
-        <input type='text' name='j_username' class='loginform' placeholder='Логин'><br />
+        <input type='text' name='j_clientname' class='loginform' placeholder='Логин'><br />
         <input type='password' name='j_password' class='loginform'  placeholder='Пароль'><br />
         <div class='chb'><input type='checkbox' name='chb1'/><label for='chb1'><span></span>
             <small class='small-text'>Запомнить меня</small></label></div>
@@ -108,11 +108,11 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $(".username").focus(function() {
-            $(".user-icon").css("left","-48px");
+        $(".clientname").focus(function() {
+            $(".client-icon").css("left","-48px");
         });
-        $(".username").blur(function() {
-            $(".user-icon").css("left","0px");
+        $(".clientname").blur(function() {
+            $(".client-icon").css("left","0px");
         });
 
         $(".password").focus(function() {

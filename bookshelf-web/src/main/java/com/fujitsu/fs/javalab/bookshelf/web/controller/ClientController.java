@@ -1,7 +1,7 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
+import com.fujitsu.fs.javalab.bookshelf.models.Client;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.ClientService;
 import com.fujitsu.fs.javalab.bookshelf.web.utils.HashUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,11 +19,11 @@ import java.util.regex.Pattern;
  * Created by aygulmardanova on 01.06.16.
  */
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/client")
+public class ClientController {
 
     @Autowired
-    UsersService usersService;
+    ClientService clientService;
 
 
     public static final Pattern login_p = Pattern.compile("^[a-zA-Z][a-zA-Z0-9-_\\.]{3,20}$");
@@ -63,15 +63,15 @@ public class UserController {
     public String getSettingsPage(ModelMap model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Users users = usersService.getUsersByNickname(name);
-        model.addAttribute("user", users);
+        Client client = clientService.getClientByNickname(name);
+        model.addAttribute("client", client);
         return "settings";
     }
 
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
     public String settingsPostMethod(ModelMap model,
                                      @RequestParam("id") int id,
-                                     @RequestParam(value = "user", required = false) String login,
+                                     @RequestParam(value = "client", required = false) String login,
                                      @RequestParam(value = "email", required = false) String email,
                                      @RequestParam(value = "city", required = false) String city,
                                      @RequestParam(value = "phone", required = false) String phone,
@@ -79,65 +79,65 @@ public class UserController {
                                      @RequestParam(value = "password1", required = false) String password1,
                                      @RequestParam(value = "password1", required = false) String password2
     ) {
-        Users users = usersService.getUserById(id);
-        if (usersService.ifNicknameExists(login)) {
+        Client client = clientService.getClientById(id);
+        if (clientService.ifNicknameExists(login)) {
             model.addAttribute("error", "Пользователь с таким логином уже существует");
-            model.addAttribute("user", users);
+            model.addAttribute("client", client);
             return "settings";
         }
-        if (usersService.ifEmailExists(email)) {
+        if (clientService.ifEmailExists(email)) {
             model.addAttribute("error", "Пользователь с таким email уже существует");
-            model.addAttribute("user", users);
+            model.addAttribute("client", client);
             return "settings";
         }
         if (!checkWithRegExp(login, "login")) {
             model.addAttribute("error", "Login " + login + " is incorrect");
-            model.addAttribute("user", users);
+            model.addAttribute("client", client);
             return "settings";
         }
         if (!checkWithRegExp(email, "email")) {
             model.addAttribute("error", "Неправильный email: " + email);
-            model.addAttribute("user", users);
+            model.addAttribute("client", client);
             return "settings";
         }
         if (!checkWithRegExp(city, "name")) {
             model.addAttribute("error", "Неправильный город: " + city);
-            model.addAttribute("user", users);
+            model.addAttribute("client", client);
             return "settings";
         }
         if (!checkWithRegExp(phone, "phone")) {
             model.addAttribute("error", "Неправильный номер " + phone);
-            model.addAttribute("user", users);
+            model.addAttribute("client", client);
             return "settings";
         }
         if (password1 != null && !"".equals(password1)) {
             if (old_password == null || "".equals(old_password)) {
                 model.addAttribute("error", "Введите старый пароль");
-                model.addAttribute("user", users);
+                model.addAttribute("client", client);
                 return "settings";
             } else if (password2 == null || "".equals(password2)) {
                 model.addAttribute("error", "Повторите новый пароль");
-                model.addAttribute("user", users);
+                model.addAttribute("client", client);
                 return "settings";
-            } else if (!usersService.ifCorrectUser(id, HashUtils.md5Apache(old_password))) {
+            } else if (!clientService.ifCorrectClient(id, HashUtils.md5Apache(old_password))) {
                 model.addAttribute("error", "Введен неправильный пароль");
-                model.addAttribute("user", users);
+                model.addAttribute("client", client);
                 return "settings";
             } else if (!password1.equals(password2)) {
                 model.addAttribute("error", "Пароль повторен неправильно");
-                model.addAttribute("user", users);
+                model.addAttribute("client", client);
                 return "settings";
             } else if (!checkWithRegExp(password1, "pass")) {
                 model.addAttribute("error", "Incorrect password format: " + password1);
-                model.addAttribute("user", users);
+                model.addAttribute("client", client);
                 return "settings";
             } else {
                 password1 = HashUtils.md5Apache(password1);
             }
         }
-        usersService.updateUser(id, login, email, null, null, city, phone, password1, null);
-        System.out.println("user updated");
-        model.addAttribute("user", usersService.getUserById(id));
+        clientService.updateClient(id, login, email, null, null, city, phone, password1, null);
+        System.out.println("client updated");
+        model.addAttribute("client", clientService.getClientById(id));
         return "redirect:/profile";
     }
 
@@ -145,10 +145,10 @@ public class UserController {
     public String getRequestsPage(ModelMap model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Users users = usersService.getUsersByNickname(name);
-        System.out.println("Got messages for " + name + ": " + users.getMessages());
-        System.out.println("Sent messages for " + name + ": " + users.getSentMessages());
-        model.addAttribute("user", users);
+        Client client = clientService.getClientByNickname(name);
+        System.out.println("Got message for " + name + ": " + client.getMessage());
+        System.out.println("Sent message for " + name + ": " + client.getSentMessage());
+        model.addAttribute("client", client);
         return "requests";
     }
 

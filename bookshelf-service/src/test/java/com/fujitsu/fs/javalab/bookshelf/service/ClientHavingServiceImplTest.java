@@ -3,7 +3,7 @@ package com.fujitsu.fs.javalab.bookshelf.service;
 import com.fujitsu.fs.javalab.bookshelf.dao.repository.AuthorRepository;
 import com.fujitsu.fs.javalab.bookshelf.dao.repository.BookRepository;
 import com.fujitsu.fs.javalab.bookshelf.dao.repository.JpaRepositoryAuthorBookname;
-import com.fujitsu.fs.javalab.bookshelf.dao.repository.UsersHavingRepository;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.ClientHavingRepository;
 import com.fujitsu.fs.javalab.bookshelf.models.*;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -20,21 +20,21 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by aygulmardanova on 03.06.16.
  */
-public class UsersHavingServiceImplTest {
+public class ClientHavingServiceImplTest {
 
     private static TestData testData;
-    private static Users users;
+    private static Client client;
     private static Book book;
     private static Author author;
     private static AuthorBookname authorBookname;
-    private static UsersHaving usersHaving;
-    private static List<UsersHaving> usersHavings;
-    private static UsersHavingRepository usersHavingRepository;
+    private static ClientHaving clientHaving;
+    private static List<ClientHaving> clientHavings;
+    private static ClientHavingRepository clientHavingRepository;
     private static AuthorRepository authorRepository;
     private static JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname;
 
     private static BookRepository bookRepository;
-    private static UsersHavingServiceImpl usersHavingService;
+    private static ClientHavingServiceImpl clientHavingService;
     private static AuthorServiceImpl authorService;
     private static AuthorBooknameServiceImpl authorBooknameService;
     private static BookServiceImpl bookService;
@@ -44,19 +44,19 @@ public class UsersHavingServiceImplTest {
     public static void beforeClass() {
         testData = new TestData();
 
-        users = testData.getUsers();
+        client = testData.getClient();
         book = testData.getBook();
         author = testData.getAuthor();
         authorBookname = testData.getAuthorBookname();
-        usersHaving = testData.getUsersHaving();
-        usersHavings = testData.getUsersHavings();
+        clientHaving = testData.getClientHaving();
+        clientHavings = testData.getClientHavings();
 
-        usersHavingRepository = testData.getUsersHavingRepository();
+        clientHavingRepository = testData.getClientHavingRepository();
         authorRepository = testData.getAuthorRepository();
         bookRepository = testData.getBookRepository();
         jpaRepositoryAuthorBookname = testData.getJpaRepositoryAuthorBookname();
 
-        usersHavingService = new UsersHavingServiceImpl();
+        clientHavingService = new ClientHavingServiceImpl();
         authorService = new AuthorServiceImpl();
         authorBooknameService = new AuthorBooknameServiceImpl();
         bookService = new BookServiceImpl();
@@ -65,103 +65,103 @@ public class UsersHavingServiceImplTest {
         authorBooknameService.jpaRepositoryAuthorBookname = jpaRepositoryAuthorBookname;
         bookService.bookRepository = bookRepository;
 
-        usersHavingService.usersHavingRepository = usersHavingRepository;
-        usersHavingService.authorService = authorService;
-        usersHavingService.authorBooknameService = authorBooknameService;
-        usersHavingService.bookService = bookService;
+        clientHavingService.clientHavingRepository = clientHavingRepository;
+        clientHavingService.authorService = authorService;
+        clientHavingService.authorBooknameService = authorBooknameService;
+        clientHavingService.bookService = bookService;
     }
 
     @Test
-    public void getAllByUserShouldReturnCorrectListForExistingUserIfHavingsExist() {
-        Assert.assertEquals(usersHavings, usersHavingService.getAllByUser(users));
+    public void getAllByClientShouldReturnCorrectListForExistingClientIfHavingsExist() {
+        Assert.assertEquals(clientHavings, clientHavingService.getAllByClient(client));
     }
 
     @Test
-    public void getAllByUserShouldReturnNullNoHavingsForThisUser() {
-        Assert.assertNull(usersHavingService.getAllByUser(new Users()));
+    public void getAllByClientShouldReturnNullNoHavingsForThisClient() {
+        Assert.assertNull(clientHavingService.getAllByClient(new Client()));
     }
 
     @Test
-    public void getAllUsersForBookShouldReturnCorrectListOfUsersIfHavingsExistForThisBook() {
-        List<Users> usersList = new ArrayList<>();
-        usersList.add(users);
-        Assert.assertEquals(usersList, usersHavingService.getAllUsersForBook(book));
+    public void getAllClientForBookShouldReturnCorrectListOfClientIfHavingsExistForThisBook() {
+        List<Client> clientList = new ArrayList<>();
+        clientList.add(client);
+        Assert.assertEquals(clientList, clientHavingService.getAllClientForBook(book));
     }
 
     @Test
-    public void getAllUsersForBookShouldReturnNullIfNoHavingsForThisBook() {
-        Assert.assertNull(usersHavingService.getAllUsersForBook(new Book()));
+    public void getAllClientForBookShouldReturnNullIfNoHavingsForThisBook() {
+        Assert.assertNull(clientHavingService.getAllClientForBook(new Book()));
     }
 
     @Test
-    public void getAllBooksThatUserHasShouldReturnNonEmptyListIfUserHasBooks() {
+    public void getAllBooksThatClientHasShouldReturnNonEmptyListIfClientHasBooks() {
         List<Book> books = new ArrayList<>();
         books.add(book);
-        Assert.assertEquals(books, usersHavingService.getAllBooksThatUserHas(users));
+        Assert.assertEquals(books, clientHavingService.getAllBooksThatClientHas(client));
     }
 
     @Test
-    public void getAllBooksThatUserHasShouldReturnNullIfUserHasNoBooks() {
-        Assert.assertNull(usersHavingService.getAllBooksThatUserHas(new Users()));
+    public void getAllBooksThatClientHasShouldReturnNullIfClientHasNoBooks() {
+        Assert.assertNull(clientHavingService.getAllBooksThatClientHas(new Client()));
     }
 
     @Test
-    public void deleteUsersHavingShouldCallDeleteMethodInRepository() {
-        usersHavingService.deleteUsersHaving(users, book);
-        verify(usersHavingRepository).delete(any(UsersHaving.class));
+    public void deleteClientHavingShouldCallDeleteMethodInRepository() {
+        clientHavingService.deleteClientHaving(client, book);
+        verify(clientHavingRepository).delete(any(ClientHaving.class));
     }
 
     @Test
-    public void createUsersHavingShouldCallSaveMethodInRepository() {
-        usersHavingService.createUsersHaving(users, book);
-        verify(usersHavingRepository, atLeastOnce()).save(any(UsersHaving.class));
+    public void createClientHavingShouldCallSaveMethodInRepository() {
+        clientHavingService.createClientHaving(client, book);
+        verify(clientHavingRepository, atLeastOnce()).save(any(ClientHaving.class));
     }
 
     @Test
-    public void addUsersHavingShouldCreateNewAuthorIfItDoesNotExist() {
-        usersHavingService.addUsersHaving(users, "name", author.getSurname(),
+    public void addClientHavingShouldCreateNewAuthorIfItDoesNotExist() {
+        clientHavingService.addClientHaving(client, "name", author.getSurname(),
                 author.getMiddlename(), book.getPubhouse(), book.getPubYear(),
                 book.getDescription(), book.getAuthorBookname().getBookname());
         verify(authorRepository, atLeastOnce()).save(any(Author.class));
     }
 
     @Test
-    public void addUsersHavingShouldNotCreateNewAuthorIfItExists() {
-        usersHavingService.addUsersHaving(users, author.getFirstname(), author.getSurname(),
+    public void addClientHavingShouldNotCreateNewAuthorIfItExists() {
+        clientHavingService.addClientHaving(client, author.getFirstname(), author.getSurname(),
                 author.getMiddlename(), book.getPubhouse(), book.getPubYear(),
                 book.getDescription(), book.getAuthorBookname().getBookname());
         verify(authorRepository, never()).save(author);
     }
 
     @Test
-    public void addUsersHavingShouldCreateNewAuthorBooknameIfItDoesNotExist() {
-        usersHavingService.addUsersHaving(users, author.getFirstname(), author.getSurname(),
+    public void addClientHavingShouldCreateNewAuthorBooknameIfItDoesNotExist() {
+        clientHavingService.addClientHaving(client, author.getFirstname(), author.getSurname(),
                 author.getMiddlename(), book.getPubhouse(), book.getPubYear(),
                 book.getDescription(), "");
         verify(jpaRepositoryAuthorBookname, atLeastOnce()).save(any(AuthorBookname.class));
     }
 
     @Test
-    public void addUsersHavingShouldNotCreateNewAuthorBooknameIfItExists() {
-        usersHavingService.addUsersHaving(users, author.getFirstname(), author.getSurname(),
+    public void addClientHavingShouldNotCreateNewAuthorBooknameIfItExists() {
+        clientHavingService.addClientHaving(client, author.getFirstname(), author.getSurname(),
                 author.getMiddlename(), book.getPubhouse(), book.getPubYear(),
                 book.getDescription(), book.getAuthorBookname().getBookname());
         verify(jpaRepositoryAuthorBookname, never()).save(authorBookname);
     }
 
     @Test
-    public void addUsersHavingShouldCallSaveMethodInBookRepository() {
-        usersHavingService.addUsersHaving(users, author.getFirstname(), author.getSurname(),
+    public void addClientHavingShouldCallSaveMethodInBookRepository() {
+        clientHavingService.addClientHaving(client, author.getFirstname(), author.getSurname(),
                 author.getMiddlename(), book.getPubhouse(), book.getPubYear(),
                 book.getDescription(), book.getAuthorBookname().getBookname());
         verify(bookRepository, atLeastOnce()).save(any(Book.class));
     }
 
     @Test
-    public void addUsersHavingShouldReturnUsersHavingAfterTheCreating() {
-        UsersHaving uh1 = usersHavingService.addUsersHaving(users, author.getFirstname(), author.getSurname(),
+    public void addClientHavingShouldReturnClientHavingAfterTheCreating() {
+        ClientHaving uh1 = clientHavingService.addClientHaving(client, author.getFirstname(), author.getSurname(),
                 author.getMiddlename(), book.getPubhouse(), book.getPubYear(),
                 book.getDescription(), book.getAuthorBookname().getBookname());
-        Assert.assertEquals(usersHaving, uh1);
+        Assert.assertEquals(clientHaving, uh1);
     }
 }

@@ -2,7 +2,7 @@ package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 
 
 import com.fujitsu.fs.javalab.bookshelf.models.Token;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.Client;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface TokenService {
 
-    List<Token> getAllTokensForUser(Users users);
+    List<Token> getAllTokensForClient(Client client);
 
     List<Token> getAll();
 
-    Token addToken(Users users, String token);
+    Token addToken(Client client, String token);
 }

@@ -1,20 +1,13 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
-import com.fujitsu.fs.javalab.bookshelf.models.Messages;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by aygulmardanova on 01.06.16.
@@ -24,12 +17,12 @@ import java.util.List;
 public class AjaxController {
 
     @Autowired
-    UsersService usersService;
+    ClientService clientService;
 
     @RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
     public @ResponseBody
     String returnIfLoginExists(ModelMap model, @RequestParam(value = "nickname") String nickname) {
-        Boolean flag = usersService.ifNicknameExists(nickname);
+        Boolean flag = clientService.ifNicknameExists(nickname);
         if (flag) {
             return "true";
         } else {
@@ -39,7 +32,7 @@ public class AjaxController {
 
     @RequestMapping(value = "/checkEmail", method = RequestMethod.POST)
     public @ResponseBody String returnIfEmailExists(ModelMap model, @RequestParam(value = "email") String email) {
-        Boolean flag = usersService.ifEmailExists(email);
+        Boolean flag = clientService.ifEmailExists(email);
         if (flag) {
             return "true";
         }

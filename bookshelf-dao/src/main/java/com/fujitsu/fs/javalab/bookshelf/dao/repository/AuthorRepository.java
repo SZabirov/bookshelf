@@ -2,7 +2,6 @@ package com.fujitsu.fs.javalab.bookshelf.dao.repository;
 
 import com.fujitsu.fs.javalab.bookshelf.models.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,13 +29,13 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
     Author findById(int id);
 
     /**
-     * Returns author by firstname and surname
+     * Returns all the authors by firstname and surname
      *
      * @param firstname
      * @param surname
-     * @return the author or null if none was found
+     * @return the authors or null if none was found
      */
-    Author findByFirstnameAndSurname(String firstname, String surname);
+    List<Author> findAllByFirstnameAndSurname(String firstname, String surname);
 
     /**
      * Returns author by firstname, surname and middlename

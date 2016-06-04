@@ -38,8 +38,8 @@
             <ul>
                 <li><a href="/">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="/user/requests">Предложения</a></li>
-                <li><a href="/user/settings">Настройки</a></li>
+                <li><a href="/client/requests">Предложения</a></li>
+                <li><a href="/client/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
             </ul>
@@ -117,11 +117,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".username").focus(function () {
-            $(".user-icon").css("left", "-48px");
+        $(".clientname").focus(function () {
+            $(".client-icon").css("left", "-48px");
         });
-        $(".username").blur(function () {
-            $(".user-icon").css("left", "0px");
+        $(".clientname").blur(function () {
+            $(".client-icon").css("left", "0px");
         });
 
         $(".password").focus(function () {

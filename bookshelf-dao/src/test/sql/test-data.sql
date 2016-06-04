@@ -1,7 +1,7 @@
-INSERT INTO users(nickname, email, firstname, surname, city, hashpassword)
+INSERT INTO client(nickname, email, firstname, surname, city, hashpassword)
 VALUES('Ivan', 'ivan@mail.ru', 'Ivan', 'Ivanov', 'Kazan', '202cb962ac59075b964b07152d234b70');
 
-INSERT INTO users(nickname, email, firstname, surname, city, hashpassword)
+INSERT INTO client(nickname, email, firstname, surname, city, hashpassword)
 VALUES('Masha', 'masha@mail.ru', 'Maria', 'Ivanova', 'Kazan', '202cb962ac59075b964b07152d234b70');
 
 insert into author (firstname, surname, middlename) values ('Лев', 'Толстой', 'Николаевич');
@@ -11,9 +11,9 @@ insert into author_bookname (author_id, bookname, verified) values (1, 'Войн
 INSERT into book (author_bookname_id, pubhouse, pub_year, description, verified)
 VALUES (1, 'ЭКСМО', '2000', 'Good book', true);
 
-INSERT into users_having(users_id, book_id) VALUES (1, 1);
+INSERT into client_having(client_id, book_id) VALUES (1, 1);
 
-INSERT into users_wish(users_id, author_bookname_id) VALUES (1, 1);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (1, 1);
 
 
 insert into author (firstname, surname) values ('Николай', 'Гоголь');
@@ -23,7 +23,7 @@ insert into author_bookname (author_id, bookname, verified) values (2, 'Мерт
 INSERT into book (author_bookname_id, pubhouse, pub_year, description, verified)
  VALUES (2, 'ЭКСМО', '2010', 'Very good book', true);
 
-INSERT into users_wish(users_id, author_bookname_id) VALUES (1, 2);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (1, 2);
 
 insert into author (firstname, surname) values ('Иван', 'Тургенев');
 insert into author (firstname, surname) values ('Александр', 'Пушкин');
@@ -61,22 +61,22 @@ INSERT into book (author_bookname_id, pubhouse, pub_year, description, verified)
 VALUES (9, 'АСТ', '2012', 'Новая книга', true);
 
 
-INSERT into users_having(users_id, book_id) VALUES (1, 3);
-INSERT into users_wish(users_id, author_bookname_id) VALUES (1, 14);
+INSERT into client_having(client_id, book_id) VALUES (1, 3);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (1, 14);
 
-INSERT into users_having(users_id, book_id) VALUES (2, 1);
-INSERT into users_wish(users_id, author_bookname_id) VALUES (2, 15);
+INSERT into client_having(client_id, book_id) VALUES (2, 1);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (2, 15);
 
-INSERT into users_having(users_id, book_id) VALUES (2, 5);
-INSERT into users_wish(users_id, author_bookname_id) VALUES (2, 8);
+INSERT into client_having(client_id, book_id) VALUES (2, 5);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (2, 8);
 
-INSERT into users_having(users_id, book_id) VALUES (2, 2);
+INSERT into client_having(client_id, book_id) VALUES (2, 2);
 
-INSERT into users_having(users_id, book_id) VALUES (2, 3);
-INSERT into users_wish(users_id, author_bookname_id) VALUES (2, 11);
+INSERT into client_having(client_id, book_id) VALUES (2, 3);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (2, 11);
 
-INSERT into users_having(users_id, book_id) VALUES (4, 6);
-INSERT into users_wish(users_id, author_bookname_id) VALUES (4, 2);
+INSERT into client_having(client_id, book_id) VALUES (4, 6);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (4, 2);
 
-INSERT into users_having(users_id, book_id) VALUES (4, 1);
-INSERT into users_wish(users_id, author_bookname_id) VALUES (4, 4);
+INSERT into client_having(client_id, book_id) VALUES (4, 1);
+INSERT into client_wish(client_id, author_bookname_id) VALUES (4, 4);

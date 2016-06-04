@@ -1,12 +1,12 @@
 package com.fujitsu.fs.javalab.bookshelf.service;
 
 
-import com.fujitsu.fs.javalab.bookshelf.dao.repository.UsersHavingRepository;
+import com.fujitsu.fs.javalab.bookshelf.dao.repository.ClientHavingRepository;
 import com.fujitsu.fs.javalab.bookshelf.models.*;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorBooknameService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.AuthorService;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersHavingService;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.ClientHavingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +17,10 @@ import java.util.List;
  * Created by aygulmardanova on 08.05.16.
  */
 @Service
-public class UsersHavingServiceImpl implements UsersHavingService {
+public class ClientHavingServiceImpl implements ClientHavingService {
 
     @Autowired
-    UsersHavingRepository usersHavingRepository;
+    ClientHavingRepository clientHavingRepository;
     @Autowired
     AuthorBooknameService authorBooknameService;
     @Autowired
@@ -29,52 +29,52 @@ public class UsersHavingServiceImpl implements UsersHavingService {
     BookService bookService;
 
     @Override
-    public List<UsersHaving> getAllByUser(Users users) {
-        return usersHavingRepository.findAllByUsers(users);
+    public List<ClientHaving> getAllByClient(Client client) {
+        return clientHavingRepository.findAllByClient(client);
     }
 
     @Override
-    public List<Users> getAllUsersForBook(Book book) {
-        List<UsersHaving> usersHavings = usersHavingRepository.findAllByBook(book);
-        List<Users> users = new ArrayList<>();
-        if (usersHavings == null) {
+    public List<Client> getAllClientForBook(Book book) {
+        List<ClientHaving> clientHavings = clientHavingRepository.findAllByBook(book);
+        List<Client> client = new ArrayList<>();
+        if (clientHavings == null) {
             return null;
         }
-        for (UsersHaving usersHaving : usersHavings) {
-            users.add(usersHaving.getUsers());
+        for (ClientHaving clientHaving : clientHavings) {
+            client.add(clientHaving.getClient());
         }
-        return users;
+        return client;
     }
 
     @Override
-    public List<Book> getAllBooksThatUserHas(Users users) {
-        List<UsersHaving> usersHavings = usersHavingRepository.findAllByUsers(users);
+    public List<Book> getAllBooksThatClientHas(Client client) {
+        List<ClientHaving> clientHavings = clientHavingRepository.findAllByClient(client);
         List<Book> books = new ArrayList<>();
-        if (usersHavings == null) {
+        if (clientHavings == null) {
             return null;
         }
-        for (UsersHaving usersHaving : usersHavings) {
-            books.add(usersHaving.getBook());
+        for (ClientHaving clientHaving : clientHavings) {
+            books.add(clientHaving.getBook());
         }
         return books;
     }
 
     @Override
-    public void deleteUsersHaving(Users users, Book book) {
-        UsersHaving usersHaving = usersHavingRepository.findByUsersAndBook(users, book);
-        usersHavingRepository.delete(usersHaving);
+    public void deleteClientHaving(Client client, Book book) {
+        ClientHaving clientHaving = clientHavingRepository.findByClientAndBook(client, book);
+        clientHavingRepository.delete(clientHaving);
     }
 
     @Override
-    public UsersHaving createUsersHaving(Users users, Book book) {
-        UsersHaving usersHaving = new UsersHaving();
-        usersHaving.setUsers(users);
-        usersHaving.setBook(book);
-        return usersHavingRepository.save(usersHaving);
+    public ClientHaving createClientHaving(Client client, Book book) {
+        ClientHaving clientHaving = new ClientHaving();
+        clientHaving.setClient(client);
+        clientHaving.setBook(book);
+        return clientHavingRepository.save(clientHaving);
     }
 
     @Override
-    public UsersHaving addUsersHaving(Users users, String authorName, String authorSurname, String authorMiddlename, String pubhouse, String pubyear, String description, String bookname) {
+    public ClientHaving addClientHaving(Client client, String authorName, String authorSurname, String authorMiddlename, String pubhouse, String pubyear, String description, String bookname) {
         Author author = authorService.getAuthorByFirstnameAndSurnameAndMiddlename(authorName, authorSurname, authorMiddlename);
         if (author == null) {
             author = new Author();
@@ -96,7 +96,7 @@ public class UsersHavingServiceImpl implements UsersHavingService {
         book.setPubhouse(pubhouse);
         book.setPubYear(pubyear);
         book = bookService.addBook(book);
-        return createUsersHaving(users, book);
+        return createClientHaving(client, book);
     }
 
 }

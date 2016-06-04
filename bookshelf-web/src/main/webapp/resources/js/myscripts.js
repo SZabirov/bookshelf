@@ -17,7 +17,7 @@ $(document).ready(function(){
             },
        },
        
-       messages:{
+       message:{
         
             login:{
                 required: "Это поле обязательно для заполнения",

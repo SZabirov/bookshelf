@@ -38,8 +38,8 @@
             <ul>
                 <li><a href="/">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="/user/requests">Предложения</a></li>
-                <li><a href="/user/settings">Настройки</a></li>
+                <li><a href="/client/requests">Предложения</a></li>
+                <li><a href="/client/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
             </ul>
@@ -50,13 +50,13 @@
 <!-- Main -->
 <div id="main2" class="wrapper style1">
     <div class="profilepage">
-        <img src="/resources/images/no_user_photo.png" class="profile_photo"/>
+        <img src="/resources/images/no_client_photo.png" class="profile_photo"/>
         <div class="profile_information">
-            <b>Имя:</b> ${user.firstname} <br/>
-            <b>Фамилия:</b> ${user.surname} <br/>
-            <b>Логин:</b> ${user.nickname}
+            <b>Имя:</b> ${client.firstname} <br/>
+            <b>Фамилия:</b> ${client.surname} <br/>
+            <b>Логин:</b> ${client.nickname}
         <#if notCurrent??>
-            <br/><br/><a href="/connect?id=${user.id}"><input type='submit' value='Связаться' class='submit-button'></a>
+            <br/><br/><a href="/connect?id=${client.id}"><input type='submit' value='Связаться' class='submit-button'></a>
         </#if>
         </div>
     </div>
@@ -83,7 +83,7 @@
             </#if>
         <#else>
             <#if notCurrent??>
-                <div class="book_name">Список книг, которые <b>${user.nickname}</b> готов предложить, пуст</div>
+                <div class="book_name">Список книг, которые <b>${client.nickname}</b> готов предложить, пуст</div>
             <#else>
                 <div class="book_name">Список книг, которые Вы готовы предложить, пуст</div>
                 <a class="book_name" href="/addhaving">Добавить предложение</a>
@@ -112,7 +112,7 @@
             </#if>
         <#else>
             <#if notCurrent??>
-                <div class="book_name">Список книг, которые <b>${user.nickname}</b> хочет получить, пуст</div>
+                <div class="book_name">Список книг, которые <b>${client.nickname}</b> хочет получить, пуст</div>
             <#else>
                 <div class="book_name">Список книг, которые Вы хотите получить, пуст</div>
                 <a class="book_name" href="/addwishing">Добавить пожелание</a>
@@ -184,11 +184,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".username").focus(function () {
-            $(".user-icon").css("left", "-48px");
+        $(".clientname").focus(function () {
+            $(".client-icon").css("left", "-48px");
         });
-        $(".username").blur(function () {
-            $(".user-icon").css("left", "0px");
+        $(".clientname").blur(function () {
+            $(".client-icon").css("left", "0px");
         });
 
         $(".password").focus(function () {

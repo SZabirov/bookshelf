@@ -28,8 +28,8 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author getAuthorByFirstnameAndSurname(String firstname, String surname) {
-        return authorRepository.findByFirstnameAndSurname(firstname, surname);
+    public List<Author> getAllAuthorByFirstnameAndSurname(String firstname, String surname) {
+        return authorRepository.findAllByFirstnameAndSurname(firstname, surname);
     }
 
     @Override

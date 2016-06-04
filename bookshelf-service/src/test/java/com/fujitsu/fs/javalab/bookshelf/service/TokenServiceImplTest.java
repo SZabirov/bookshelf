@@ -2,7 +2,7 @@ package com.fujitsu.fs.javalab.bookshelf.service;
 
 import com.fujitsu.fs.javalab.bookshelf.dao.repository.TokenRepository;
 import com.fujitsu.fs.javalab.bookshelf.models.Token;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.Client;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 public class TokenServiceImplTest {
 
     private static TestData testData;
-    private static Users users;
+    private static Client client;
     private static Token token;
     private static List<Token> tokens;
     private static TokenRepository tokenRepository;
@@ -28,7 +28,7 @@ public class TokenServiceImplTest {
     @BeforeClass
     public static void beforeClass() {
         testData = new TestData();
-        users = testData.getUsers();
+        client = testData.getClient();
         token = testData.getToken();
         tokens = testData.getTokens();
         tokenRepository = testData.getTokenRepository();
@@ -42,28 +42,28 @@ public class TokenServiceImplTest {
     }
 
     @Test
-    public void getAllTokensForUserShouldReturnCorrectListIfUsersExists() {
-        Assert.assertEquals(tokens, tokenService.getAllTokensForUser(users));
+    public void getAllTokensForClientShouldReturnCorrectListIfClientExists() {
+        Assert.assertEquals(tokens, tokenService.getAllTokensForClient(client));
     }
 
     @Test
-    public void getAllTokensForUserShouldReturnNullIfUsersDoesNotExist() {
-        Assert.assertNull(tokenService.getAllTokensForUser(new Users()));
+    public void getAllTokensForClientShouldReturnNullIfClientDoesNotExist() {
+        Assert.assertNull(tokenService.getAllTokensForClient(new Client()));
     }
 
     @Test
-    public void addTokenShouldSaveCorrectUserToken() {
-        Assert.assertEquals(token.getUsers(), tokenService.addToken(users, "token").getUsers());
+    public void addTokenShouldSaveCorrectClientToken() {
+        Assert.assertEquals(token.getClient(), tokenService.addToken(client, "token").getClient());
     }
 
     @Test
     public void addTokenShouldSaveCorrectTokenTextIntoToken() {
-        Assert.assertEquals(token.getToken(), tokenService.addToken(users, "token").getToken());
+        Assert.assertEquals(token.getToken(), tokenService.addToken(client, "token").getToken());
     }
 
     @Test
     public void addTokenShouldCallSaveMethodFromRepository() {
-        tokenService.addToken(token.getUsers(), token.getToken());
+        tokenService.addToken(token.getClient(), token.getToken());
         verify(tokenRepository, atLeastOnce()).save(any(Token.class));
     }
 }

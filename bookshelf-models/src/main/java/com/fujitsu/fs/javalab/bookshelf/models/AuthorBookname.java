@@ -33,7 +33,7 @@ public class AuthorBookname {
     private List<Book> books;
 
     @OneToMany(mappedBy = "authorBookname", fetch = FetchType.EAGER)
-    private Collection<UsersWish> usersWishes;
+    private Collection<ClientWish> clientWishes;
 
     public int getId() {
         return id;
@@ -97,12 +97,12 @@ public class AuthorBookname {
         this.books = books;
     }
 
-    public Collection<UsersWish> getUsersWishes() {
-        return usersWishes;
+    public Collection<ClientWish> getClientWishes() {
+        return clientWishes;
     }
 
-    public void setUsersWishes(Collection<UsersWish> usersWishes) {
-        this.usersWishes = usersWishes;
+    public void setClientWishes(Collection<ClientWish> clientWishes) {
+        this.clientWishes = clientWishes;
     }
 
     @Override

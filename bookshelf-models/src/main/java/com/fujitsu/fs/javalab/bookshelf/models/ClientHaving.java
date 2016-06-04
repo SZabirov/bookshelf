@@ -6,12 +6,12 @@ import javax.persistence.*;
  * Created by Айгуль on 04.05.2016.
  */
 @Entity
-@Table(name = "users_having")
-public class UsersHaving {
+@Table(name = "client_having")
+public class ClientHaving {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_having_id_seq")
-    @SequenceGenerator(name = "users_having_id_seq", sequenceName = "users_having_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_having_id_seq")
+    @SequenceGenerator(name = "client_having_id_seq", sequenceName = "client_having_id_seq", allocationSize = 1)
     @Column(name = "id")
     private int id;
 
@@ -19,9 +19,9 @@ public class UsersHaving {
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     private Book book;
 
-    @ManyToOne(targetEntity = Users.class)
-    @JoinColumn(name = "users_id", referencedColumnName = "id")
-    private Users users;
+    @ManyToOne(targetEntity = Client.class)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private Client client;
 
     public int getId() {
         return id;
@@ -39,12 +39,12 @@ public class UsersHaving {
         this.book = book;
     }
 
-    public Users getUsers() {
-        return users;
+    public Client getClient() {
+        return client;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class UsersHaving {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UsersHaving that = (UsersHaving) o;
+        ClientHaving that = (ClientHaving) o;
 
         if (id != that.id) return false;
 
@@ -66,8 +66,8 @@ public class UsersHaving {
 
     @Override
     public String toString() {
-        return "UsersHaving{" +
-                "users=" + users +
+        return "ClientHaving{" +
+                "client=" + client +
                 ", book=" + book +
                 '}';
     }

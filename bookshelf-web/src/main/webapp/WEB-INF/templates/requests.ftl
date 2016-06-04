@@ -42,8 +42,8 @@
             <ul>
                 <li><a href="/">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="/user/requests">Предложения</a></li>
-                <li><a href="/user/settings">Настройки</a></li>
+                <li><a href="/client/requests">Предложения</a></li>
+                <li><a href="/client/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
             </ul>
@@ -53,20 +53,20 @@
 
 <div id="main2" class="wrapper style1">
     <div class="profilepage">
-        <img src="/resources/images/no_user_photo.png" class="profile_photo"/>
+        <img src="/resources/images/no_client_photo.png" class="profile_photo"/>
         <div class="profile_information">
-            <b>Имя:</b> ${user.firstname} <br/>
-            <b>Фамилия:</b> ${user.surname} <br/>
-            <b>Логин:</b> ${user.nickname}
+            <b>Имя:</b> ${client.firstname} <br/>
+            <b>Фамилия:</b> ${client.surname} <br/>
+            <b>Логин:</b> ${client.nickname}
         <#if notCurrent??>
-            <br/><br/><a href="/connect?id=${user.id}"><input type='submit' value='Связаться' class='submit-button'></a>
+            <br/><br/><a href="/connect?id=${client.id}"><input type='submit' value='Связаться' class='submit-button'></a>
         </#if>
         </div>
 
         <div class="profilebooks" style="width: 100%; border-width: 0">
             <h2 class="requests_h2" style="text-align: center">ПРЕДЛОЖЕНИЯ</h2>
             <p style="text-align: center; font-weight: bold">Входящие предложения</p>
-            <#if user.messages?has_content>
+            <#if client.message?has_content>
             <table>
                 <tr>
                     <th class="th1">ОТ КОГО</th>
@@ -75,7 +75,7 @@
                     <th class="th1">КОНТАКТЫ</th>
                     <th></th>
                 </tr>
-                <#list user.messages as m>
+                <#list client.message as m>
                     <tr>
                         <th class="th1">${m.sender.nickname}</th>
                         <th class="th2">${m.havingBook.authorBookname.bookname}</th>
@@ -96,7 +96,7 @@
             </#if>
             <hr width="1px"/>
             <p style="text-align: center; font-weight: bold">Исходящие предложения</p>
-        <#if user.sentMessages?has_content>
+        <#if client.sentMessage?has_content>
             <table>
                 <tr>
                     <th class="th1"> КОМУ  </th>
@@ -104,7 +104,7 @@
                     <th class="th2">ПОЖЕЛАНИЕ</th>
                     <th class="th1">КОНТАКТЫ</th>
                 </tr>
-                <#list user.sentMessages as sm>
+                <#list client.sentMessage as sm>
                     <tr>
                         <th class="th1">${sm.receiver.nickname}</th>
                         <th class="th2">${sm.havingBook.authorBookname.bookname}</th>
@@ -181,11 +181,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".username").focus(function () {
-            $(".user-icon").css("left", "-48px");
+        $(".clientname").focus(function () {
+            $(".client-icon").css("left", "-48px");
         });
-        $(".username").blur(function () {
-            $(".user-icon").css("left", "0px");
+        $(".clientname").blur(function () {
+            $(".client-icon").css("left", "0px");
         });
 
         $(".password").focus(function () {

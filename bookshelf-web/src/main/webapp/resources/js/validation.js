@@ -19,7 +19,7 @@ $("#registr_form").validate({
 
     },
 
-    messages: {
+    message: {
 
         name: {
             required: "Это поле обязательно для заполнения",
@@ -52,7 +52,7 @@ $("#settings_form").validate({
 
     },
 
-    messages: {
+    message: {
         city: {
             regx: "Неверный формат"
         }

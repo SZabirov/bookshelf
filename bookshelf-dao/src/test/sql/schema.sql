@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE client (
   id SERIAL PRIMARY KEY,
   nickname VARCHAR(255) CONSTRAINT uk_nickname UNIQUE,
   email VARCHAR(255) NOT NULL,
@@ -12,10 +12,10 @@ CREATE TABLE users (
 
 CREATE TABLE token (
   id SERIAL PRIMARY KEY,
-  users_id INT,
+  client_id INT,
   token VARCHAR(255)CONSTRAINT uk_token UNIQUE,
 
-  FOREIGN KEY (users_id) REFERENCES users(id)
+  FOREIGN KEY (client_id) REFERENCES client(id)
 );
 
 CREATE TABLE author (
@@ -46,25 +46,25 @@ CREATE TABLE book (
   FOREIGN KEY (author_bookname_id) REFERENCES author_bookname(id)
 );
 
-CREATE TABLE users_wish(
+CREATE TABLE client_wish(
   id SERIAL PRIMARY KEY,
-  users_id INT,
+  client_id INT,
   author_bookname_id INT,
 
   FOREIGN KEY (author_bookname_id) REFERENCES author_bookname(id),
-  FOREIGN KEY (users_id) REFERENCES users(id)
+  FOREIGN KEY (client_id) REFERENCES client(id)
 );
 
-CREATE TABLE users_having(
+CREATE TABLE client_having(
   id SERIAL PRIMARY KEY,
-  users_id INT,
+  client_id INT,
   book_id INT,
 
-  FOREIGN KEY (users_id) REFERENCES users(id),
+  FOREIGN KEY (client_id) REFERENCES client(id),
   FOREIGN KEY (book_id) REFERENCES book(id)
 );
 
-CREATE TABLE messages (
+CREATE TABLE message (
   id SERIAL PRIMARY KEY,
   sender_id INT,
   receiver_id INT,
@@ -72,8 +72,8 @@ CREATE TABLE messages (
   wish_book_id INT,
   status VARCHAR(255),
 
-  FOREIGN KEY (sender_id) REFERENCES users(id),
-  FOREIGN KEY (receiver_id) REFERENCES users(id),
+  FOREIGN KEY (sender_id) REFERENCES client(id),
+  FOREIGN KEY (receiver_id) REFERENCES client(id),
   FOREIGN KEY (having_book_id) REFERENCES book(id),
   FOREIGN KEY (wish_book_id) REFERENCES book(id)
 );

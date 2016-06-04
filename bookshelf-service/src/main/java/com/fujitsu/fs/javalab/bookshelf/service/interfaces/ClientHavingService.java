@@ -2,27 +2,27 @@ package com.fujitsu.fs.javalab.bookshelf.service.interfaces;
 
 
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.models.UsersHaving;
+import com.fujitsu.fs.javalab.bookshelf.models.Client;
+import com.fujitsu.fs.javalab.bookshelf.models.ClientHaving;
 
 import java.util.List;
 
 /**
  * Created by aygulmardanova on 08.05.16.
  */
-public interface UsersHavingService {
+public interface ClientHavingService {
 
-    List<UsersHaving> getAllByUser(Users users);
+    List<ClientHaving> getAllByClient(Client client);
 
-    List<Users> getAllUsersForBook(Book book);
+    List<Client> getAllClientForBook(Book book);
 
-    List<Book> getAllBooksThatUserHas(Users users);
+    List<Book> getAllBooksThatClientHas(Client client);
 
-    void deleteUsersHaving(Users users, Book book);
+    void deleteClientHaving(Client client, Book book);
 
-    UsersHaving createUsersHaving(Users users, Book book);
+    ClientHaving createClientHaving(Client client, Book book);
 
-    UsersHaving addUsersHaving(Users users,
+    ClientHaving addClientHaving(Client client,
                                String authorName,
                                String authorSurname,
                                String authorMiddlename,

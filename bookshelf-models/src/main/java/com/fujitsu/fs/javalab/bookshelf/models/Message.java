@@ -7,22 +7,22 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="Messages")
-public class Messages {
+@Table(name="Message")
+public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "messages_id_seq")
-    @SequenceGenerator(name = "messages_id_seq", sequenceName = "messages_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_id_seq")
+    @SequenceGenerator(name = "message_id_seq", sequenceName = "message_id_seq", allocationSize = 1)
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(targetEntity = Users.class)
+    @ManyToOne(targetEntity = Client.class)
     @JoinColumn(name = "sender_id", referencedColumnName = "id")
-    private Users sender;
+    private Client sender;
 
-    @ManyToOne(targetEntity = Users.class)
+    @ManyToOne(targetEntity = Client.class)
     @JoinColumn(name = "receiver_id", referencedColumnName = "id")
-    private Users receiver;
+    private Client receiver;
 
     @ManyToOne(targetEntity = Book.class)
     @JoinColumn(name = "having_book_id", referencedColumnName = "id")
@@ -40,19 +40,19 @@ public class Messages {
         this.id = id;
     }
 
-    public Users getSender() {
+    public Client getSender() {
         return sender;
     }
 
-    public void setSender(Users sender) {
+    public void setSender(Client sender) {
         this.sender = sender;
     }
 
-    public Users getReceiver() {
+    public Client getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Users receiver) {
+    public void setReceiver(Client receiver) {
         this.receiver = receiver;
     }
 
@@ -74,7 +74,7 @@ public class Messages {
 
     @Override
     public String toString() {
-        return "Messages{" +
+        return "Message{" +
                 "sender=" + sender.getNickname() +
                 ", receiver=" + receiver.getNickname() +
                 ", havingBook=" + havingBook.getAuthorBookname().getBookname() + " "

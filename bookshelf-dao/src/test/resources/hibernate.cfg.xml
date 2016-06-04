@@ -11,8 +11,8 @@
       <mapping class="com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname"/>
       <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Book"/>
     <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Token"/>
-    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Users"/>
-    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.UsersHaving"/>
-    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.UsersWish"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.Client"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.ClientHaving"/>
+    <mapping class="com.fujitsu.fs.javalab.bookshelf.models.ClientWish"/>
   </session-factory>
 </hibernate-configuration>

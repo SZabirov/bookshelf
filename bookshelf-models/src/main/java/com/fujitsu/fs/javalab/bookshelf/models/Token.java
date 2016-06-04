@@ -19,9 +19,9 @@ public class Token {
     @Column(name = "token")
     private String token;
 
-    @ManyToOne(targetEntity = Users.class)
-    @JoinColumn(name = "users_id", referencedColumnName = "id")
-    private Users users;
+    @ManyToOne(targetEntity = Client.class)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private Client client;
 
 
     public int getId() {
@@ -40,12 +40,12 @@ public class Token {
         this.token = token;
     }
 
-    public Users getUsers() {
-        return users;
+    public Client getClient() {
+        return client;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Token {
     public String toString() {
         return "Token{" +
                 "token='" + token + '\'' +
-                ", users=" + users +
+                ", client=" + client +
                 '}';
     }
 }

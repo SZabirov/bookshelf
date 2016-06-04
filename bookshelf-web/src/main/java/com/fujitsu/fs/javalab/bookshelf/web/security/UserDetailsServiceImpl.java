@@ -1,8 +1,7 @@
 package com.fujitsu.fs.javalab.bookshelf.web.security;
 
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
-import com.fujitsu.fs.javalab.bookshelf.service.UsersServiceImpl;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
+import com.fujitsu.fs.javalab.bookshelf.models.Client;
+import com.fujitsu.fs.javalab.bookshelf.service.interfaces.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,28 +16,28 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UsersService usersService;
+    private ClientService clientService;
 
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException, DataAccessException {
         System.out.println("Hello from UserDetailsService! Login " + login);
 
-        Users user = usersService.getUsersByNickname(login);
-        System.out.println("User   -  " + user.getNickname());
-        System.out.println(user.getHashpassword());
-//        if (user == null) {
-//            throw new UsernameNotFoundException("Email is not found in the database");
+        Client client = clientService.getClientByNickname(login);
+        System.out.println("Client   -  " + client.getNickname());
+        System.out.println(client.getHashpassword());
+//        if (client == null) {
+//            throw new ClientnameNotFoundException("Email is not found in the database");
 //        }
 
         Set<GrantedAuthority> roles = new HashSet();
-        roles.add(new SimpleGrantedAuthority("CLIENT"));
+        roles.add(new SimpleGrantedAuthority("USER"));
 
-        // на основании полученныйх даных формируем объект UserDetails
+        // на основании полученныйх даных формируем объект ClientDetails
         // который позволит проверить введеный пользователем логин и пароль
         // и уже потом аутентифицировать пользователя
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getNickname(),
-                user.getHashpassword(), roles);
-        return userDetails;
+        UserDetails clientDetails = new org.springframework.security.core.userdetails.User(client.getNickname(),
+                client.getHashpassword(), roles);
+        return clientDetails;
 
     }
 

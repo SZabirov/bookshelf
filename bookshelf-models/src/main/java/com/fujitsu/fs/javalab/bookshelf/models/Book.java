@@ -41,7 +41,7 @@ public class Book {
     private AuthorBookname authorBookname;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
-    private List<UsersHaving> usersHavings;
+    private List<ClientHaving> clientHavings;
 
     public int getId() {
         return id;
@@ -99,12 +99,12 @@ public class Book {
         this.authorBookname = authorBookname;
     }
 
-    public List<UsersHaving> getUsersHavings() {
-        return usersHavings;
+    public List<ClientHaving> getClientHavings() {
+        return clientHavings;
     }
 
-    public void setUsersHavings(List<UsersHaving> usersHavings) {
-        this.usersHavings = usersHavings;
+    public void setClientHavings(List<ClientHaving> clientHavings) {
+        this.clientHavings = clientHavings;
     }
 
     @Override

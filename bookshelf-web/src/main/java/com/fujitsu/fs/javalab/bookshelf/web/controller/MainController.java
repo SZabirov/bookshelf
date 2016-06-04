@@ -1,11 +1,10 @@
 package com.fujitsu.fs.javalab.bookshelf.web.controller;
 
-import com.fujitsu.fs.javalab.bookshelf.models.*;
+import com.fujitsu.fs.javalab.bookshelf.models.Book;
+import com.fujitsu.fs.javalab.bookshelf.models.Client;
+import com.fujitsu.fs.javalab.bookshelf.models.ClientHaving;
+import com.fujitsu.fs.javalab.bookshelf.models.ClientWish;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.*;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.BookService;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.SearchService;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersService;
-import com.fujitsu.fs.javalab.bookshelf.service.interfaces.UsersWishService;
 import com.fujitsu.fs.javalab.bookshelf.web.utils.HashUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +28,7 @@ import java.util.Set;
 public class MainController {
 
     @Autowired
-    UsersService usersService;
+    ClientService clientService;
 
     @Autowired
     SearchService searchService;
@@ -38,13 +37,13 @@ public class MainController {
     BookService bookService;
 
     @Autowired
-    UsersWishService usersWishService;
+    ClientWishService clientWishService;
 
     @Autowired
-    UsersHavingService usersHavingService;
+    ClientHavingService clientHavingService;
 
     @Autowired
-    MessagesService messagesService;
+    MessageService messageService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hiPage(Model model) {
@@ -72,33 +71,33 @@ public class MainController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String getProfilePage(Model model,
                                  @RequestParam(value = "id", required = false) Integer id) {
-        Users user;
-        List<UsersHaving> usersHavings;
-        List<UsersWish> usersWishes;
+        Client client;
+        List<ClientHaving> clientHavings;
+        List<ClientWish> clientWishes;
         if (id == null) {
             System.out.println("Null id");
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String name = auth.getName();
-            user = usersService.getUsersByNickname(name);
+            client = clientService.getClientByNickname(name);
         }
         else {
             System.out.println("Not null id");
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String name = auth.getName();
-            if (usersService.getUsersByNickname(name).getId() != id) {
+            if (clientService.getClientByNickname(name).getId() != id) {
                 System.out.println("NOT CURRENT");
-                user = usersService.getUserById(id);
+                client = clientService.getClientById(id);
                 model.addAttribute("notCurrent", "notCurrent");
             }
             else {
-                user = usersService.getUsersByNickname(name);
+                client = clientService.getClientByNickname(name);
             }
         }
-        usersHavings = user.getUsersHavings();
-        usersWishes = user.getUsersWishes();
-        model.addAttribute("havings", usersHavings);
-        model.addAttribute("wishes", usersWishes);
-        model.addAttribute("user", user);
+        clientHavings = client.getClientHavings();
+        clientWishes = client.getClientWishes();
+        model.addAttribute("havings", clientHavings);
+        model.addAttribute("wishes", clientWishes);
+        model.addAttribute("client", client);
         return "profile";
     }
 
@@ -117,7 +116,7 @@ public class MainController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registrationPost(ModelMap model,
-                                   @RequestParam(value = "user", required = false) String username,
+                                   @RequestParam(value = "client", required = false) String clientname,
                                    @RequestParam(value = "email", required = false) String email,
                                    @RequestParam(value = "name", required = false) String name,
                                    @RequestParam(value = "surname", required = false) String surname,
@@ -126,58 +125,58 @@ public class MainController {
                                    @RequestParam(value = "password1", required = false) String password1,
                                    @RequestParam(value = "password2", required = false) String password2) {
 
-        if (usersService.ifNicknameExists(username)) {
+        if (clientService.ifNicknameExists(clientname)) {
             model.addAttribute("error", "Пользователь с таким логином уже существует");
             return "registration";
         }
-        if (usersService.ifEmailExists(email)) {
+        if (clientService.ifEmailExists(email)) {
             model.addAttribute("error", "Пользователь с таким email уже существует");
             return "registration";
         }
-        if (!UserController.checkWithRegExp(email, "email")) {
+        if (!ClientController.checkWithRegExp(email, "email")) {
             model.addAttribute("error", "Неправильный email: " + email);
             return "registration";
         }
-        if (!UserController.checkWithRegExp(username, "login")) {
-            model.addAttribute("error", "Login " + username + " is incorrect");
+        if (!ClientController.checkWithRegExp(clientname, "login")) {
+            model.addAttribute("error", "Login " + clientname + " is incorrect");
             return "registration";
         }
-        if (!UserController.checkWithRegExp(name, "name")) {
+        if (!ClientController.checkWithRegExp(name, "name")) {
             model.addAttribute("error", "Неправильное имя: " + name);
             return "registration";
         }
-        if (!UserController.checkWithRegExp(surname, "name")) {
+        if (!ClientController.checkWithRegExp(surname, "name")) {
             model.addAttribute("error", "Неправильная фамилия: " + surname);
             return "registration";
         }
-        if (!UserController.checkWithRegExp(city, "name")) {
+        if (!ClientController.checkWithRegExp(city, "name")) {
             model.addAttribute("error", "Неправильный город: " + city);
             return "registration";
         }
-        if (!UserController.checkWithRegExp(phone, "phone")) {
+        if (!ClientController.checkWithRegExp(phone, "phone")) {
             model.addAttribute("error", "Неправильный номер " + phone);
             return "registration";
         }
-        if (!UserController.checkWithRegExp(password1, "pass")) {
+        if (!ClientController.checkWithRegExp(password1, "pass")) {
             model.addAttribute("error", "Неправильный формат пароля: " + password1);
             return "registration";
         }
         if (password1.equals(password2)) {
                 password1 = HashUtils.md5Apache(password1);
 
-                usersService.addNewUsers(username, email, name, surname, city, phone, password1, null);
+                clientService.addNewClient(clientname, email, name, surname, city, phone, password1, null);
                 Set<GrantedAuthority> roles = new HashSet();
-                roles.add(new SimpleGrantedAuthority("CLIENT"));
-                UserDetails userDetails = new org.springframework.security.core.userdetails.User(username, password1, roles);
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                roles.add(new SimpleGrantedAuthority("USER"));
+                UserDetails clientDetails = new org.springframework.security.core.userdetails.User(clientname, password1, roles);
+                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(clientDetails, null, clientDetails.getAuthorities());
 
                 SecurityContextHolder.getContext().setAuthentication(token);
             }
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String login = auth.getName();
-            Users user = usersService.getUsersByNickname(login);
-            model.addAttribute("user", user);
+            Client client = clientService.getClientByNickname(login);
+            model.addAttribute("client", client);
             return "profile";
     }
 
@@ -201,8 +200,8 @@ public class MainController {
                           @RequestParam(value = "id", required = false) int id) {
         Book book = bookService.getById(id);
         model.addAttribute("book", book);
-        List<Users> users = usersHavingService.getAllUsersForBook(book);
-        model.addAttribute("owners", users);
+        List<Client> client = clientHavingService.getAllClientForBook(book);
+        model.addAttribute("owners", client);
         return "book";
     }
 
@@ -219,8 +218,8 @@ public class MainController {
                               @RequestParam(value = "bookname", required = false) String bookname) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Users users = usersService.getUsersByNickname(name);
-        usersWishService.addWishing(authorName, authorSurname, authorMiddlename, bookname, users);
+        Client client = clientService.getClientByNickname(name);
+        clientWishService.addWishing(authorName, authorSurname, authorMiddlename, bookname, client);
         return "redirect:/profile";
     }
 
@@ -240,8 +239,8 @@ public class MainController {
                              @RequestParam(value = "bookname", required = false) String bookname) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Users users = usersService.getUsersByNickname(name);
-        usersHavingService.addUsersHaving(users, authorName, authorSurname, authorMiddlename, pubhouse, pubyear, description, bookname);
+        Client client = clientService.getClientByNickname(name);
+        clientHavingService.addClientHaving(client, authorName, authorSurname, authorMiddlename, pubhouse, pubyear, description, bookname);
         return "redirect:/profile";
     }
 
@@ -250,14 +249,14 @@ public class MainController {
                                  @RequestParam(value = "id") Integer id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Users user1 = usersService.getUsersByNickname(name);
-        List<Book> having = usersHavingService.getAllBooksThatUserHas(user1);
-        Users user2 = usersService.getUserById(id);
-        List<Book> wishing = usersHavingService.getAllBooksThatUserHas(user2);
+        Client client1 = clientService.getClientByNickname(name);
+        List<Book> having = clientHavingService.getAllBooksThatClientHas(client1);
+        Client client2 = clientService.getClientById(id);
+        List<Book> wishing = clientHavingService.getAllBooksThatClientHas(client2);
 
         model.addAttribute("havingBooks", having);
         model.addAttribute("wishingBooks", wishing);
-        model.addAttribute("receiver", user2);
+        model.addAttribute("receiver", client2);
         return "connect";
     }
 
@@ -269,14 +268,14 @@ public class MainController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Users user1 = usersService.getUsersByNickname(name);
+        Client client1 = clientService.getClientByNickname(name);
 
-        Users user2 = usersService.getUserById(id);
+        Client client2 = clientService.getClientById(id);
 
         Book havingBook = bookService.getById(have);
         Book wishBook = bookService.getById(wish);
 
-        messagesService.addNewMessage(user1, user2, havingBook, wishBook);
+        messageService.addNewMessage(client1, client2, havingBook, wishBook);
 
         model.addAttribute("success", "Ваше предложение успешно отправлено.");
         return "success";
@@ -288,11 +287,11 @@ public class MainController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        Users user = usersService.getUsersByNickname(name);
+        Client client = clientService.getClientByNickname(name);
 
         Book book = bookService.getById(id);
 
-        usersHavingService.deleteUsersHaving(user, book);
+        clientHavingService.deleteClientHaving(client, book);
 
         return "redirect:/profile";
     }
@@ -301,7 +300,7 @@ public class MainController {
     public String deleteWish(Model model,
                                @RequestParam(value = "id") Integer id) {
 
-        usersWishService.deleteById(id);
+        clientWishService.deleteById(id);
 
         return "redirect:/profile";
     }
@@ -311,9 +310,9 @@ public class MainController {
     public String deleteMessage(Model model,
                              @RequestParam(value = "id") Integer id) {
 
-        messagesService.deleteById(id);
+        messageService.deleteById(id);
 
-        return "redirect:/user/requests";
+        return "redirect:/client/requests";
     }
 
 }

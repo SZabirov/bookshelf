@@ -1,8 +1,8 @@
-DROP TABLE users_having;
-DROP TABLE users_wish;
+DROP TABLE client_having;
+DROP TABLE client_wish;
 DROP TABLE token;
-DROP TABLE messages;
+DROP TABLE message;
 DROP TABLE book;
 DROP TABLE author_bookname;
 DROP TABLE author;
-DROP TABLE users;
+DROP TABLE client;

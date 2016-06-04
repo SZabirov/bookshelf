@@ -3,7 +3,7 @@ package com.fujitsu.fs.javalab.bookshelf.service;
 
 import com.fujitsu.fs.javalab.bookshelf.dao.repository.TokenRepository;
 import com.fujitsu.fs.javalab.bookshelf.models.Token;
-import com.fujitsu.fs.javalab.bookshelf.models.Users;
+import com.fujitsu.fs.javalab.bookshelf.models.Client;
 import com.fujitsu.fs.javalab.bookshelf.service.interfaces.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ public class TokenServiceImpl implements TokenService {
     TokenRepository tokenRepository;
 
     @Override
-    public List<Token> getAllTokensForUser(Users users) {
-        return tokenRepository.findAllByUsers(users);
+    public List<Token> getAllTokensForClient(Client client) {
+        return tokenRepository.findAllByClient(client);
     }
 
     @Override
@@ -30,9 +30,9 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public Token addToken(Users users, String tokenText) {
+    public Token addToken(Client client, String tokenText) {
         Token token = new Token();
-        token.setUsers(users);
+        token.setClient(client);
         token.setToken(tokenText);
         tokenRepository.save(token);
         return token;

@@ -37,8 +37,8 @@
             <ul>
                 <li><a href="/">Главная</a></li>
                 <li><a href="/profile">Мой профиль</a></li>
-                <li><a href="/user/requests">Предложения</a></li>
-                <li><a href="/user/settings">Настройки</a></li>
+                <li><a href="/client/requests">Предложения</a></li>
+                <li><a href="/client/settings">Настройки</a></li>
                 <li><a href="/search">Поиск</a></li>
                 <li><a href="/logout">Выход</a></li>
             </ul>
@@ -48,20 +48,20 @@
 
 <!-- Main -->
 <div id="main" class="wrapper style1">
-    <form id="settings_form" action='/user/settings' method='POST' class='form1'>
+    <form id="settings_form" action='/client/settings' method='POST' class='form1'>
     <#if error??>
         <span class="error_text">${error}</span>
     </#if>
-        <input type="hidden" name="id" value="${user.id}">
-        <input id="login" oninput="correctLogin()" type='text' name='user' class='loginform'
-               placeholder='${user.nickname}'>
+        <input type="hidden" name="id" value="${client.id}">
+        <input id="login" oninput="correctLogin()" type='text' name='client' class='loginform'
+               placeholder='${client.nickname}'>
         <p class="loginform" id="login_valid" style="margin-bottom: 0"></p><br/>
         <input id="email" oninput="correctEmail()" type='text' name='email' class='loginform'
-               placeholder='${user.email}'>
+               placeholder='${client.email}'>
         <p class="loginform" id="valid" style="margin-bottom: 0"></p><br/>
-        <input type='text' name='city' class='loginform' placeholder='${user.city}'><br/>
+        <input type='text' name='city' class='loginform' placeholder='${client.city}'><br/>
         <input id="phone" oninput="correctPhone()" type='text' name='phone' class='loginform'
-               placeholder='${user.phone}'>
+               placeholder='${client.phone}'>
         <p class="loginform" id="phone_valid" style="margin-bottom: 0"></p><br/>
         <input id="old_pass" type='password' name='old_password' class='loginform'
                placeholder='Введите старый пароль'><br/>
@@ -130,11 +130,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".username").focus(function () {
-            $(".user-icon").css("left", "-48px");
+        $(".clientname").focus(function () {
+            $(".client-icon").css("left", "-48px");
         });
-        $(".username").blur(function () {
-            $(".user-icon").css("left", "0px");
+        $(".clientname").blur(function () {
+            $(".client-icon").css("left", "0px");
         });
 
         $(".password").focus(function () {
