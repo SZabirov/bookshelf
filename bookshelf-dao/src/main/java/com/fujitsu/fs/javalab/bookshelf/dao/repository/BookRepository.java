@@ -17,7 +17,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     /**
      * Returns all the books from the table
      *
-     * @return list of authors or null if none was found
+     * @return list of books or null if none was found
      */
     List<Book> findAll();
 

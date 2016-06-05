@@ -118,7 +118,8 @@ public class ClientHavingServiceImplTest {
     }
 
     @Test
-    public void addClientHavingShouldCreateNewAuthorIfItDoesNotExist() {
+    public void
+    addClientHavingShouldCreateNewAuthorIfItDoesNotExist() {
         clientHavingService.addClientHaving(client, "name", author.getSurname(),
                 author.getMiddlename(), book.getPubhouse(), book.getPubYear(),
                 book.getDescription(), book.getAuthorBookname().getBookname());

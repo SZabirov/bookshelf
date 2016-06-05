@@ -25,11 +25,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean ifBookIsVerified(int id) {
-        return bookRepository.findById(id).getVerified();
-    }
-
-    @Override
     public List<Book> getBooksByAuthorBookname(AuthorBookname authorBookname) {
         return bookRepository.findAllByAuthorBookname(authorBookname);
     }

@@ -17,7 +17,7 @@ public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBooknam
     /**
      * Returns all AuthorBooknames from the table
      *
-     * @return AuthorBookname list
+     * @return AuthorBookname list or null if found nothing
      */
     List<AuthorBookname> findAll();
 
@@ -26,7 +26,7 @@ public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBooknam
      * with specified Author
      *
      * @param author
-     * @return AuthorBookname list
+     * @return AuthorBookname list or null if found nothing
      */
     List<AuthorBookname> findAllByAuthor(Author author);
 
@@ -35,7 +35,7 @@ public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBooknam
      * with specified bookname
      *
      * @param bookname
-     * @return AuthorBookname list
+     * @return AuthorBookname list or null if found nothing
      */
     List<AuthorBookname> findAllByBookname(String bookname);
 
@@ -44,7 +44,7 @@ public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBooknam
      *
      * @param author
      * @param bookname
-     * @return AuthorBookname
+     * @return AuthorBookname or null if found nothing
      */
     AuthorBookname findByAuthorAndBookname(Author author, String bookname);
 

@@ -14,7 +14,7 @@ public interface JpaRepositoryClient extends JpaRepository<Client, Integer> {
      * Returns the client with specified id
      *
      * @param id unique identifier
-     * @return Client
+     * @return Client or null if found nothing
      */
     Client findById(int id);
 
@@ -22,9 +22,15 @@ public interface JpaRepositoryClient extends JpaRepository<Client, Integer> {
      * Returns the client with specified unique name
      *
      * @param nickname
-     * @return
+     * @return Client or null if found nothing
      */
     Client findByNickname(String nickname);
 
+    /**
+     * Returns the client with specified email
+     *
+     * @param email
+     * @return Client or null if found nothing
+     */
     Client findByEmail(String email);
 }

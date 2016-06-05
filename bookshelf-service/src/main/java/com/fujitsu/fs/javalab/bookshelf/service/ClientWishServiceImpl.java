@@ -12,9 +12,6 @@ import com.fujitsu.fs.javalab.bookshelf.service.interfaces.ClientWishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by aygulmardanova on 08.05.16.
  */
@@ -26,27 +23,6 @@ public class ClientWishServiceImpl implements ClientWishService {
     AuthorBooknameService authorBooknameService;
     @Autowired
     AuthorService authorService;
-
-    @Override
-    public List<ClientWish> getAllClientWishesForClient(Client client) {
-        return clientWishRepository.findAllByClient(client);
-    }
-
-    @Override
-    public void deleteClientWish(Client client, AuthorBookname authorBookname) {
-        ClientWish clientWish = clientWishRepository.findByClientAndAuthorBookname(client, authorBookname);
-        clientWishRepository.delete(clientWish);
-    }
-
-    @Override
-    public List<AuthorBookname> getAllBooksThatClientWishes(Client client) {
-        List<ClientWish> clientWishes = client.getClientWishes();
-        List<AuthorBookname> authorBooknames = new ArrayList<>();
-        for (ClientWish clientWish : clientWishes) {
-            authorBooknames.add(clientWish.getAuthorBookname());
-        }
-        return authorBooknames;
-    }
 
     @Override
     public ClientWish addClientWish(Client client, AuthorBookname authorBookname) {

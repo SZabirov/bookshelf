@@ -5,14 +5,12 @@ import com.fujitsu.fs.javalab.bookshelf.models.AuthorBookname;
 import com.fujitsu.fs.javalab.bookshelf.models.Book;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
 
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class BookServiceImplTest {
 
@@ -50,20 +48,6 @@ public class BookServiceImplTest {
     @Test
     public void getBookByIdShouldReturnNullBookIfIdDoesNotExists() {
         Assert.assertNull(bookService.getById(book.getId() + 100));
-    }
-
-//    @Ignore
-    @Test
-    public void ifBookIsVerifiedShouldReturnTrueIfVerifiedBook() {
-        Assert.assertTrue(bookService.ifBookIsVerified(book.getId()));
-    }
-
-    @Test
-    public void ifBookIsVerifiedShouldReturnFalseIfNotVerifiedBook() {
-        Book book2 = new Book();
-        book2.setVerified(false);
-        when(bookRepository.findById(book2.getId())).thenReturn(book2);
-        Assert.assertFalse(bookService.ifBookIsVerified(book2.getId()));
     }
 
     @Test

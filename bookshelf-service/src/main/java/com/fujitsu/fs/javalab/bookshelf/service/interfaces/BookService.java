@@ -11,13 +11,34 @@ import java.util.List;
  */
 public interface BookService {
 
+    /**
+     * Returns all the existing books
+     *
+     * @return list of authors or null if none was found
+     */
     List<Book> getAll();
 
-    boolean ifBookIsVerified(int id);
-
+    /**
+     * Returns all books with specified AuthorBookname
+     *
+     * @param authorBookname
+     * @return list of Books
+     */
     List<Book> getBooksByAuthorBookname(AuthorBookname authorBookname);
 
+    /**
+     * Returns Book by id
+     *
+     * @param id unique identifier
+     * @return Book
+     */
     Book getById(int id);
 
+    /**
+     * Adds new Book and returns created entity
+     *
+     * @param book
+     * @return Book
+     */
     Book addBook(Book book);
 }

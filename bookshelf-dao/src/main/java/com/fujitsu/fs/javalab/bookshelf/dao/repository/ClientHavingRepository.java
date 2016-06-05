@@ -15,11 +15,37 @@ import java.util.List;
 @Repository
 public interface ClientHavingRepository extends JpaRepository<ClientHaving, Integer> {
 
+    /**
+     * Returns all the ClientHavings
+     *
+     * @return ClientHaving or null if found nothing
+     */
     List<ClientHaving> findAll();
 
+    /**
+     * Returns all the ClientHavings
+     * of specified client
+     *
+     * @param client
+     * @return list of ClientHavings or null if found nothing
+     */
     List<ClientHaving> findAllByClient(Client client);
 
+    /**
+     * Returns all the ClientHavings
+     * for specified book
+     *
+     * @param book
+     * @return list of ClientHavings or null if found nothing
+     */
     List<ClientHaving> findAllByBook(Book book);
 
+    /**
+     * Returns ClientHaving with specified client and book
+     *
+     * @param client
+     * @param book
+     * @return ClientHaving or null if found nothing
+     */
     ClientHaving findByClientAndBook(Client client, Book book);
 }
