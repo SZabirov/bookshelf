@@ -26,8 +26,17 @@ public class SearchServiceImpl implements SearchService {
     public List<Book> getSearchResult(String authorName, String authorSurname, String bookname) {
         List<Author> authors = authorService.getAllAuthorByFirstnameAndSurname(authorName, authorSurname);
         List<AuthorBookname> authorBooknameList = new ArrayList<>();
+        if (authors == null) {
+            return null;
+        }
         for (Author author : authors) {
-            authorBooknameList.add(authorBooknameService.getByAuthorAndBookname(author, bookname));
+            AuthorBookname authorBookname = authorBooknameService.getByAuthorAndBookname(author, bookname);
+            if (authorBookname != null ) {
+                authorBooknameList.add(authorBookname);
+            }
+        }
+        if (authorBooknameList.size() == 0) {
+            return null;
         }
         List <Book> bookList = new ArrayList<>();
         for (AuthorBookname authorBookname : authorBooknameList) {

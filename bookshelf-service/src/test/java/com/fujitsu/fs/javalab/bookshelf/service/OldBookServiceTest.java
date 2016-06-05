@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 
 /**
- * Created by aygulmardanova on 03.06.16.
+ * Old version of Test Class for BookServiceImpl class
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)

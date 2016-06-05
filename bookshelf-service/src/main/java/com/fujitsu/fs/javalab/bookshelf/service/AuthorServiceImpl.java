@@ -41,7 +41,7 @@ public class AuthorServiceImpl implements AuthorService {
     public Author addAuthor(Author author) {
         Author existingAuthor = getAuthorByFirstnameAndSurnameAndMiddlename(author.getFirstname(),
                 author.getSurname(), author.getMiddlename());
-        if (existingAuthor != null) {
+        if (existingAuthor == null) {
             return authorRepository.save(author);
         } else {
             return existingAuthor;

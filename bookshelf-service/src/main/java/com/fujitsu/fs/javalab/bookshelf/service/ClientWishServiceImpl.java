@@ -12,6 +12,9 @@ import com.fujitsu.fs.javalab.bookshelf.service.interfaces.ClientWishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by aygulmardanova on 08.05.16.
  */
@@ -25,12 +28,37 @@ public class ClientWishServiceImpl implements ClientWishService {
     AuthorService authorService;
 
     @Override
+    public List<ClientWish> getAllClientWishesForClient(Client client) {
+        return clientWishRepository.findAllByClient(client);
+    }
+
+    @Override
+    public void deleteClientWish(Client client, AuthorBookname authorBookname) {
+        ClientWish clientWish = clientWishRepository.findByClientAndAuthorBookname(client, authorBookname);
+        if (clientWish != null) {
+            clientWishRepository.delete(clientWish);
+        }
+    }
+
+    @Override
+    public List<AuthorBookname> getAllBooksThatClientWishes(Client client) {
+        List<ClientWish> clientWishes = client.getClientWishes();
+        if (clientWishes == null) {
+            return null;
+        }
+        List<AuthorBookname> authorBooknames = new ArrayList<>();
+        for (ClientWish clientWish : clientWishes) {
+            authorBooknames.add(clientWish.getAuthorBookname());
+        }
+        return authorBooknames;
+    }
+
+    @Override
     public ClientWish addClientWish(Client client, AuthorBookname authorBookname) {
         ClientWish clientWish = new ClientWish();
         clientWish.setAuthorBookname(authorBookname);
         clientWish.setClient(client);
-        ClientWish createdClientWish = clientWishRepository.save(clientWish);
-        return (clientWish);
+        return clientWishRepository.save(clientWish);
     }
 
     @Override
@@ -61,6 +89,8 @@ public class ClientWishServiceImpl implements ClientWishService {
     @Override
     public void deleteById(Integer id) {
         ClientWish clientWish = clientWishRepository.findById(id);
-        clientWishRepository.delete(clientWish);
+        if (clientWish != null) {
+            clientWishRepository.delete(clientWish);
+        }
     }
 }
