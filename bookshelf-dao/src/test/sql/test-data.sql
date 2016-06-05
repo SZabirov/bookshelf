@@ -75,8 +75,6 @@ INSERT into client_having(client_id, book_id) VALUES (2, 2);
 INSERT into client_having(client_id, book_id) VALUES (2, 3);
 INSERT into client_wish(client_id, author_bookname_id) VALUES (2, 11);
 
-INSERT into client_having(client_id, book_id) VALUES (4, 6);
-INSERT into client_wish(client_id, author_bookname_id) VALUES (4, 2);
+INSERT into message(sender_id, receiver_id, having_book_id, wish_book_id) VALUES (1, 3, 3, 1);
 
-INSERT into client_having(client_id, book_id) VALUES (4, 1);
-INSERT into client_wish(client_id, author_bookname_id) VALUES (4, 4);
+INSERT INTO token(client_id, token) VALUES (1, 'tkn');
