@@ -38,7 +38,6 @@ public class ClientServiceImpl implements ClientService {
                            String new_surname, String new_city, String new_phone,
                            String new_hashpassword, String new_avatar) {
         Client client = jpaRepositoryClient.findById(id);
-        System.out.println(client);
         if (new_nickname != null && !new_nickname.equals("")) {
             client.setNickname(new_nickname);
         }
@@ -63,14 +62,13 @@ public class ClientServiceImpl implements ClientService {
         if (new_avatar != null && !new_avatar.equals("")) {
             client.setAvatar(new_avatar);
         }
-        System.out.println(client);
         jpaRepositoryClient.save(client);
     }
 
     @Override
     public boolean ifCorrectClient(int id, String hashpassword) {
         Client client = jpaRepositoryClient.findById(id);
-        return client.getHashpassword().equals(hashpassword);
+        return client != null && client.getHashpassword().equals(hashpassword);
     }
 
     @Override

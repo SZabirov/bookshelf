@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.when;
 
 /**
@@ -35,6 +36,7 @@ public class TestData {
     private List<ClientHaving> clientHavings;
     private List<ClientWish> clientWishes;
     private List<Token> tokens;
+    private List<Client> clients;
 
     private JpaRepositoryAuthorBookname jpaRepositoryAuthorBookname;
     private AuthorRepository authorRepository;
@@ -43,6 +45,7 @@ public class TestData {
     private TokenRepository tokenRepository;
     private ClientHavingRepository clientHavingRepository;
     private ClientWishRepository clientWishRepository;
+    private JpaRepositoryClient jpaRepositoryClient;
 
     public TestData() {
         author = new Author();
@@ -66,6 +69,7 @@ public class TestData {
         client.setPhone("123456789");
         client.setEmail("email@mail.ru");
         client.setCity("city");
+        client.setHashpassword("12345");
 
         client2 = new Client();
         client2.setNickname("login2");
@@ -100,6 +104,10 @@ public class TestData {
 
         tokens = new ArrayList<>();
         tokens.add(token);
+
+        clients = new ArrayList<>();
+        clients.add(client);
+        clients.add(client2);
 
         messageList = new ArrayList<>();
         messageList.add(message);
@@ -165,7 +173,24 @@ public class TestData {
         when(clientHavingRepository.save(any(ClientHaving.class))).thenReturn(clientHaving);
 
         clientWishRepository = mock(ClientWishRepository.class);
+        when(clientWishRepository.findAll()).thenReturn(clientWishes);
+        when(clientWishRepository.findAllByClient(any(Client.class))).thenReturn(null);
+        when(clientWishRepository.findAllByClient(client)).thenReturn(clientWishes);
+        when(clientWishRepository.findById(anyInt())).thenReturn(null);
+        when(clientWishRepository.findById(clientWish.getId())).thenReturn(clientWish);
+        when(clientWishRepository.findByClientAndAuthorBookname(any(Client.class), any(AuthorBookname.class))).thenReturn(null);
+        when(clientWishRepository.findByClientAndAuthorBookname(client, authorBookname)).thenReturn(clientWish);
+        when(clientWishRepository.save(any(ClientWish.class))).thenReturn(clientWish);
 
+        jpaRepositoryClient = mock(JpaRepositoryClient.class);
+        when(jpaRepositoryClient.findAll()).thenReturn(clients);
+        when(jpaRepositoryClient.findById(anyInt())).thenReturn(null);
+        when(jpaRepositoryClient.findById(client.getId())).thenReturn(client);
+        when(jpaRepositoryClient.findByEmail(anyString())).thenReturn(null);
+        when(jpaRepositoryClient.findByEmail(client.getEmail())).thenReturn(client);
+        when(jpaRepositoryClient.findByNickname(anyString())).thenReturn(null);
+        when(jpaRepositoryClient.findByNickname(client.getNickname())).thenReturn(client);
+        when(jpaRepositoryClient.save(any(Client.class))).thenReturn(client);
     }
 
     public Author getAuthor() {
@@ -296,6 +321,14 @@ public class TestData {
         this.tokens = tokens;
     }
 
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+
     public JpaRepositoryAuthorBookname getJpaRepositoryAuthorBookname() {
         return jpaRepositoryAuthorBookname;
     }
@@ -350,5 +383,13 @@ public class TestData {
 
     public void setClientWishRepository(ClientWishRepository clientWishRepository) {
         this.clientWishRepository = clientWishRepository;
+    }
+
+    public JpaRepositoryClient getJpaRepositoryClient() {
+        return jpaRepositoryClient;
+    }
+
+    public void setJpaRepositoryClient(JpaRepositoryClient jpaRepositoryClient) {
+        this.jpaRepositoryClient = jpaRepositoryClient;
     }
 }

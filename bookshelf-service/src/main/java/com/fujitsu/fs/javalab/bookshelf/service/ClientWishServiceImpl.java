@@ -35,12 +35,17 @@ public class ClientWishServiceImpl implements ClientWishService {
     @Override
     public void deleteClientWish(Client client, AuthorBookname authorBookname) {
         ClientWish clientWish = clientWishRepository.findByClientAndAuthorBookname(client, authorBookname);
-        clientWishRepository.delete(clientWish);
+        if (clientWish != null) {
+            clientWishRepository.delete(clientWish);
+        }
     }
 
     @Override
     public List<AuthorBookname> getAllBooksThatClientWishes(Client client) {
         List<ClientWish> clientWishes = client.getClientWishes();
+        if (clientWishes == null) {
+            return null;
+        }
         List<AuthorBookname> authorBooknames = new ArrayList<>();
         for (ClientWish clientWish : clientWishes) {
             authorBooknames.add(clientWish.getAuthorBookname());
@@ -53,8 +58,7 @@ public class ClientWishServiceImpl implements ClientWishService {
         ClientWish clientWish = new ClientWish();
         clientWish.setAuthorBookname(authorBookname);
         clientWish.setClient(client);
-        ClientWish createdClientWish = clientWishRepository.save(clientWish);
-        return (clientWish);
+        return clientWishRepository.save(clientWish);
     }
 
     @Override
@@ -85,6 +89,8 @@ public class ClientWishServiceImpl implements ClientWishService {
     @Override
     public void deleteById(Integer id) {
         ClientWish clientWish = clientWishRepository.findById(id);
-        clientWishRepository.delete(clientWish);
+        if (clientWish != null) {
+            clientWishRepository.delete(clientWish);
+        }
     }
 }
