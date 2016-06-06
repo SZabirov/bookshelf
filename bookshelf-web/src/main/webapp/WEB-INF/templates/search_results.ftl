@@ -50,22 +50,24 @@
 <div id="main" class="wrapper style1">
     <div class="profilebooks">
         <h3>Результаты поиска: </h3>
-            <div class="bookshelf">
-                <#list bookList as book>
-                    <div class="book_in_bookshelf">
-                        <a href="/book?id=${book.id}"><img src="images/book.jpg"/></a>
-                        <div class="book_name"><b>Автор:</b> ${book.authorBookname.author.surname}
-                        ${book.authorBookname.author.firstname}
+        <div class="bookshelf">
+        <#if booklist?has_content>
+            <#list bookList as book>
+                <div class="book_in_bookshelf">
+                    <a href="/book?id=${book.id}"><img src="images/book.jpg"/></a>
+                    <div class="book_name"><b>Автор:</b> ${book.authorBookname.author.surname}
+                    ${book.authorBookname.author.firstname}
                         <#if book.authorBookname.author.middlename??>
-                            ${book.authorBookname.author.middlename}
+                        ${book.authorBookname.author.middlename}
                         </#if><br/>
                         <b>Книга:</b> ${book.authorBookname.bookname}<br/>
                         <b>Издательство:</b> ${book.pubhouse}<br/>
                         <b>Год издания:</b> ${book.pubYear}<br/>
                         <b>Описание:</b> ${book.description}</div>
-                    </div>
-                </#list>
-            </div>
+                </div>
+            </#list>
+        </#if>
+        </div>
     </div>
 
 </div>
