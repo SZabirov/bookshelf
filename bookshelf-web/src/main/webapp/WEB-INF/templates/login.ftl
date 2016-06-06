@@ -46,8 +46,8 @@
         </#if>
         <input type='text' name='j_clientname' class='loginform' placeholder='Логин'><br />
         <input type='password' name='j_password' class='loginform'  placeholder='Пароль'><br />
-        <div class='chb'><input type='checkbox' name='chb1'/><label for='chb1'><span></span>
-            <small class='small-text'>Запомнить меня</small></label></div>
+        <div class='chb'><input type='hidden' name='chb1'/><label for='chb1'><span></span>
+            <small class='small-text'></small></label></div>
         <input type='submit' value='Войти' class='submit-button'>
     </form>
 </div>
