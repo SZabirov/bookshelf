@@ -11,45 +11,45 @@ import java.util.List;
 public interface AuthorService {
 
     /**
-     * Returns only one author by id
+     * Returns one {@code Author} by ID
      *
      * @param id the identifier of the object
-     * @return the author or null if nothing was found
+     * @return the {@code Author} or {@code null} if nothing was found
      */
     Author getAuthorById(int id);
 
     /**
-     * Returns all the authors
+     * Returns all the {@code Authors}
      *
-     * @return list of authors or null if none was found
+     * @return {@code List} of {@code Authors} or {@code null} if none was found
      */
     List<Author> getAll();
 
     /**
-     * Returns all the authors by firstname and surname
+     * Returns all the {@code Authors} by firstname and surname
      *
-     * @param firstname
-     * @param surname
-     * @return the authors or null if none was found
+     * @param firstname {@code Author's} firstname
+     * @param surname   {@code Author's} surname
+     * @return the {@code Authors} or {@code null} if none was found
      */
     List<Author> getAllAuthorByFirstnameAndSurname(String firstname, String surname);
 
     /**
-     * Returns author by firstname, surname and middlename
+     * Returns {@code Author} by firstname, surname and middlename
      *
-     * @param firstname
-     * @param surname
-     * @param middlename
-     * @return the author or null if none was found
+     * @param firstname  {@code Authors} firstname
+     * @param surname    {@code Authors} surname
+     * @param middlename {@code Authors} middlename
+     * @return {@code List} of the {@code Authors} or {@code null} if none was found
      */
     Author getAuthorByFirstnameAndSurnameAndMiddlename(String firstname, String surname, String middlename);
 
     /**
-     * Saves new Author and returns created entity
-     * or returns existing one in case of containing such Author
+     * Saves new {@code Author} and returns created entity
+     * or returns existing one in case of containing such {@code Author}
      *
-     * @param author
-     * @return
+     * @param author {@code Author} to add
+     * @return {@code Author}
      */
     Author addAuthor(Author author);
 }

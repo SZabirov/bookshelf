@@ -13,35 +13,35 @@ import java.util.List;
 public interface ClientWishService {
 
     /**
-     * Returns all the client's wishes
+     * Returns all the {@code Client's} {@code Wishes}
      *
-     * @param client
-     * @return Client list or null if there is none.
+     * @param client {@code Client} to get {@code Wishes} of
+     * @return {@code List} of {@code Clients} or {@code null} if there is none.
      */
     List<ClientWish> getAllClientWishesForClient(Client client);
 
     /**
-     * Deletes ClientWish by Client and AuthorBookname
+     * Deletes {@code Wishes} by {@code Client} and {@code AuthorBookname}
      *
-     * @param client
-     * @param authorBookname
+     * @param client         {@code Client}
+     * @param authorBookname {@code AuthorBookname} to delete
      */
     void deleteClientWish(Client client, AuthorBookname authorBookname);
 
     /**
-     * Returns all AuthorBooknames for the specified client
+     * Returns all the {@code AuthorBooknames} for the specified {@code Client}
      * that he wishes
      *
-     * @param client
-     * @return list of AuthorBooknames or null if there is none.
+     * @param client {@code Client}
+     * @return {@code List} of {@code AuthorBooknames} or {@code null} if there is none.
      */
     List<AuthorBookname> getAllBooksThatClientWishes(Client client);  //AuthorBookname list, that Client wishes
 
     /**
-     * Adds new ClientWish. Returns created object
+     * Adds new {@code Wish}. Returns created object
      *
-     * @param client
-     * @param authorBookname
+     * @param client         {@code Client}
+     * @param authorBookname {@code AuthorBookname} to delete
      * @return ClientWish
      */
     ClientWish addClientWish(Client client, AuthorBookname authorBookname);
@@ -52,19 +52,19 @@ public interface ClientWishService {
      * Creates Author and AuthorBookname if they
      * doesn't exit.
      *
-     * @param authorName
-     * @param authorSurname
-     * @param authorMiddlename
-     * @param bookname
-     * @param client
+     * @param authorName       name of {@code Author} to delete
+     * @param authorSurname    surname of {@code Author} to delete
+     * @param authorMiddlename middlename of {@code Author} to delete
+     * @param bookname         name of {@code Book} to delete
+     * @param client           {@code Client} to delete {@code Book} of
      * @return Wishing
      */
     ClientWish addWishing(String authorName, String authorSurname, String authorMiddlename, String bookname, Client client);
 
     /**
-     * Deletes Wish by id
+     * Deletes {@code Wish} by ID
      *
-     * @param id
+     * @param id ID of the {@code Client} to delete
      */
     void deleteById(Integer id);
 

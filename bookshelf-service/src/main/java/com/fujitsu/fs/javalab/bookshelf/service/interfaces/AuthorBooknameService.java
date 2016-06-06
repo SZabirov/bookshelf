@@ -12,46 +12,46 @@ import java.util.List;
 public interface AuthorBooknameService {
 
     /**
-     * Returns all the AuthorBooknames
+     * Returns all the {@code AuthorBookname}
      *
-     * @return AuthorBookname list or null if found nothing
+     * @return {@code AuthorBookname} {@code List} or {@code null} if found nothing
      */
     List<AuthorBookname> getAll();
 
     /**
-     * Returns all the AuthorBooknames
-     * with specified Author
+     * Returns all the {@code AuthorBooknames}
+     * with specified {@code Author}
      *
-     * @param author
-     * @return AuthorBookname list or null if found nothing
+     * @param author {@code Author}
+     * @return {@code AuthorBookname} {@code List} or {@code null} if found nothing
      */
     List<AuthorBookname> getAllByAuthor(Author author);
 
     /**
-     * Returns all the AuthorBooknames
+     * Returns all the {@code AuthorBooknames}
      * with specified bookname
      *
-     * @param bookname
-     * @return AuthorBookname list or null if found nothing
+     * @param bookname name of the {@Book}
+     * @return {@code AuthorBookname} {@code List} or {@code null} if found nothing
      */
     List<AuthorBookname> getAllByBookname(String bookname);
 
     /**
-     * Returns AuthorBookname by author and bookname
+     * Returns {@code AuthorBookname} by {@code Author} and bookname
      *
-     * @param author
-     * @param bookname
-     * @return AuthorBookname or null if found nothing
+     * @param author {@code Author}
+     * @param bookname name of the {@Book}
+     * @return {@code AuthorBookname} or {@code null} if found nothing
      */
     AuthorBookname getByAuthorAndBookname(Author author, String bookname);
 
     /**
-     * Saves new AuthorBookname and returns created entity
+     * Saves new {@code AuthorBookname} and returns created entity
      * or if there already is such object then returns
      * existing entity that matches the requested one
      *
-     * @param authorBookname
-     * @return created or already existing AuthorBookname
+     * @param authorBookname {@code AuthorBookname} to save
+     * @return created or already existing {@code AuthorBookname}
      */
     AuthorBookname addAuthorBookname(AuthorBookname authorBookname);
 }

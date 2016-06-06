@@ -13,62 +13,62 @@ import java.util.List;
 public interface ClientHavingService {
 
     /**
-     * Returns all the ClientHavings
-     * of specified client
+     * Returns all the {@code ClientHavings}
+     * of specified {@code Client}
      *
-     * @param client
-     * @return list of ClientHavings or null if found nothing
+     * @param client {@code Client}  to get {@code ClientHavings} of
+     * @return list of {@code ClientHavings} or {@code null} if found nothing
      */
     List<ClientHaving> getAllByClient(Client client);
 
     /**
-     * Returns all the Clients
-     * that have specified book
+     * Returns all the {@code Clients}
+     * that have specified {@code Book}
      *
-     * @param book
-     * @return list of Clients or null if found nothing
+     * @param book {@code Book} to find
+     * @return {@code List} of {@code Clients} or {@code null} if found nothing
      */
     List<Client> getAllClientForBook(Book book);
 
     /**
-     * Returns all books of the client
+     * Returns all {@code Books} of the {@code Client}
      *
-     * @param client
-     * @return list of Books
+     * @param client {@code Client}
+     * @return {@code List} of {@code Books}
      */
     List<Book> getAllBooksThatClientHas(Client client);
 
     /**
-     * Deletes ClientHaving by Client and Book
+     * Deletes {@code ClientHaving} by {@code Client} and {@code Book}
      *
-     * @param client
-     * @param book
+     * @param client {@code Client} to delete {@code ClientHaving} of
+     * @param book   {@code Book} to delete
      */
     void deleteClientHaving(Client client, Book book);
 
     /**
-     * Creates new ClientHaving by client and book.
+     * Creates new {@code ClientHaving} by {@code Client} and {@code Book}.
      * Returns new entity
      *
-     * @param client
-     * @param book
-     * @return ClientHaving
+     * @param client {@code Client} to create {@code ClientHaving} of
+     * @param book   {@code Book} to create {@code ClientHaving} for
+     * @return {@code ClientHaving}
      */
     ClientHaving createClientHaving(Client client, Book book);
 
     /**
-     * Adds new ClientHaving by creating new book
+     * Adds new {@code ClientHaving} by creating new book
      * and adding it to creating entity.
      *
-     * @param client
-     * @param authorName
-     * @param authorSurname
-     * @param authorMiddlename
-     * @param pubhouse
-     * @param pubyear
-     * @param description
-     * @param bookname
-     * @return ClientHaving
+     * @param client           {@code Client} to create {@code ClientHaving} of
+     * @param authorName       {@code Book's} authorName
+     * @param authorSurname    {@code Book's} authorSurname
+     * @param authorMiddlename {@code Book's} authorMiddlename
+     * @param pubhouse         {@code Book's} pubhouse
+     * @param pubyear          {@code Book's} pubyear
+     * @param description      {@code Book's} description
+     * @param bookname         {@code Book's} bookname
+     * @return {@code ClientHaving}
      */
     ClientHaving addClientHaving(Client client,
                                  String authorName,

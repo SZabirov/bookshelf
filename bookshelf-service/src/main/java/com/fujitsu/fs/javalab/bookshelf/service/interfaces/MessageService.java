@@ -12,35 +12,35 @@ import java.util.List;
 public interface MessageService {
 
     /**
-     * Returns all sent messages of the Client.
+     * Returns all sent {@code Messages} of the {@code Client}.
      *
-     * @param client
-     * @return list of Messages or null if ther is none
+     * @param client - {@code Client} to show {@code Messages} of
+     * @return {@code List} of {@code Messages} or {@code null} if there is none
      */
     List<Message> findMessageBySender(Client client);
 
     /**
      * Returns all recieved messages of the Client.
      *
-     * @param client
-     * @return list of Messages or null if there is none
+     * @param client - {@code Client} to show {@code Messages} of
+     * @return {@code List} of {@code Messages} or {@code null} if there is none
      */
     List<Message> findMessageByReceiver(Client client);
 
     /**
-     * Adds new Message
+     * Adds new {@code Message}
      *
-     * @param sender
-     * @param receiver
-     * @param havingBook
-     * @param wishingBook
+     * @param sender      {@code Client} to show sent {@code Messages} of
+     * @param receiver    {@code Client} to show received {@code Messages} of
+     * @param havingBook  {@code Book} in property
+     * @param wishingBook wanted {@code Book}
      */
     void addNewMessage(Client sender, Client receiver, Book havingBook, Book wishingBook);
 
     /**
-     * Deletes Message by ID
+     * Deletes {@code Message} by ID
      *
-     * @param id
+     * @param id ID of the {@code Messages} to delete
      */
     void deleteById(Integer id);
 

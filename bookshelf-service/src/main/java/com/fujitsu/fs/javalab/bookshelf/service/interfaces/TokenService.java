@@ -12,25 +12,26 @@ import java.util.List;
 public interface TokenService {
 
     /**
-     * Returns all the Tokens of the Client
+     * Returns all the {@code Tokens} of the {@code Client}
      *
-     * @param client
-     * @return Token list or null if there is none
+     * @param client {@code Client} to search {@code Tokens} of
+     * @return {@code Token} List or {@code null} if there is none
      */
     List<Token> getAllTokensForClient(Client client);
 
     /**
-     * Returns all the presented Tokens
-     * @return list of Token or null if there is none
+     * Returns all the presented {@code Tokens}
+     *
+     * @return {@code List} of {@code Token} or {@code null} if there is none
      */
     List<Token> getAll();
 
     /**
-     * Saves new Token. Returns created entity
+     * Saves new {@code Token}. Returns created entity
      *
-     * @param client
-     * @param token
-     * @return Token
+     * @param client client to add {@code Token} to
+     * @param token  {@code Token} to add
+     * @return {@code Token}
      */
     Token addToken(Client client, String token);
 }
