@@ -64,20 +64,18 @@ public class AuthorBookname {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AuthorBookname that = (AuthorBookname) o;
+        AuthorBookname authorBookname = (AuthorBookname) o;
 
-        if (id != that.id) return false;
-        if (bookname != null ? !bookname.equals(that.bookname) : that.bookname != null) return false;
-        if (verified != null ? !verified.equals(that.verified) : that.verified != null) return false;
-
+        if (getAuthor() != null ? !getAuthor().equals(authorBookname.getAuthor()) : authorBookname.getAuthor() != null) return false;
+        if (bookname != null ? !bookname.equals(authorBookname.bookname) : authorBookname.bookname != null) return false;
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result;
+        result = getAuthor().hashCode();
         result = 31 * result + (bookname != null ? bookname.hashCode() : 0);
-        result = 31 * result + (verified != null ? verified.hashCode() : 0);
         return result;
     }
 

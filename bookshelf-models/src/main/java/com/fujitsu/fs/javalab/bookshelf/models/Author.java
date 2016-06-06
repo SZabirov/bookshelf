@@ -72,17 +72,15 @@ public class Author {
 
         Author author = (Author) o;
 
-        if (id != author.id) return false;
         if (firstname != null ? !firstname.equals(author.firstname) : author.firstname != null) return false;
         if (surname != null ? !surname.equals(author.surname) : author.surname != null) return false;
         if (middlename != null ? !middlename.equals(author.middlename) : author.middlename != null) return false;
-
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = 1;
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (middlename != null ? middlename.hashCode() : 0);

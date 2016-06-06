@@ -55,16 +55,16 @@ public class Token {
 
         Token token1 = (Token) o;
 
-        if (id != token1.id) return false;
+        if (!client.equals(token1.client)) return false;
         if (token != null ? !token.equals(token1.token) : token1.token != null) return false;
-
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (token != null ? token.hashCode() : 0);
+        int result = 1;
+        result = 31 * result + client.hashCode();
+        result = 31 * result + token.hashCode();
         return result;
     }
 

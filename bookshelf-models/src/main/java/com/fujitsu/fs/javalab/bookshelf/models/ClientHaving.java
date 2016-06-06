@@ -52,16 +52,19 @@ public class ClientHaving {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ClientHaving that = (ClientHaving) o;
+        ClientHaving clientHaving = (ClientHaving) o;
 
-        if (id != that.id) return false;
-
+        if (!book.equals(clientHaving.book)) return false;
+        if (!client.equals(clientHaving.client)) return false;
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result;
+        result = book.hashCode();
+        result = 31 * result + client.hashCode();
+        return result;
     }
 
     @Override

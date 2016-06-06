@@ -183,30 +183,14 @@ public class Client {
 
         Client client = (Client) o;
 
-        if (id != client.id) return false;
         if (nickname != null ? !nickname.equals(client.nickname) : client.nickname != null) return false;
-        if (email != null ? !email.equals(client.email) : client.email != null) return false;
-        if (firstname != null ? !firstname.equals(client.firstname) : client.firstname != null) return false;
-        if (surname != null ? !surname.equals(client.surname) : client.surname != null) return false;
-        if (city != null ? !city.equals(client.city) : client.city != null) return false;
-        if (phone != null ? !phone.equals(client.phone) : client.phone != null) return false;
-        if (hashpassword != null ? !hashpassword.equals(client.hashpassword) : client.hashpassword != null) return false;
-        if (avatar != null ? !avatar.equals(client.avatar) : client.avatar != null) return false;
-
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = 1;
         result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (hashpassword != null ? hashpassword.hashCode() : 0);
-        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
         return result;
     }
 

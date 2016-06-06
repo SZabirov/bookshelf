@@ -114,13 +114,11 @@ public class Book {
 
         Book book = (Book) o;
 
-        if (id != book.id) return false;
+        if (!getAuthorBookname().equals(book.getAuthorBookname())) return false;
         if (pubhouse != null ? !pubhouse.equals(book.pubhouse) : book.pubhouse != null) return false;
         if (pubYear != null ? !pubYear.equals(book.pubYear) : book.pubYear != null) return false;
         if (description != null ? !description.equals(book.description) : book.description != null) return false;
         if (photo != null ? !photo.equals(book.photo) : book.photo != null) return false;
-        if (verified != null ? !verified.equals(book.verified) : book.verified != null) return false;
-
         return true;
     }
 
@@ -135,12 +133,11 @@ public class Book {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result;
+        result = getAuthorBookname().hashCode();
         result = 31 * result + (pubhouse != null ? pubhouse.hashCode() : 0);
         result = 31 * result + (pubYear != null ? pubYear.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (photo != null ? photo.hashCode() : 0);
-        result = 31 * result + (verified != null ? verified.hashCode() : 0);
         return result;
     }
 

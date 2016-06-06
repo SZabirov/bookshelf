@@ -82,4 +82,28 @@ public class Message {
                 ", wishBook=" + wishBook.getAuthorBookname().getBookname() +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Message message = (Message) o;
+
+        if (!sender.equals(message.sender)) return false;
+        if (!receiver.equals(message.receiver)) return false;
+        if (!havingBook.equals(message.havingBook)) return false;
+        if (!wishBook.equals(message.wishBook)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        result = 31 * result + sender.hashCode();
+        result = 31 * result + receiver.hashCode();
+        result = 31 * result + havingBook.hashCode();
+        result = 31 * result + wishBook.hashCode();
+        return result;
+    }
 }

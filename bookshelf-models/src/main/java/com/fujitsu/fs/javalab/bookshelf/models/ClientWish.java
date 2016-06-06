@@ -54,14 +54,18 @@ public class ClientWish {
 
         ClientWish clientWish = (ClientWish) o;
 
-        if (id != clientWish.id) return false;
+        if (!authorBookname.equals(clientWish.authorBookname)) return false;
+        if (!client.equals(clientWish.client)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result;
+        result = authorBookname.hashCode();
+        result = 31 * result + client.hashCode();
+        return result;
     }
 
     @Override
