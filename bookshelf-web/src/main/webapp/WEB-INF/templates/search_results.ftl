@@ -51,7 +51,7 @@
     <div class="profilebooks">
         <h3>Результаты поиска: </h3>
         <div class="bookshelf">
-        <#if booklist?has_content>
+
             <#list bookList as book>
                 <div class="book_in_bookshelf">
                     <a href="/book?id=${book.id}"><img src="images/book.jpg"/></a>
@@ -66,7 +66,7 @@
                         <b>Описание:</b> ${book.description}</div>
                 </div>
             </#list>
-        </#if>
+
         </div>
     </div>
 
