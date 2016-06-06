@@ -104,6 +104,9 @@ public class ClientServiceImplTest {
 
     @Test
     public void updateClientShouldCallSaveMEthodInRepository() {
+        client.setAvatar("avatar.jpg");
+        client.setFirstname("name");
+        client.setSurname("surname");
         clientService.updateClient(client.getId(), client.getNickname(),
                 client.getEmail(), client.getFirstname(), client.getSurname(),
                 client.getCity(), client.getPhone(), client.getHashpassword(),
