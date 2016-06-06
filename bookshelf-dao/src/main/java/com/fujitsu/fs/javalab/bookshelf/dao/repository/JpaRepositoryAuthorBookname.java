@@ -15,36 +15,36 @@ import java.util.List;
 public interface JpaRepositoryAuthorBookname extends JpaRepository<AuthorBookname, Integer> {
 
     /**
-     * Returns all AuthorBooknames from the table
+     * Returns all {@code AuthorBooknames} from the table
      *
-     * @return AuthorBookname list or null if found nothing
+     * @return {@code AuthorBookname} {@code List} or {@code null} if found nothing
      */
     List<AuthorBookname> findAll();
 
     /**
-     * Returns all the AuthorBooknames from the table
-     * with specified Author
+     * Returns all the {@code AuthorBooknames} from the table
+     * with specified {@code Author}
      *
-     * @param author
-     * @return AuthorBookname list or null if found nothing
+     * @param author {@code Author} to search
+     * @return {@code AuthorBookname} {@code List} or {@code null} if found nothing
      */
     List<AuthorBookname> findAllByAuthor(Author author);
 
     /**
-     * Returns all the AuthorBooknames from the table
+     * Returns all the {@code AuthorBooknames} from the table
      * with specified bookname
      *
-     * @param bookname
-     * @return AuthorBookname list or null if found nothing
+     * @param bookname name of book to search
+     * @return {@code AuthorBookname} {@code List} or {@code null} if found nothing
      */
     List<AuthorBookname> findAllByBookname(String bookname);
 
     /**
-     * Returns AuthorBookname with unique author and bookname pair
+     * Returns {@code AuthorBookname} with unique {@code Author} and bookname pair
      *
-     * @param author
-     * @param bookname
-     * @return AuthorBookname or null if found nothing
+     * @param author   {@code Author} to search
+     * @param bookname name of book to search
+     * @return {@code AuthorBookname} or {@code null} if found nothing
      */
     AuthorBookname findByAuthorAndBookname(Author author, String bookname);
 

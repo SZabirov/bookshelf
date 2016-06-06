@@ -15,36 +15,36 @@ import java.util.List;
 public interface ClientWishRepository extends JpaRepository<ClientWish, Integer> {
 
     /**
-     * Returns all the ClientWishes
+     * Returns all the {@code ClientWishes}
      *
-     * @return list of ClientWishes or null if none was found
+     * @return {@code List} of {@code ClientWishes} or {@code null} if none was found
      */
     List<ClientWish> findAll();
 
     /**
-     * Returns ClientWish with specified id
+     * Returns {@code ClientWish} with specified ID
      *
-     * @param id unique identifier of ClientWish
-     * @return ClientWish or null if none was found
+     * @param id unique identifier of the {@code ClientWish}
+     * @return {@code ClientWish} or {@code null} if none was found
      */
     ClientWish findById(int id);
 
     /**
-     * Returns ClientWish with specified client
-     * and AuthorBookname
+     * Returns {@code ClientWish} with specified client
+     * and {@code AuthorBookname}
      *
-     * @param client
-     * @param authorBookname
-     * @return ClientWish or null if couldn't find
+     * @param client         {@code Client} to search
+     * @param authorBookname {@code AuthorBookname} to search
+     * @return {@code ClientWish} or {@code null} if couldn't find any
      */
     ClientWish findByClientAndAuthorBookname(Client client, AuthorBookname authorBookname);
 
     /**
-     * Returns all the ClientWishes
+     * Returns all the {@code ClientWishes}
      * of the specified Client
      *
-     * @param client
-     * @return list of ClientWishes or null if none was found
+     * @param client {@code Client} to search
+     * @return {@code List} of {@code ClientWish} or {@code null} if none was found
      */
     List<ClientWish> findAllByClient(Client client);
 }

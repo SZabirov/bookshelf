@@ -11,26 +11,26 @@ import org.springframework.stereotype.Repository;
 public interface JpaRepositoryClient extends JpaRepository<Client, Integer> {
 
     /**
-     * Returns the client with specified id
+     * Returns the {@code Client} with specified ID
      *
      * @param id unique identifier
-     * @return Client or null if found nothing
+     * @return {@code Client} or {@code null} if found nothing
      */
     Client findById(int id);
 
     /**
-     * Returns the client with specified unique name
+     * Returns the {@code Client} with specified unique name
      *
-     * @param nickname
-     * @return Client or null if found nothing
+     * @param nickname - unique {@code Client's} nickname
+     * @return {@code Client} or {@code null} if found nothing
      */
     Client findByNickname(String nickname);
 
     /**
-     * Returns the client with specified email
+     * Returns the {@code Client} with specified email
      *
-     * @param email
-     * @return Client or null if found nothing
+     * @param email - {@code Client's} email
+     * @return {@code Client} or {@code null} if found nothing
      */
     Client findByEmail(String email);
 }

@@ -15,18 +15,18 @@ import java.util.List;
 public interface TokenRepository extends JpaRepository<Token, Integer> {
 
     /**
-     * Returns all the Tokens from the table
+     * Returns all the {@code Tokens} from the table
      *
-     * @return list of tokens or null if there is none
+     * @return {@code List} of {@code Tokens} or {@code null} if there is none
      */
     List<Token> findAll();
 
     /**
-     * Returns all the Tokens
-     * of the specified Client
+     * Returns all the {@code Tokens}
+     * of the specified {@code Client}
      *
-     * @return list of tokens or null if there is none
+     * @param client {@code Client}
+     * @return {@code List} of {@code Tokens} or {@code null} if there is none
      */
     List<Token> findAllByClient(Client client);
-
 }

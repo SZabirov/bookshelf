@@ -13,9 +13,9 @@ import java.util.List;
 public interface ClientWishService {
 
     /**
-     * Returns all the {@code Client's} {@code Wishes}
+     * Returns all the {@code Client's} {@code ClientWishes}
      *
-     * @param client {@code Client} to get {@code Wishes} of
+     * @param client {@code Client} to get {@code ClientWishes} of
      * @return {@code List} of {@code Clients} or {@code null} if there is none.
      */
     List<ClientWish> getAllClientWishesForClient(Client client);

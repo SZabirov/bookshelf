@@ -11,26 +11,26 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 
     /**
-     * Returns all the messages of the specified Client
+     * Returns all the {@code Messages} of the specified {@code Client}
      *
-     * @param client
-     * @return List of Messages or null if none was found
+     * @param client sending {@code Client}
+     * @return {@code List} of {@code Messages} or {@code null} if none was found
      */
     List<Message> findBySender(Client client);
 
     /**
-     * Returns all the messages of the specified Client
+     * Returns all the {@code Messages} of the specified Client
      *
-     * @param client
-     * @return list of Messages or null if none was found
+     * @param client receiving {@code Client}
+     * @return {@code List} of {@code Messages} or {@code null} if none was found
      */
     List<Message> findByReceiver(Client client);
 
     /**
-     * Returns Message with the specified id
+     * Returns {@code Messages} with the specified id
      *
-     * @param id unique identifier
-     * @return Message or null if couldn't find
+     * @param id {@code Message} unique identifier
+     * @return {@code Messages} or {@code null} if couldn't find
      */
     Message findById(Integer id);
 

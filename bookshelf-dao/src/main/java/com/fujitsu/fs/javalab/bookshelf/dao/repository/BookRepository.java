@@ -15,25 +15,25 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
     /**
-     * Returns all the books from the table
+     * Returns all the {@code Books} from the table
      *
-     * @return list of books or null if none was found
+     * @return {@code List} of {@code Books} or {@code null} if none was found
      */
     List<Book> findAll();
 
     /**
-     * Returns book with specified id
+     * Returns {@code Book} with specified id
      *
      * @param id unique identifier
-     * @return the book or null if nothing was found
+     * @return the {@code Book} or {@code null} if nothing was found
      */
     Book findById(int id);
 
     /**
-     * Returns group of books by author and bookname
+     * Returns group of {@code Books} by {@code AuthorBookname}
      *
-     * @param authorBookname
-     * @return book list or null if none was found
+     * @param authorBookname {@code AuthorBookname} to search
+     * @return {@code Books} {@code List} or {@code null} if none was found
      */
     List<Book> findAllByAuthorBookname(AuthorBookname authorBookname);
 }

@@ -14,36 +14,36 @@ import java.util.List;
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     /**
-     * Returns all the authors from table
+     * Returns all the {@code Authors} from table
      *
-     * @return list of authors or null if none was found
+     * @return {@code List} of {@code Authors} or {@code null} if none was found
      */
     List<Author> findAll();
 
     /**
-     * Returns only one author by id
+     * Returns {@code Author} by id
      *
      * @param id the identifier of the object
-     * @return the author or null if nothing was found
+     * @return the {@code Author} or {@code null} if nothing was found
      */
     Author findById(int id);
 
     /**
-     * Returns all the authors by firstname and surname
+     * Returns all the {@code Authors} by firstname and surname
      *
-     * @param firstname
-     * @param surname
-     * @return the authors or null if none was found
+     * @param firstname {@code Author's} firstname
+     * @param surname   {@code Author's} surname
+     * @return the {@code Authors} or {@code null} if none was found
      */
     List<Author> findAllByFirstnameAndSurname(String firstname, String surname);
 
     /**
-     * Returns author by firstname, surname and middlename
+     * Returns {@code Author} by firstname, surname and middlename
      *
-     * @param firstname
-     * @param surname
-     * @param middlename
-     * @return the author or null if none was found
+     * @param firstname  {@code Author's} firstname
+     * @param surname    {@code Author's} surname
+     * @param middlename {@code Author's} middlename
+     * @return the {@code Author} or {@code null} if none was found
      */
     Author findByFirstnameAndSurnameAndMiddlename(String firstname, String surname, String middlename);
 
