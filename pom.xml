@@ -34,7 +34,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--Modules-->
+            <!--AllModules-->
             <dependency>
                 <groupId>com.fujitsu.fs.javalab.bookshelf.dao</groupId>
                 <artifactId>bookshelf-dao</artifactId>
